@@ -1,7 +1,6 @@
 module.exports = {
     content: [
-      './src/**/*.{njk,html,js}',
-      './_includes/**/*.{njk,html,js}'
+      './src/**/*.{njk,html,js}'
     ],
     theme: {
       extend: {
@@ -13,13 +12,9 @@ module.exports = {
           }
         },
         fontFamily: {
-          display: ['Playfair Display', 'serif'],
+          display: ['Manrope Variable', 'Manrope', 'system-ui', 'sans-serif'],
           body: ['Work Sans', 'system-ui', 'sans-serif']
         },
-        grayscale: {
-          50: '50%',
-          100: '100%'
-        }
       },
     },
     plugins: [],

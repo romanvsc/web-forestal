@@ -1,6 +1,6 @@
 [
-    { "url": "/", "text": "Inicio" },
-    { "url": "/#nosotros", "text": "Sobre Nosotros" },
-    { "url": "/#sgi", "text": "SGC" },
-    { "url": "/#contacto", "text": "Contacto" }
-  ]
+  { "url": "/servicios/", "text": "Servicios" },
+  { "url": "/nosotros/", "text": "Nosotros" },
+  { "url": "/#sgi", "text": "SGC" },
+  { "url": "/#contacto", "text": "Consultar" }
+]

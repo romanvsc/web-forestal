@@ -1,0 +1,40 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="section-block story-section" aria-labelledby="story-heading" data-story-scene>
+  <div class="site-container">
+    <div class="story-intro">
+      <div>
+        <p class="eyebrow eyebrow--light">Del bosque a la industria</p>
+        <h2 id="story-heading">Una operación que continúa.</h2>
+      </div>
+      <p>Tres capacidades que vinculan el trabajo en campo con el abastecimiento de la industria.</p>
+    </div>
+
+    <div class="story-layout" data-story-track>
+      <div class="story-chapters">
+        {% for stage in story %}
+        <article class="story-chapter" data-story-step data-story-title="{{ stage.titulo }}">
+          <div class="story-mobile-media">
+            {{ responsiveImage(stage.imagen, stage.alt, "", "lazy", "(max-width: 767px) 100vw, 1px") }}
+          </div>
+          <p class="story-number">0{{ loop.index }} / 03</p>
+          <h3>{{ stage.titulo }}</h3>
+          <p>{{ stage.texto }}</p>
+          <a class="text-link" href="/?servicio={{ stage.slug }}#contacto">Consultar por {{ stage.titulo | lower }} {{ icon("arrow-right") }}</a>
+        </article>
+        {% endfor %}
+      </div>
+
+      <aside class="story-scene" aria-hidden="true">
+        <div class="story-frames">
+          {% for stage in story %}
+          <figure class="story-frame" data-story-frame>
+            {{ responsiveImage(stage.imagen, "", "", "lazy", "(max-width: 767px) 1px, 52vw") }}
+          </figure>
+          {% endfor %}
+        </div>
+        <p class="story-scene-caption"><span data-story-caption>01 — Cosecha</span><span>Forestal Garuhapé SA</span></p>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,161 +1,293 @@
-// Animación al hacer scroll
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('section-animation');
-            entry.target.classList.remove('section-hidden');
-        }
-    });
-}, { threshold: 0.1 });
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
-document.querySelectorAll('.section-hidden').forEach((element) => {
-    observer.observe(element);
-});
+gsap.registerPlugin(ScrollTrigger);
+document.body.classList.add('has-js');
 
-(function initHeroVideo(){
-  const video = document.querySelector('[data-hero-video]');
-  if (!video) return;
+function setupNavigation() {
+  const header = document.querySelector('[data-site-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-site-menu]');
+  if (!header || !toggle || !menu) return;
 
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
+  const close = ({ returnFocus = false } = {}) => {
+    header.dataset.menuOpen = 'false';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú de navegación');
+    if (returnFocus) toggle.focus();
+  };
 
-  const playHeroVideo = () => {
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        video.setAttribute('data-autoplay-blocked', 'true');
-      });
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    header.dataset.menuOpen = String(!isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
+  });
+
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) close();
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (toggle.getAttribute('aria-expanded') === 'true' && !header.contains(event.target)) close();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      event.preventDefault();
+      close({ returnFocus: true });
+    }
+  });
+
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+    if (event.matches) close();
+  });
+}
+
+function setupContactForm() {
+  const form = document.querySelector('[data-contact-form]');
+  if (!form) return;
+
+  const status = form.querySelector('[data-form-status]');
+  const submitButton = form.querySelector('[data-submit-button]');
+  const submitLabel = form.querySelector('[data-submit-label]');
+  const defaultLabel = submitLabel.textContent;
+  const fields = [...form.querySelectorAll('[data-contact-field]')];
+  const fieldNames = ['nombre', 'email', 'mensaje'];
+  const initialParams = new URLSearchParams(window.location.search);
+  const serviceLabels = {
+    'cosecha-forestal': 'Cosecha forestal',
+    'transporte-forestal': 'Transporte forestal',
+    'aprovechamiento-biomasa-forestal': 'Aprovechamiento de biomasa forestal',
+    'playas-de-acopio': 'Playas de acopio en industria',
+    'caminos-forestales': 'Caminos forestales',
+    'consultoria-forestal': 'Consultoría forestal',
+  };
+
+  const contextualService = serviceLabels[initialParams.get('servicio')];
+  const messageField = form.elements.namedItem('mensaje');
+  if (contextualService && messageField && !messageField.value) {
+    messageField.value = `Hola, quisiera recibir información sobre ${contextualService}.`;
+  }
+
+  const showStatus = (message, state = 'success') => {
+    status.textContent = message;
+    status.dataset.state = state;
+    status.hidden = false;
+  };
+
+  const setFieldError = (name, message) => {
+    const field = form.elements.namedItem(name);
+    const error = form.querySelector(`[data-field-error="${name}"]`);
+    if (!field || !error) return;
+    field.setAttribute('aria-invalid', 'true');
+    error.textContent = message;
+    error.hidden = false;
+  };
+
+  const clearFieldError = (field) => {
+    field.removeAttribute('aria-invalid');
+    const error = form.querySelector(`[data-field-error="${field.name}"]`);
+    if (error) {
+      error.textContent = '';
+      error.hidden = true;
     }
   };
 
-  playHeroVideo();
-  video.addEventListener('loadeddata', playHeroVideo, { once: true });
-  video.addEventListener('canplay', playHeroVideo, { once: true });
-  window.setTimeout(playHeroVideo, 250);
-  window.setTimeout(playHeroVideo, 1000);
+  fields.forEach((field) => field.addEventListener('input', () => clearFieldError(field)));
+  form.addEventListener('invalid', (event) => {
+    const field = event.target;
+    if (!fields.includes(field)) return;
+    setFieldError(field.name, field.validity.valueMissing ? 'Complete este campo.' : 'Escriba una dirección de correo válida.');
+    showStatus('Revise los campos señalados.', 'error');
+  }, true);
 
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && video.paused) {
-      playHeroVideo();
-    }
-  });
-})();
-
-(function showContactStatus(){
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get('contacto');
-  const box = document.getElementById('contact-status');
-  if (!status || !box) return;
-
-  const ok = status === 'enviado';
-  box.textContent = ok
-    ? 'Gracias. Tu consulta fue enviada correctamente.'
-    : 'No pudimos enviar la consulta. Por favor, revisa los datos o escribinos a secretaria@forestalgaruhape.com.ar.';
-  box.classList.remove('hidden');
-  box.classList.add('text-white');
-  box.style.backgroundColor = ok ? '#059669' : '#dc2626';
-})();
-
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const btn = document.getElementById('mobile-menu-button');
-    const isHidden = mobileMenu.classList.contains('hidden');
-    mobileMenu.classList.toggle('hidden');
-    // update accessible attributes
-    if(btn) btn.setAttribute('aria-expanded', String(isHidden));
-    mobileMenu.setAttribute('aria-hidden', String(!isHidden));
+  if (initialParams.get('contacto') === 'enviado') {
+    showStatus('El envío fue aceptado. Gracias por comunicarse con Forestal Garuhapé SA.');
+  } else if (initialParams.get('contacto') === 'error') {
+    showStatus('No se pudo enviar la consulta. Inténtelo nuevamente o utilice los datos de contacto.', 'error');
   }
 
-  // Cierra el menú móvil al hacer clic fuera
-  document.addEventListener('click', function(event) {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (!mobileMenu || !mobileMenuButton) return;
-    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
-      }
-    }
-  });
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    fields.forEach(clearFieldError);
+    if (!form.reportValidity()) return;
 
-  // Open/close with keyboard on the toggle button (Enter / Space)
-  document.addEventListener('keydown', function(e){
-    const btn = document.getElementById('mobile-menu-button');
-    if(!btn) return;
-    if(document.activeElement === btn && (e.key === 'Enter' || e.key === ' ')){
-      e.preventDefault();
-      toggleMobileMenu();
-    }
-  });
+    status.hidden = true;
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+    submitLabel.textContent = 'Enviando…';
 
-// Header remains transparent by design (no scroll toggling)
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+        credentials: 'same-origin',
+      });
+      const result = await response.json();
 
-  // Simple gallery slider (autoplay + controls)
-  (function initGallerySliders(){
-    const sliders = document.querySelectorAll('.gallery-slider');
-    if(!sliders.length) return;
-
-    sliders.forEach(slider => {
-      const viewport = slider.querySelector('.slider-viewport');
-      const slidesEl = slider.querySelector('.slides');
-      const slides = Array.from(slider.querySelectorAll('.slide'));
-      const prev = slider.querySelector('.slider-prev');
-      const next = slider.querySelector('.slider-next');
-      const dotsContainer = slider.querySelector('.slider-dots');
-
-      const visibleCount = 4;
-      const total = slides.length;
-      const pages = Math.max(1, Math.ceil(total / visibleCount));
-      let pageIndex = 0;
-      let interval = null;
-
-      function setupSizes(){
-        const viewportWidth = viewport.clientWidth;
-        const computed = getComputedStyle(slidesEl);
-        const gap = parseFloat(computed.gap) || 0;
-        const slideWidth = Math.floor((viewportWidth - gap * (visibleCount - 1)) / visibleCount);
-        slides.forEach(s => { s.style.width = `${slideWidth}px`; });
-        const totalWidth = (slideWidth * total) + (gap * (total - 1));
-        slidesEl.style.width = `${totalWidth}px`;
-        // store pageWidth for translations
-        slider._pageWidth = (slideWidth * visibleCount) + (gap * (visibleCount - 1));
+      if (response.status === 200 && result.ok === true) {
+        form.reset();
+        fields.forEach(clearFieldError);
+        showStatus('El envío fue aceptado. Gracias por comunicarse con Forestal Garuhapé SA.');
+        status.focus();
+        return;
       }
 
-      function renderDots(){
-        dotsContainer.innerHTML = '';
-        for(let i=0;i<pages;i++){
-          const btn = document.createElement('button');
-          btn.className = 'dot w-3 h-3 rounded-full bg-slate-300';
-          btn.setAttribute('aria-label', `Página ${i+1}`);
-          btn.addEventListener('click', ()=>{ go(i); start(); });
-          dotsContainer.appendChild(btn);
+      if (response.status === 422 && result.fieldErrors && typeof result.fieldErrors === 'object') {
+        for (const name of fieldNames) {
+          if (result.fieldErrors[name]) setFieldError(name, result.fieldErrors[name]);
         }
+        const firstInvalid = fields.find((field) => field.getAttribute('aria-invalid') === 'true');
+        showStatus('Revise los campos señalados y vuelva a intentar.', 'error');
+        (firstInvalid ?? status).focus();
+        return;
       }
 
-      function go(page){
-        pageIndex = (page % pages + pages) % pages;
-        const x = slider._pageWidth * pageIndex || 0;
-        slidesEl.style.transform = `translateX(-${x}px)`;
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((d,di)=> d.classList.toggle('bg-blue-600', di === pageIndex));
-      }
+      showStatus('No pudimos enviar la consulta. Puede escribir a secretaria@forestalgaruhape.com.ar.', 'error');
+      status.focus();
+    } catch {
+      showStatus('Se perdió la conexión y la consulta no pudo enviarse. Sus datos siguen en el formulario.', 'error');
+      status.focus();
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+      submitLabel.textContent = defaultLabel;
+    }
+  });
+}
 
-      function start(){ stop(); interval = setInterval(()=> go(pageIndex + 1), 3500); }
-      function stop(){ if(interval) clearInterval(interval); interval = null; }
+function setupHeroVideo() {
+  const media = document.querySelector('[data-hero-media]');
+  if (!media) return;
 
-      prev?.addEventListener('click', ()=>{ go(pageIndex - 1); start(); });
-      next?.addEventListener('click', ()=>{ go(pageIndex + 1); start(); });
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
+  const poster = media.querySelector('[data-hero-poster]');
+  const video = media.querySelector('[data-hero-video]');
+  const button = media.querySelector('[data-hero-play]');
+  const status = media.querySelector('[data-video-status]');
+  if (!poster || !video || !button) return;
 
-      // init
-      renderDots();
-      setupSizes();
-      window.addEventListener('resize', ()=> { setupSizes(); go(pageIndex); });
-      go(0);
-      start();
+  button.addEventListener('click', () => {
+    if (button.disabled) return;
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    status.textContent = 'Cargando video de la operación forestal.';
+    video.querySelectorAll('[data-video-source]').forEach((source) => {
+      source.src = source.dataset.src;
     });
-  })();
+    video.hidden = false;
+    video.load();
+
+    video.addEventListener('loadeddata', async () => {
+      poster.hidden = true;
+      button.hidden = true;
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+      video.focus();
+      try {
+        await video.play();
+        status.textContent = 'Video en reproducción. Use los controles para pausar o ajustar el audio.';
+      } catch {
+        status.textContent = 'El video está listo. Use los controles para reproducirlo.';
+      }
+    }, { once: true });
+
+    video.addEventListener('error', () => {
+      video.hidden = true;
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+      status.textContent = 'El video no está disponible. La imagen de la operación sigue visible.';
+    }, { once: true });
+  });
+}
+
+function setupStory() {
+  const scene = document.querySelector('[data-story-scene]');
+  const track = document.querySelector('[data-story-track]');
+  if (!scene || !track) return;
+
+  const frames = [...scene.querySelectorAll('[data-story-frame]')];
+  const chapters = [...track.querySelectorAll('[data-story-step]')];
+  const caption = scene.querySelector('[data-story-caption]');
+  if (frames.length < 2 || chapters.length !== frames.length) return;
+
+  const media = gsap.matchMedia();
+  media.add('(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+    const lenis = new Lenis({ smoothWheel: true, syncTouch: false, anchors: true, respectReducedMotion: true });
+    const updateScroll = (time) => lenis.raf(time * 1000);
+    const setCaption = (index) => {
+      if (caption) caption.textContent = `${String(index + 1).padStart(2, '0')} — ${chapters[index].dataset.storyTitle}`;
+    };
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(updateScroll);
+    gsap.ticker.lagSmoothing(0);
+
+    const sequence = gsap.timeline({
+      scrollTrigger: {
+        trigger: track,
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 0.3,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    sequence.to(frames[0], { scale: 1.04, duration: 1, ease: 'none' }, 0);
+    for (let index = 1; index < frames.length; index += 1) {
+      const transitionAt = (index / frames.length) - 0.08;
+      sequence.to(frames[index - 1], { autoAlpha: 0, duration: 0.16, ease: 'none' }, transitionAt);
+      sequence.fromTo(frames[index], { autoAlpha: 0, scale: 1 }, { autoAlpha: 1, scale: 1.04, duration: 0.2, ease: 'none' }, transitionAt);
+    }
+
+    chapters.forEach((chapter, index) => {
+      ScrollTrigger.create({
+        trigger: chapter,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setCaption(index),
+        onEnterBack: () => setCaption(index),
+      });
+    });
+    setCaption(0);
+    document.body.classList.add('has-story-motion');
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
+    return () => {
+      document.body.classList.remove('has-story-motion');
+      gsap.ticker.remove(updateScroll);
+      gsap.ticker.lagSmoothing(500, 33);
+      lenis.destroy();
+    };
+  });
+}
+
+function setupPageIntroduction() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const intro = document.querySelector('.hero-copy, .page-intro .site-container, .career-copy');
+  if (!intro) return;
+  const parts = [...intro.children];
+  if (parts.length === 0) return;
+  gsap.from(parts, {
+    autoAlpha: 0,
+    y: 8,
+    duration: 0.42,
+    stagger: 0.055,
+    ease: 'power2.out',
+    clearProps: 'all',
+  });
+}
+
+function setCurrentYear() {
+  const year = String(new Date().getFullYear());
+  document.querySelectorAll('[data-current-year]').forEach((node) => { node.textContent = year; });
+}
+
+setupNavigation();
+setupContactForm();
+setupHeroVideo();
+setupStory();
+setupPageIntroduction();
+setCurrentYear();

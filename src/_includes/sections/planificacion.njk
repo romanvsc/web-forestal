@@ -1,0 +1,37 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="section-block planning-section" aria-labelledby="planning-heading">
+  <div class="site-container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Preparar la operación</p>
+        <h2 id="planning-heading">Planificación y caminos forestales.</h2>
+      </div>
+      <p>La consultoría y el estado de los caminos acompañan la planificación y el movimiento de recursos en campo.</p>
+    </div>
+    <div class="planning-grid">
+      <article class="planning-item">
+        <div>
+          <p class="eyebrow">Consultoría</p>
+          <h3>Planificar para tomar decisiones.</h3>
+          <p>Planes de abastecimiento, análisis de supply chain y estudios de productividad para la cadena foresto-industrial.</p>
+          <a class="text-link" href="/consultoria/">Ver consultoría {{ icon("arrow-right") }}</a>
+        </div>
+        <div class="planning-image">
+          {{ responsiveImage("/images/consultoria/abastecimiento-fg.webp", "Planificación de abastecimiento forestal", "", "lazy", "(max-width: 767px) 40vw, 24vw") }}
+        </div>
+      </article>
+      <article class="planning-item">
+        <div>
+          <p class="eyebrow">Infraestructura operativa</p>
+          <h3>Abrir y mantener caminos.</h3>
+          <p>Servicio de apertura, mantenimiento y consolidación de caminos forestales, de acuerdo con la operación.</p>
+          <a class="text-link" href="/servicios/caminos-forestales/">Ver caminos forestales {{ icon("arrow-right") }}</a>
+        </div>
+        <div class="planning-image">
+          {{ responsiveImage("/images/servicios/caminos_forestales.jpeg", "Camino forestal en una operación", "", "lazy", "(max-width: 767px) 40vw, 24vw") }}
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

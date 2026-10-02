@@ -22,11 +22,13 @@ eleventyExcludeFromCollections: true
   </url>
 {% endfor %}
 {% for servicio in todos_los_servicios %}
+  {% if servicio.slug != "consultoria-forestal" %}
   <url>
     <loc>{{ site.url }}/servicios/{{ servicio.slug }}/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  {% endif %}
 {% endfor %}
 </urlset>

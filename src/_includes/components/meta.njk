@@ -15,11 +15,11 @@
 <meta name="description" content="{{ metaDescription }}">
 <meta name="author" content="{{ site.name }}">
 <meta name="robots" content="{{ metaRobots }}">
-<meta name="theme-color" content="#059669">
+<meta name="theme-color" content="#082d25">
 <meta name="keywords" content="{{ site.keywords | join(', ') }}">
 
 <link rel="canonical" href="{{ canonicalUrl }}">
-<link rel="icon" href="/images/logo-30.png" type="image/png">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="alternate" hreflang="es-AR" href="{{ canonicalUrl }}">
 <link rel="alternate" hreflang="x-default" href="{{ canonicalUrl }}">
 
@@ -78,7 +78,7 @@
 					"@type": "Service",
 					"name": "{{ servicio.titulo }}",
 					"description": "{{ servicio.descripcion | striptags }}",
-					"url": "{{ site.url }}/servicios/{{ servicio.slug }}/",
+                    "url": "{{ site.url }}{% if servicio.slug == 'consultoria-forestal' %}/consultoria/{% else %}/servicios/{{ servicio.slug }}/{% endif %}",
 					"provider": {
 						"@id": "{{ site.url }}/#organization"
 					}

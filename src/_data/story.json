@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "cosecha-forestal",
+    "titulo": "Cosecha",
+    "imagen": "/images/servicios/1470_proceso.jpeg",
+    "alt": "Maquinaria forestal trabajando en la cosecha",
+    "texto": "Operación mecanizada desde el corte y la extracción hasta la carga, adaptada a las necesidades de cada cliente."
+  },
+  {
+    "slug": "transporte-forestal",
+    "titulo": "Transporte",
+    "imagen": "/images/servicios/transporte_forestal_carga.jpeg",
+    "alt": "Camión con carga forestal en un camino de operación",
+    "texto": "Equipos para acercar troncos y chips desde el bosque hasta la industria."
+  },
+  {
+    "slug": "playas-de-acopio",
+    "titulo": "Acopio",
+    "imagen": "/images/servicios/playa_acopio.jpeg",
+    "alt": "Madera organizada en una playa de acopio industrial",
+    "texto": "Descarga, movimientos internos y acondicionamiento para organizar el abastecimiento industrial."
+  }
+]

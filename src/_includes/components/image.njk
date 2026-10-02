@@ -1,0 +1,10 @@
+{% macro responsiveImage(src, alt, className='', loading='lazy', sizes='100vw') %}
+{% set imageData = assets.images[src] %}
+<picture>
+  {% if imageData and imageData.avif.length %}
+  <source type="image/avif" sizes="{{ sizes }}" srcset="{% for variant in imageData.avif %}{{ variant.url }} {{ variant.width }}w{% if not loop.last %}, {% endif %}{% endfor %}">
+  <source type="image/webp" sizes="{{ sizes }}" srcset="{% for variant in imageData.webp %}{{ variant.url }} {{ variant.width }}w{% if not loop.last %}, {% endif %}{% endfor %}">
+  {% endif %}
+  <img src="{{ src }}" alt="{{ alt }}" class="{{ className }}" loading="{{ loading }}" decoding="async"{% if loading == "eager" %} fetchpriority="high"{% endif %}{% if imageData %} width="{{ imageData.width }}" height="{{ imageData.height }}"{% endif %}>
+</picture>
+{% endmacro %}

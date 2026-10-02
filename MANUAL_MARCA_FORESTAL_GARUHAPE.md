@@ -689,3 +689,44 @@ Antes de publicar una pieza, revisar:
 - `#0f1724`
 - `#334155`
 - `#6b7280`
+
+## Sistema de identidad para la web
+
+Revisión digital: 2 de octubre de 2026. Estas reglas se aplican al sitio de Forestal Garuhapé SA. No reemplazan las reglas de tipografía o impresión para otras piezas de marca. El logo conserva sus versiones institucionales existentes.
+
+### Tipografía web
+
+- **Manrope Variable, pesos 600 y 700:** títulos, encabezados y nombres de servicios en el sitio.
+- **Work Sans Variable, pesos 400 y 600:** lectura, navegación, botones, campos, etiquetas y mensajes.
+- El proyecto distribuye WOFF2 locales, con `font-display: swap` y respaldo sans serif del sistema. La versión digital utiliza Manrope en lugar de Playfair Display; Playfair permanece en este manual como la elección histórica para otras aplicaciones de marca.
+
+### Colores de interfaz
+
+| Token | Hex | Uso |
+| --- | --- | --- |
+| Fondo | `#FFFFFF` | Superficie de lectura principal. |
+| Superficie | `#F7F7F6` | Secciones alternas y superficies secundarias. |
+| Texto | `#0F1724` | Títulos y texto principal. |
+| Texto secundario | `#56645D` | Descripción y ayuda sobre fondos claros. |
+| Marca | `#0F766E` | Acción principal, enlaces e indicador de foco claro. |
+| Marca en interacción | `#065F46` | Hover y pulsación. |
+| Verde institucional oscuro | `#082D25` | Navegación, relato operativo, contacto y pie de página. |
+| Texto sobre oscuro | `#F7F7F6` | Títulos y texto principal sobre verde oscuro. |
+| Secundario sobre oscuro | `#CBD9D2` | Ayuda y texto secundario sobre fondos oscuros. |
+| Borde | `#DCE4DE` | Separación de tarjetas, filas y contenido. |
+| Foco sobre oscuro | `#BDE4D4` | Indicador de teclado sobre superficies oscuras. |
+| Error | `#B42318` | Estados y mensajes de validación. |
+| Confirmación | `#E9F4ED` | Fondo de confirmación. |
+
+El color de foco en superficies claras es el verde marca. Las combinaciones de texto se aplican según el fondo y se revisan en los componentes; el color solo no identifica errores o confirmaciones.
+
+### Iconografía
+
+Se utilizan iconos de **Tabler Outline** en la interfaz. El build reúne los SVG empleados en un sprite local. Los iconos acompañan botones y canales de contacto; cada acción conserva un nombre accesible en texto.
+
+### Escala y movimiento
+
+- Contenedor máximo: 1280 px; márgenes de 48 px en escritorio, 32 px en tablet y 20 px en móvil.
+- H1 fluido de 40–80 px; H2 de 32–48 px; texto de lectura de 16–18 px.
+- Botones y campos con una altura mínima de 48 px; áreas de acción de icono con al menos 44 × 44 px.
+- El scrollytelling se limita a la portada en escritorio. Las páginas conservan lectura y navegación con desplazamiento nativo, JavaScript desactivado y movimiento reducido.
