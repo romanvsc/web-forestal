@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ assets.css }}">
     <script defer src="{{ assets.js }}"></script>
   </head>
-  <body>
+  <body{% if homeV2 %} class="home-v2"{% endif %}>
     <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
     {% include "components/header.njk" %}
     <main id="contenido-principal">

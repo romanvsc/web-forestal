@@ -1,0 +1,16 @@
+(() => {
+  for (const input of document.querySelectorAll('[data-range]')) {
+    const sample = input.closest('article').querySelector('[data-sample]');
+    const output = input.closest('article').querySelector('output');
+    input.addEventListener('input', () => {
+      sample.style.setProperty('--progress', Number(input.value) / 100);
+      output.value = `${input.value}%`;
+    });
+  }
+  const video = document.querySelector('.video-review video');
+  const disclosure = document.querySelector('.video-review');
+  if (video && disclosure) {
+    disclosure.addEventListener('toggle', () => { if (!disclosure.open) video.pause(); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) video.pause(); });
+  }
+})();

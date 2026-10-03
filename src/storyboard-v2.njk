@@ -1,0 +1,128 @@
+---
+permalink: /storyboard-v2/
+eleventyExcludeFromCollections: true
+---
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#061C17">
+  <title>Storyboard V2 · Forestal Garuhapé</title>
+  <link rel="preload" href="{{ assets.fonts.manrope }}" as="font" type="font/woff2" crossorigin>
+  <style>{% include "storyboard-v2/styles.njk" %}</style>
+</head>
+<body>
+  <a class="skip" href="#recorrido">Saltar al recorrido</a>
+  <div class="review-bar">
+    <span>STORYBOARD <strong>V2</strong></span>
+    <nav aria-label="Herramientas de revisión">
+      <a href="#transiciones">Transiciones</a>
+      <a href="#guion">Guion</a>
+      <a href="/">Ver portada actual {{ icon('arrow-up-right') }}</a>
+    </nav>
+  </div>
+  <main id="recorrido">
+    <section class="hero" aria-labelledby="hero-title" id="presentacion">
+      {{ responsiveImage('/images/actualizadas/cosecha-forestal.png', 'Maquinaria forestal trabajando entre plantaciones', 'hero-photo', 'eager') }}
+      <header class="hero-header">
+        <a href="/" aria-label="Forestal Garuhapé SA, portada actual"><img src="/images/fg-negative.svg" width="215" height="116" alt="Forestal Garuhapé SA" class="brand"></a>
+        <nav aria-label="Recorrido propuesto">
+          <a href="#capacidades">Capacidades</a>
+          <a href="#empresa">Nosotros</a>
+          <a href="#sgi-v2">SGC</a>
+          <a href="#contacto-v2" class="action">Consultar {{ icon('arrow-up-right') }}</a>
+        </nav>
+      </header>
+      <div class="hero-copy">
+        <p class="meta">FORESTAL GARUHAPÉ · ARGENTINA / PARAGUAY</p>
+        <h1 id="hero-title">DEL BOSQUE<br>A LA INDUSTRIA.</h1>
+      </div>
+      <div class="hero-base">
+        <div><span>DESDE 1993</span><p>Más de tres décadas.</p></div>
+        <div><span>OPERACIÓN REGIONAL</span><p>Argentina / Paraguay.</p></div>
+        <a href="#capacidades">Recorrer la operación {{ icon('chevron-down') }}</a>
+      </div>
+    </section>
+    <details class="note">
+      <summary>01 · Nota de dirección — inicio y video</summary>
+      <div class="note-body"><p>Poster inmediato. En la Home final, el video se reproducirá automáticamente sin sonido en escritorio; habrá pausa visible. Móvil, movimiento reducido y ahorro de datos conservarán la fotografía. La cabecera pasará a sólida después del hero.</p>
+        <details class="video-review"><summary>Ver el video existente</summary><video controls muted loop playsinline preload="none" poster="/images/actualizadas/cosecha-forestal.png" aria-label="Video de la operación forestal"><source src="/images/hero-forestal.webm" type="video/webm"><source src="/images/hero-forestal.mp4" type="video/mp4"></video></details>
+      </div>
+    </details>
+
+    <section class="story-intro" id="capacidades" aria-labelledby="intro-title">
+      <h2 id="intro-title">UNA OPERACIÓN.<br>SEIS CAPACIDADES.</h2>
+      <div class="intro-bottom"><p>Del trabajo en campo al abastecimiento de la industria.</p>
+        <nav aria-label="Ir a una capacidad">{% for chapter in storyboardV2 %}<a href="#{{ chapter.kind }}">{{ chapter.number }} {{ chapter.title }}</a>{% endfor %}</nav>
+      </div>
+    </section>
+
+    {% for chapter in storyboardV2 %}
+    <section class="chapter {{ chapter.kind }}" id="{{ chapter.kind }}" aria-labelledby="title-{{ chapter.kind }}">
+      <figure class="chapter-photo">
+        {{ responsiveImage(chapter.image, chapter.alt, '', 'lazy', '(max-width: 767px) 100vw, 75vw') }}
+        <figcaption>{{ chapter.caption }}</figcaption>
+      </figure>
+      <div class="chapter-copy">
+        <p class="chapter-index"><span>{{ chapter.number }}</span> / {{ chapter.title | upper }}</p>
+        <h2 id="title-{{ chapter.kind }}">{% for line in chapter.line.split('\n') %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</h2>
+        <p class="description">{{ chapter.copy }}</p>
+        <div class="chapter-links"><a href="{{ chapter.detail }}">Conocer el servicio {{ icon('arrow-up-right') }}</a><a href="/?servicio={{ chapter.slug }}#contacto">Consultar {{ icon('arrow-right') }}</a></div>
+      </div>
+    </section>
+    <details class="note"><summary>{{ chapter.number }} · Nota de dirección — {{ chapter.title }}</summary><div class="note-body"><p>{{ chapter.motion }} En móvil se conserva una fotografía propia por capítulo y se apila el contenido en orden de lectura.</p></div></details>
+    {% endfor %}
+    <div class="catalog-close"><a class="action" href="/servicios/">Explorar todos los servicios {{ icon('arrow-up-right') }}</a></div>
+
+    <section class="company" id="empresa" aria-labelledby="company-title-v2">
+      <div class="company-top"><p class="year">1993</p><h2 id="company-title-v2">Más de tres décadas<br>conectando personas,<br>maquinaria y planificación.</h2></div>
+      <div class="company-bottom"><figure>{{ responsiveImage('/images/flota_camiones.png', 'Flota de camiones de Forestal Garuhapé', '', 'lazy', '(max-width: 767px) 100vw, 58vw') }}<figcaption>Forestal Garuhapé SA · Flota operativa</figcaption></figure>
+        <div><p>Desde 1993, Forestal Garuhapé SA, Forestal Paraguay SA y Foresvia SA integran un grupo dedicado a la consultoría y los servicios forestales mecanizados.</p><p>Operamos en Argentina y Paraguay.</p><a class="ink-link" href="/nosotros/">Conocer la empresa {{ icon('arrow-up-right') }}</a></div>
+      </div>
+    </section>
+    <details class="note"><summary>Empresa · Nota de dirección — pausa institucional</summary><div class="note-body"><p>El crema y el espacio negativo interrumpen el ritmo operativo. Se utiliza la flota existente, según la elección confirmada. No se presenta el collage institucional ni un retrato de equipo sin verificar.</p></div></details>
+
+    <section class="sgc" id="sgi-v2" aria-labelledby="sgc-title-v2">
+      <div class="sgc-backdrop">{{ responsiveImage('/images/actualizadas/consultoria-forestal.png', '', '', 'lazy') }}</div>
+      <div class="sgc-content"><h2 id="sgc-title-v2">OPERAR TAMBIÉN<br>ES CUIDAR.</h2><p class="sgc-subtitle">Sistema de Gestión de Calidad</p>
+        <ol class="sgc-list">
+          <li><h3>SEGURIDAD</h3><p>Cuidar la salud y la seguridad de las personas en la operación.</p></li>
+          <li><h3>CALIDAD</h3><p>Orientar los servicios a la satisfacción de nuestros clientes.</p></li>
+          <li><h3>SOSTENIBILIDAD</h3><p>Considerar el ambiente y las comunidades en las que operamos.</p></li>
+          <li><h3>MEJORA CONTINUA</h3><p>Revisar los servicios para mejorar su eficiencia y calidad.</p></li>
+        </ol>
+      </div>
+    </section>
+    <details class="note"><summary>SGC · Nota de dirección — cuatro momentos</summary><div class="note-body"><p>Cada concepto tendrá su propio momento de lectura. La versión final conservará el ancla <code>#sgi</code>. El contenido reformula los compromisos existentes y no incorpora certificaciones nuevas.</p></div></details>
+
+    <section class="regional" aria-labelledby="regional-title" id="alcance">
+      <div class="regional-copy"><h2 id="regional-title">ALCANCE<br>REGIONAL.</h2><p>Un grupo de empresas.<br>Operación en dos países.</p><ul><li>Argentina</li><li>Paraguay</li></ul><p class="map-disclaimer">Los países indican el alcance institucional. No representan emplazamientos ni cobertura de todo el territorio.</p></div>
+      <figure><img src="/images/maps/argentina-paraguay.svg" alt="Mapa con Argentina y Paraguay destacados y países vecinos como contexto" width="680" height="710" loading="lazy"><figcaption>Argentina / Paraguay</figcaption></figure>
+    </section>
+    <details class="note"><summary>Alcance · Nota de dirección — mapa real</summary><div class="note-body"><p>Contornos locales de Natural Earth, de dominio público. No hay coordenadas de operaciones verificadas: se muestran únicamente Argentina y Paraguay. Una aparición breve de los contornos acompañará la lectura.</p></div></details>
+
+    <section class="contact" aria-labelledby="contact-title-v2" id="contacto-v2">
+      <h2 id="contact-title-v2">HABLEMOS DE<br>SU PRÓXIMA<br>OPERACIÓN.</h2>
+      <div class="contact-bottom"><div class="contact-channels"><p>Cuéntenos qué necesita.</p><a href="mailto:secretaria@forestalgaruhape.com.ar">secretaria@forestalgaruhape.com.ar</a><a href="tel:+5493743485849">+54 9 3743 48-5849</a><a href="https://api.whatsapp.com/send?phone=5493743485849&amp;text=Hola" target="_blank" rel="noopener">Escribir por WhatsApp {{ icon('arrow-up-right') }}<span class="sr-only"> (abre en otra pestaña)</span></a></div>
+        <div class="contact-composition" aria-describedby="form-preview-note"><div class="fields"><label>Nombre<input type="text" name="preview-nombre" autocomplete="name" readonly placeholder="Su nombre…"></label><label>Correo electrónico<input type="email" name="preview-email" autocomplete="email" spellcheck="false" readonly placeholder="nombre@empresa.com…"></label></div><label>¿En qué podemos ayudarle?<textarea name="preview-mensaje" rows="4" readonly placeholder="Cuéntenos sobre su operación…"></textarea></label><p id="form-preview-note" class="form-note">Composición del formulario para revisión. Para enviar una consulta, abra el formulario actual.</p><a class="action" href="/#contacto">Abrir formulario actual {{ icon('arrow-up-right') }}</a></div>
+      </div>
+    </section>
+    <footer class="preview-footer"><span>FORESTAL GARUHAPÉ SA</span><a href="/privacidad/">Privacidad</a><a href="/terminos/">Términos</a><a href="/trabaja/">Empleo en Vogel</a></footer>
+
+    <section class="transition-review" id="transiciones" aria-labelledby="transition-title">
+      <h2 id="transition-title">Tres transiciones<br>para revisar.</h2><p>Desplace cada control para comparar el inicio, el punto medio y el final. Son muestras de encuadre; el scroll de la Home se implementará después de aprobar el storyboard.</p>
+      <div class="transition-grid">
+        <article><h3>Hero → Cosecha</h3><div class="sample expansion" data-sample>{{ responsiveImage('/images/actualizadas/cosecha-forestal.png', 'Muestra de la expansión del encuadre de cosecha', '', 'lazy') }}<span class="sample-caption">01 / COSECHA</span></div><label class="range-label" for="expand-range">Apertura del encuadre <output for="expand-range">0%</output></label><input id="expand-range" type="range" min="0" max="100" value="0" data-range="expansion"><div class="range-steps"><span>Inicio · 75%</span><span>Medio</span><span>Final · 100%</span></div></article>
+        <article><h3>Transporte → Acopio</h3><div class="sample dissolve" data-sample>{{ responsiveImage('/images/actualizadas/transporte-forestal.png', 'Inicio de la transición: camión y equipo de carga', '', 'lazy') }}<div class="sample-next">{{ responsiveImage('/images/actualizadas/playas-de-acopio.png', 'Final de la transición: encuadre vertical de acopio', '', 'lazy') }}</div><span class="sample-caption">02 → 03</span></div><label class="range-label" for="dissolve-range">Disolución entre imágenes <output for="dissolve-range">0%</output></label><input id="dissolve-range" type="range" min="0" max="100" value="0" data-range="dissolve"><div class="range-steps"><span>Transporte</span><span>Medio</span><span>Acopio</span></div></article>
+        <article><h3>Empresa → SGC</h3><div class="sample pause-transition" data-sample><span class="sample-year">1993</span><div class="sample-next">{{ responsiveImage('/images/actualizadas/consultoria-forestal.png', '', '', 'lazy') }}<span>OPERAR TAMBIÉN<br>ES CUIDAR.</span></div></div><label class="range-label" for="pause-range">Cambio de ambiente <output for="pause-range">0%</output></label><input id="pause-range" type="range" min="0" max="100" value="0" data-range="pause-transition"><div class="range-steps"><span>Crema</span><span>Medio</span><span>Bosque</span></div></article>
+      </div>
+    </section>
+    <section class="script-summary" id="guion" aria-labelledby="script-title"><h2 id="script-title">El guion de la V2.</h2><p>Una Home documental para entender las capacidades de Forestal y abrir una conversación comercial.</p><ol><li>Presentación a pantalla completa.</li><li>Cosecha → Transporte → Acopio → Caminos → Biomasa → Consultoría.</li><li>Pausa institucional: desde 1993.</li><li>SGC: seguridad, calidad, sostenibilidad y mejora continua.</li><li>Alcance regional: Argentina y Paraguay.</li><li>Consulta comercial.</li></ol><p>Esta vista está preparada para revisar composición y recursos. La portada actual continúa en <a href="/">el inicio del sitio</a>.</p><a class="ink-link" href="#presentacion">Volver al inicio del storyboard {{ icon('chevron-down') }}</a></section>
+  </main>
+  <script>{% include "storyboard-v2/controls.njk" %}</script>
+</body>
+</html>

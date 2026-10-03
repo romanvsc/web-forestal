@@ -1,10 +1,13 @@
 {% from "components/icon.njk" import icon with context %}
 <footer class="site-footer">
   <section class="contact-section" id="contacto" aria-labelledby="contact-heading">
-    <div class="site-container contact-layout">
+    {% if homeV2 %}<div class="home-contact-shell"><h2 class="home-contact-title" id="contact-heading">HABLEMOS DE<br>SU PRÓXIMA<br>OPERACIÓN.</h2>{% endif %}
+    <div class="{% if homeV2 %}home-contact-layout{% else %}site-container contact-layout{% endif %}">
       <div class="contact-copy">
+        {% if not homeV2 %}
         <p class="eyebrow eyebrow--light">Contacto comercial</p>
         <h2 id="contact-heading">Hablemos de su operación.</h2>
+        {% endif %}
         <p>Cuéntenos qué necesita y el equipo de Forestal Garuhapé SA recibirá su consulta.</p>
         <div class="contact-direct">
           <a href="mailto:{{ site.email }}">{{ icon("mail") }}{{ site.email }}</a>
@@ -27,7 +30,7 @@
           </div>
           <div class="form-field">
             <label for="email">Correo electrónico</label>
-            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error" data-contact-field>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" required aria-describedby="email-error" data-contact-field>
             <span class="field-error" id="email-error" data-field-error="email" hidden></span>
           </div>
         </div>
@@ -43,6 +46,7 @@
         </button>
       </form>
     </div>
+    {% if homeV2 %}</div>{% endif %}
   </section>
 
   <div class="footer-lower">

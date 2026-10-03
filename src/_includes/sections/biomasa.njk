@@ -1,9 +1,10 @@
 {% from "components/image.njk" import responsiveImage with context %}
 {% from "components/icon.njk" import icon with context %}
-{% set biomass = todos_los_servicios | selectattr("slug", "equalto", "aprovechamiento-biomasa-forestal") | first %}
+{% set biomass = {} %}
+{% for service in todos_los_servicios %}{% if service.slug == "aprovechamiento-biomasa-forestal" %}{% set biomass = service %}{% endif %}{% endfor %}
 <section class="section-block" aria-labelledby="biomass-heading">
   <div class="site-container biomass-grid">
-    <figure class="biomass-image">
+    <figure class="biomass-image" data-parallax-frame>
       {{ responsiveImage("/images/servicios/biomasa_3.jpeg", "Material forestal preparado para su aprovechamiento como biomasa", "", "lazy", "(max-width: 767px) 100vw, 50vw") }}
     </figure>
     <div class="biomass-copy">

@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T02:06:17.369Z",
+  "title": "Design System: Forestal Garuhapé — Home V2",
+  "extensions": {
+    "colorMeta": {
+      "forest": {
+        "role": "primary",
+        "displayName": "Bosque",
+        "tonalRamp": [
+          "oklch(15.00% 0.04385 175.40)",
+          "oklch(26.43% 0.04385 175.40)",
+          "oklch(37.86% 0.04385 175.40)",
+          "oklch(49.29% 0.04385 175.40)",
+          "oklch(60.71% 0.04385 175.40)",
+          "oklch(72.14% 0.04385 175.40)",
+          "oklch(83.57% 0.04385 175.40)",
+          "oklch(95.00% 0.04385 175.40)"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Negro verde",
+        "tonalRamp": [
+          "oklch(15.00% 0.03022 176.22)",
+          "oklch(26.43% 0.03022 176.22)",
+          "oklch(37.86% 0.03022 176.22)",
+          "oklch(49.29% 0.03022 176.22)",
+          "oklch(60.71% 0.03022 176.22)",
+          "oklch(72.14% 0.03022 176.22)",
+          "oklch(83.57% 0.03022 176.22)",
+          "oklch(95.00% 0.03022 176.22)"
+        ]
+      },
+      "brand": {
+        "role": "primary",
+        "displayName": "Verde institucional",
+        "tonalRamp": [
+          "oklch(15.00% 0.08606 186.39)",
+          "oklch(26.43% 0.08606 186.39)",
+          "oklch(37.86% 0.08606 186.39)",
+          "oklch(49.29% 0.08606 186.39)",
+          "oklch(60.71% 0.08606 186.39)",
+          "oklch(72.14% 0.08606 186.39)",
+          "oklch(83.57% 0.08606 186.39)",
+          "oklch(95.00% 0.08606 186.39)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Crema de pausa",
+        "tonalRamp": [
+          "oklch(15.00% 0.01112 89.72)",
+          "oklch(26.43% 0.01112 89.72)",
+          "oklch(37.86% 0.01112 89.72)",
+          "oklch(49.29% 0.01112 89.72)",
+          "oklch(60.71% 0.01112 89.72)",
+          "oklch(72.14% 0.01112 89.72)",
+          "oklch(83.57% 0.01112 89.72)",
+          "oklch(95.00% 0.01112 89.72)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Blanco suave",
+        "tonalRamp": [
+          "oklch(15.00% 0.00132 106.42)",
+          "oklch(26.43% 0.00132 106.42)",
+          "oklch(37.86% 0.00132 106.42)",
+          "oklch(49.29% 0.00132 106.42)",
+          "oklch(60.71% 0.00132 106.42)",
+          "oklch(72.14% 0.00132 106.42)",
+          "oklch(83.57% 0.00132 106.42)",
+          "oklch(95.00% 0.00132 106.42)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Texto secundario",
+        "tonalRamp": [
+          "oklch(15.00% 0.01783 164.60)",
+          "oklch(26.43% 0.01783 164.60)",
+          "oklch(37.86% 0.01783 164.60)",
+          "oklch(49.29% 0.01783 164.60)",
+          "oklch(60.71% 0.01783 164.60)",
+          "oklch(72.14% 0.01783 164.60)",
+          "oklch(83.57% 0.01783 164.60)",
+          "oklch(95.00% 0.01783 164.60)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Foco claro",
+        "tonalRamp": [
+          "oklch(15.00% 0.04626 168.46)",
+          "oklch(26.43% 0.04626 168.46)",
+          "oklch(37.86% 0.04626 168.46)",
+          "oklch(49.29% 0.04626 168.46)",
+          "oklch(60.71% 0.04626 168.46)",
+          "oklch(72.14% 0.04626 168.46)",
+          "oklch(83.57% 0.04626 168.46)",
+          "oklch(95.00% 0.04626 168.46)"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Campo oscuro",
+        "tonalRamp": [
+          "oklch(15.00% 0.03663 174.57)",
+          "oklch(26.43% 0.03663 174.57)",
+          "oklch(37.86% 0.03663 174.57)",
+          "oklch(49.29% 0.03663 174.57)",
+          "oklch(60.71% 0.03663 174.57)",
+          "oklch(72.14% 0.03663 174.57)",
+          "oklch(83.57% 0.03663 174.57)",
+          "oklch(95.00% 0.03663 174.57)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Borde de campo",
+        "tonalRamp": [
+          "oklch(15.00% 0.03098 164.89)",
+          "oklch(26.43% 0.03098 164.89)",
+          "oklch(37.86% 0.03098 164.89)",
+          "oklch(49.29% 0.03098 164.89)",
+          "oklch(60.71% 0.03098 164.89)",
+          "oklch(72.14% 0.03098 164.89)",
+          "oklch(83.57% 0.03098 164.89)",
+          "oklch(95.00% 0.03098 164.89)"
+        ]
+      },
+      "error-border": {
+        "role": "neutral",
+        "displayName": "Borde inválido",
+        "tonalRamp": [
+          "oklch(15.00% 0.13145 25.02)",
+          "oklch(26.43% 0.13145 25.02)",
+          "oklch(37.86% 0.13145 25.02)",
+          "oklch(49.29% 0.13145 25.02)",
+          "oklch(60.71% 0.13145 25.02)",
+          "oklch(72.14% 0.13145 25.02)",
+          "oklch(83.57% 0.13145 25.02)",
+          "oklch(95.00% 0.13145 25.02)"
+        ]
+      },
+      "error-surface": {
+        "role": "neutral",
+        "displayName": "Fondo de fallo",
+        "tonalRamp": [
+          "oklch(15.00% 0.07275 27.78)",
+          "oklch(26.43% 0.07275 27.78)",
+          "oklch(37.86% 0.07275 27.78)",
+          "oklch(49.29% 0.07275 27.78)",
+          "oklch(60.71% 0.07275 27.78)",
+          "oklch(72.14% 0.07275 27.78)",
+          "oklch(83.57% 0.07275 27.78)",
+          "oklch(95.00% 0.07275 27.78)"
+        ]
+      },
+      "caption": {
+        "role": "neutral",
+        "displayName": "Pie operativo",
+        "tonalRamp": [
+          "oklch(15.00% 0.02909 161.93)",
+          "oklch(26.43% 0.02909 161.93)",
+          "oklch(37.86% 0.02909 161.93)",
+          "oklch(49.29% 0.02909 161.93)",
+          "oklch(60.71% 0.02909 161.93)",
+          "oklch(72.14% 0.02909 161.93)",
+          "oklch(83.57% 0.02909 161.93)",
+          "oklch(95.00% 0.02909 161.93)"
+        ]
+      },
+      "number": {
+        "role": "neutral",
+        "displayName": "Numeración",
+        "tonalRamp": [
+          "oklch(15.00% 0.05217 168.69)",
+          "oklch(26.43% 0.05217 168.69)",
+          "oklch(37.86% 0.05217 168.69)",
+          "oklch(49.29% 0.05217 168.69)",
+          "oklch(60.71% 0.05217 168.69)",
+          "oklch(72.14% 0.05217 168.69)",
+          "oklch(83.57% 0.05217 168.69)",
+          "oklch(95.00% 0.05217 168.69)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Tinta secundaria",
+        "tonalRamp": [
+          "oklch(15.00% 0.02042 164.00)",
+          "oklch(26.43% 0.02042 164.00)",
+          "oklch(37.86% 0.02042 164.00)",
+          "oklch(49.29% 0.02042 164.00)",
+          "oklch(60.71% 0.02042 164.00)",
+          "oklch(72.14% 0.02042 164.00)",
+          "oklch(83.57% 0.02042 164.00)",
+          "oklch(95.00% 0.02042 164.00)"
+        ]
+      },
+      "success-surface": {
+        "role": "neutral",
+        "displayName": "Fondo de confirmación",
+        "tonalRamp": [
+          "oklch(15.00% 0.01487 158.25)",
+          "oklch(26.43% 0.01487 158.25)",
+          "oklch(37.86% 0.01487 158.25)",
+          "oklch(49.29% 0.01487 158.25)",
+          "oklch(60.71% 0.01487 158.25)",
+          "oklch(72.14% 0.01487 158.25)",
+          "oklch(83.57% 0.01487 158.25)",
+          "oklch(95.00% 0.01487 158.25)"
+        ]
+      },
+      "success-ink": {
+        "role": "neutral",
+        "displayName": "Tinta de confirmación",
+        "tonalRamp": [
+          "oklch(15.00% 0.08647 166.91)",
+          "oklch(26.43% 0.08647 166.91)",
+          "oklch(37.86% 0.08647 166.91)",
+          "oklch(49.29% 0.08647 166.91)",
+          "oklch(60.71% 0.08647 166.91)",
+          "oklch(72.14% 0.08647 166.91)",
+          "oklch(83.57% 0.08647 166.91)",
+          "oklch(95.00% 0.08647 166.91)"
+        ]
+      },
+      "control-white": {
+        "role": "neutral",
+        "displayName": "Blanco de control",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero documental",
+        "purpose": "Título gigante aprobado; clamp(42px,10.7vw,78px) en móvil."
+      },
+      "headline": {
+        "displayName": "Capítulo operativo",
+        "purpose": "Titulares de seis capacidades; 40px tablet y clamp(36px,9vw,52px) móvil."
+      },
+      "contact": {
+        "displayName": "Consulta comercial",
+        "purpose": "Cierre comercial; 10.8vw en móvil."
+      },
+      "year": {
+        "displayName": "Pausa institucional",
+        "purpose": "1993; 29vw en móvil."
+      },
+      "body": {
+        "displayName": "Lectura",
+        "purpose": "17px/1.6 compartido, 16px en móvil; descripciones tienen escala propia."
+      },
+      "label": {
+        "displayName": "Metadata pequeña",
+        "purpose": "Rótulo del hero e índices; contraste de escalas elegido en el brief."
+      },
+      "action": {
+        "displayName": "Acción comercial",
+        "purpose": "Botones compartidos; enlaces de servicio y catálogo tienen variantes."
+      }
+    },
+    "shadows": [
+      {
+        "name": "mobile-navigation",
+        "value": "0 12px 18px rgb(0 0 0 / 12%)",
+        "purpose": "Sombra existente del menú tablet/móvil compartido; Home sobre hero no añade sombra."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-quick",
+        "value": "150ms",
+        "purpose": "Controles compartidos y botón de video."
+      },
+      {
+        "name": "header-standard",
+        "value": "220ms ease",
+        "purpose": "Cambio de fondo/borde de la cabecera Home."
+      },
+      {
+        "name": "scroll-follow",
+        "value": "0.9s",
+        "purpose": "Scrub de la secuencia y salida del texto del hero; flota conserva 0.3s."
+      },
+      {
+        "name": "operation-scale",
+        "value": "1.02 → 1.05",
+        "purpose": "Escala implementada en las imágenes de los capítulos."
+      },
+      {
+        "name": "parallax-travel",
+        "value": "-1.5% → +1.5%",
+        "purpose": "Caminos; fotografía de flota conserva -3% → +3%."
+      },
+      {
+        "name": "sgc-reveal",
+        "value": "0.4s",
+        "purpose": "Aparición reversible de los compromisos SGC, stagger 0.06s."
+      },
+      {
+        "name": "map-reveal",
+        "value": "0.45s",
+        "purpose": "Aparición reversible del mapa regional."
+      },
+      {
+        "name": "operation-dissolve",
+        "value": "0.65 chapter units, sine.inOut",
+        "purpose": "Disolución sobre foto opaca previa, sin flash del fondo."
+      },
+      {
+        "name": "hero-montage",
+        "value": "36s / 30fps / 2s dissolve",
+        "purpose": "Seis fotos del repositorio, encuadre fijo y loop continuo. Entrada del video por opacidad en 1400ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "767px"
+      },
+      {
+        "name": "tablet-min",
+        "value": "768px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1023px"
+      },
+      {
+        "name": "desktop-motion-min",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Enviar consulta",
+      "kind": "button",
+      "refersTo": "button-submit",
+      "description": "Botón real de envío; el formulario aplica disabled/aria-busy y cambia la etiqueta durante la petición.",
+      "html": "<button class=\"ds-button\" type=\"button\">Enviar consulta <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17l10 -10\"></path><path d=\"M7 7l10 0l0 10\"></path></svg></button>",
+      "css": ".ds-button{ min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.75rem 1.25rem; border: 1px solid transparent; border-radius: 3px; background: var(--color-brand, #0f766e); color: #fff; font-size: 0.96rem; font-weight: 600; line-height: 1.25; text-align: center; text-decoration: none; cursor: pointer; transition: background-color var(--motion-quick, 150ms) ease, border-color var(--motion-quick, 150ms) ease, color var(--motion-quick, 150ms) ease, transform var(--motion-quick, 150ms) ease; }.ds-button:hover{ background: var(--color-brand-hover, #065f46); color: #fff; }.ds-button:active{ transform: translateY(1px); }.ds-button{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;font-size:.96rem;line-height:1.25}.ds-button:disabled{cursor:wait;opacity:.68}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-button{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Consultar — cabecera",
+      "kind": "button",
+      "refersTo": "button-nav",
+      "description": "Variante clara de acceso comercial de la cabecera compartida.",
+      "html": "<a class=\"ds-button ds-nav-action\" href=\"/#contacto\">Consultar <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17l10 -10\"></path><path d=\"M7 7l10 0l0 10\"></path></svg></a>",
+      "css": ".ds-button{ min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.75rem 1.25rem; border: 1px solid transparent; border-radius: 3px; background: var(--color-brand, #0f766e); color: #fff; font-size: 0.96rem; font-weight: 600; line-height: 1.25; text-align: center; text-decoration: none; cursor: pointer; transition: background-color var(--motion-quick, 150ms) ease, border-color var(--motion-quick, 150ms) ease, color var(--motion-quick, 150ms) ease, transform var(--motion-quick, 150ms) ease; }.ds-button:hover{ background: var(--color-brand-hover, #065f46); color: #fff; }.ds-button:active{ transform: translateY(1px); }.ds-button{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;font-size:.96rem;line-height:1.25}.ds-button:disabled{cursor:wait;opacity:.68}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-button{transition-duration:.01ms}}.ds-nav-action{ min-height: 44px; padding-inline: 1rem; background: #fff; color: var(--color-dark, #082d25); }.ds-nav-action:hover{ background: var(--color-on-dark-muted, #cbd9d2); color: var(--color-dark, #082d25); }.ds-nav-action:hover{color:#bde4d4}"
+    },
+    {
+      "name": "Explorar todos los servicios",
+      "kind": "button",
+      "refersTo": "catalog-link",
+      "description": "Cierre del recorrido operativo con enlace de gran escala al catálogo existente.",
+      "html": "<a class=\"ds-catalog\" href=\"/servicios/\">Explorar todos los servicios <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17l10 -10\"></path><path d=\"M7 7l10 0l0 10\"></path></svg></a>",
+      "css": ".ds-catalog{ display: inline-flex; gap: 24px; align-items: center; min-height: 56px; padding: 8px 0; border-bottom: 1px solid #b3c9bd; text-decoration: none; font-size: clamp(20px, 2.5vw, 36px); font-family: var(--font-display, \"Manrope Variable\", Manrope, system-ui, sans-serif); }.ds-catalog{color:#f7f7f6;line-height:1.6}.ds-catalog:hover{color:#bde4d4}.ds-catalog:active{transform:translateY(1px)}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}"
+    },
+    {
+      "name": "Conocer el servicio",
+      "kind": "button",
+      "refersTo": "chapter-link",
+      "description": "Enlace semántico del capítulo sobre superficie oscura; el sitio acompaña con consulta contextual por slug.",
+      "html": "<a class=\"ds-service\" href=\"/servicios/cosecha-forestal/\">Conocer el servicio <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17l10 -10\"></path><path d=\"M7 7l10 0l0 10\"></path></svg></a>",
+      "css": ".ds-service{ display: inline-flex; gap: 12px; align-items: center; min-height: 48px; text-decoration: none; border-bottom: 1px solid currentColor; font-size: 15px; }.ds-service{color:#f7f7f6;font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;font-size:15px}.ds-service:hover{color:#bde4d4}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}"
+    },
+    {
+      "name": "Campo editable de consulta",
+      "kind": "input",
+      "refersTo": "field-home",
+      "description": "Campo real de Home, con variante aria-invalid; la petición y validación pertenecen al formulario existente.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-email\">Correo electrónico</label><input id=\"ds-email\" type=\"email\" name=\"email\" autocomplete=\"email\" required></div>",
+      "css": ".ds-field{ min-width: 0; display: grid; gap: 0.45rem; }.ds-field label{ color: var(--color-on-dark, #f7f7f6); font-size: 0.93rem; font-weight: 600; }.ds-field input{ width: 100%; min-height: 48px; padding: 0.75rem 0.85rem; border: 1px solid #9db2a8; border-radius: 3px; background: #fff; color: var(--color-text, #0f1724); }.ds-field input{ background: #0e2a23; color: #fff; border-color: #788f84; border-radius: 0; }.ds-field [aria-invalid=\"true\"]{ border-color: #ff938b; }.ds-field{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;}.ds-field input{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;caret-color:#bde4d4}.ds-field input:focus-visible{border-color:#fff}.ds-field-error{ color: #ffc1bc; font-size: 0.87rem; }:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}"
+    },
+    {
+      "name": "Pausa / reproducción de video",
+      "kind": "button",
+      "refersTo": "video-toggle",
+      "description": "Control visible tras empezar la reproducción; el sitio actualiza texto, iconos y aria-pressed. No carga video en el panel.",
+      "html": "<button class=\"ds-video\" type=\"button\" aria-label=\"Pausar video de la operación forestal\" aria-pressed=\"false\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M6 5h4v14h-4z M14 5h4v14h-4z\"></path></svg><span>Pausar video</span></button>",
+      "css": ".ds-video{ display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 12px; background: rgb(6 28 23 / 65%); border: 1px solid rgb(255 255 255 / 60%); border-radius: 2px; cursor: pointer; transition: background 150ms; }.ds-video:hover{ background: #082d25; }.ds-video{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;color:#f7f7f6}.ds-video:active{transform:translateY(1px)}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-video{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Navegación principal",
+      "kind": "nav",
+      "refersTo": "button-nav",
+      "description": "Servicios, Nosotros, SGC y consulta. El menú responsive real usa aria-expanded y restauración de foco con Escape.",
+      "html": "<nav aria-label=\"Navegación principal\"><ul class=\"ds-nav\"><li><a href=\"/servicios/\">Servicios</a></li><li><a href=\"/nosotros/\">Nosotros</a></li><li><a href=\"/#sgi\">SGC</a></li><li><a class=\"ds-button ds-nav-action\" href=\"/#contacto\">Consultar</a></li></ul></nav>",
+      "css": ".ds-button{ min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.75rem 1.25rem; border: 1px solid transparent; border-radius: 3px; background: var(--color-brand, #0f766e); color: #fff; font-size: 0.96rem; font-weight: 600; line-height: 1.25; text-align: center; text-decoration: none; cursor: pointer; transition: background-color var(--motion-quick, 150ms) ease, border-color var(--motion-quick, 150ms) ease, color var(--motion-quick, 150ms) ease, transform var(--motion-quick, 150ms) ease; }.ds-button:hover{ background: var(--color-brand-hover, #065f46); color: #fff; }.ds-button:active{ transform: translateY(1px); }.ds-button{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;font-size:.96rem;line-height:1.25}.ds-button:disabled{cursor:wait;opacity:.68}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-button{transition-duration:.01ms}}.ds-nav{ display: flex; align-items: center; gap: clamp(1.5rem, 3vw, 3rem); margin: 0; padding: 0; list-style: none; }.ds-nav a:not(.ds-button){ display: inline-flex; min-height: 44px; align-items: center; color: #fff; font-size: 0.96rem; font-weight: 600; text-decoration: none; transition: color var(--motion-quick, 150ms) ease; }.ds-nav-action{ min-height: 44px; padding-inline: 1rem; background: #fff; color: var(--color-dark, #082d25); }.ds-nav a:hover{color:#bde4d4}.ds-nav{flex-wrap:wrap}.ds-nav-action:hover{background:#cbd9d2;color:#bde4d4}"
+    },
+    {
+      "name": "Momento SGC",
+      "kind": "custom",
+      "refersTo": "sgc-moment",
+      "description": "Momento de lectura del SGC sobre fotografía oscura; mantiene el compromiso institucional existente.",
+      "html": "<section class=\"ds-moment\"><h3>SEGURIDAD</h3><p>Cuidar la salud y la seguridad de las personas en la operación.</p></section>",
+      "css": ".ds-moment{ min-height: 50svh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgb(255 255 255 / 25%); padding-block: 40px; }.ds-moment h3{ font-size: clamp(32px, 4.2vw, 64px); font-weight: 700; letter-spacing: -.04em; }.ds-moment p{ max-width: 34ch; margin-top: 24px; color: #cbd9d2; font-size: 20px; }.ds-moment{color:#f7f7f6;font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;}.ds-moment h3{font-family:var(--font-display,\"Manrope Variable\",Manrope,system-ui,sans-serif);line-height:1.12;margin:0}.ds-moment p{margin-bottom:0}@media(max-width:767px){.ds-moment{min-height:42svh}.ds-moment h3{font-size:30px}.ds-moment p{font-size:17px}}"
+    },
+    {
+      "name": "Envío aceptado",
+      "kind": "custom",
+      "refersTo": "status-success",
+      "description": "Estado real de éxito; afirma aceptación del envío, sin asegurar recepción de correo.",
+      "html": "<div class=\"ds-status\" role=\"status\" aria-live=\"polite\" tabindex=\"-1\">El envío fue aceptado. Gracias por comunicarse con Forestal Garuhapé SA.</div>",
+      "css": ".ds-status{ padding: 0.85rem 1rem; border: 1px solid #91b6a4; border-radius: 3px; background: var(--color-success, #e9f4ed); color: var(--color-brand-hover, #065f46); }.ds-status{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}"
+    },
+    {
+      "name": "Fallo de envío",
+      "kind": "custom",
+      "refersTo": "status-error",
+      "description": "Estado real de fallo de conexión; conserva los datos en el formulario y permite volver a intentar.",
+      "html": "<div class=\"ds-status\" data-state=\"error\" role=\"status\" aria-live=\"polite\" tabindex=\"-1\">No pudimos confirmar el envío. Sus datos siguen en el formulario; compruebe su conexión antes de volver a intentar.</div>",
+      "css": ".ds-status{ padding: 0.85rem 1rem; border: 1px solid #91b6a4; border-radius: 3px; background: var(--color-success, #e9f4ed); color: var(--color-brand-hover, #065f46); }.ds-status{font-family:var(--font-body,\"Work Sans Variable\",\"Work Sans\",system-ui,sans-serif);font-size:17px;line-height:1.6;}:focus-visible{outline:3px solid var(--color-focus,#bde4d4);outline-offset:3px}.ds-status[data-state=\"error\"]{ border-color: #ff938b; background: #54241f; color: #fff; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Industrial Forestry Documentary",
+    "overview": "Fotografía operativa propia, titulares gigantes, rótulos pequeños y numeración de servicios construyen el lenguaje documental industrial elegido por el usuario. El bosque y el negro verde sostienen la operación; el crema marca las pausas institucionales. Manrope da escala a los mensajes, Work Sans organiza la lectura y Tabler Outline acompaña las acciones. La diferencia marcada entre título y metadata es una decisión explícita del brief.\n\n**Estado: Home V2 implementada localmente en `/`.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: la estética documental de Home no redefine sus superficies de lectura.\n\nFuentes: plantillas `src/_includes/home/*`, cabecera y contacto compartidos, `src/js/home.js` y `src/js/main.js`; contrato y estado en `docs/PROPUESTA_MODERNIZACION.md`, `docs/STORYBOARD_V2.md` y `docs/FASE_FINAL.md`. La revisión independiente de Home registró `SHIP` sobre código y capturas (1440/768/390), sin hallazgos materiales; su evidencia está en `docs/evidencia/v2-home/` y `.impeccable/review/`. Esta extracción documental no añade pruebas ni una nueva revisión de navegador. La entrega sigue siendo local, sin commit, push ni publicación.",
+    "keyCharacteristics": [
+      "Fotografías operativas reales, logo institucional y mapa con países verificados.",
+      "Titulares gigantes, rótulos pequeños y numeración visible por capacidad.",
+      "Bosque y negro verde alternados con pausas crema.",
+      "Un único motor GSAP/ScrollTrigger con Lenis para la Home elegible.",
+      "Fotos y contenido en flujo como alternativa estática.",
+      "Consulta contextual editable y formulario comercial real."
+    ],
+    "rules": [
+      {
+        "name": "Surface Authority",
+        "body": "Home V2 usa `home.css` junto con los estilos compartidos; las páginas interiores conservan `styles.css` como autoridad.",
+        "section": "colors"
+      },
+      {
+        "name": "Chosen Hierarchy",
+        "body": "Conservar los titulares gigantes y los rótulos pequeños del hero, junto con la numeración de servicios, porque forman parte de la dirección aprobada.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** conservar fuentes locales, logo institucional, Tabler Outline y fotografías operativas propias.",
+      "**Do** preservar los titulares gigantes, rótulos pequeños y numeración acordados.",
+      "**Do** mantener una sola instancia de Lenis dentro del contexto de movimiento de Home.",
+      "**Do** conservar lectura estática, foco visible y envío nativo sin JavaScript.",
+      "**Do** mantener las seis capacidades por slug, consulta editable y contratos PHP existentes.",
+      "**Do** usar el mapa exclusivamente como alcance institucional de Argentina y Paraguay."
+    ],
+    "donts": [
+      "**Don't** propagar automáticamente la estética documental de Home a las páginas interiores.",
+      "**Don't** asignar fuentes de video a móvil, movimiento reducido o ahorro de datos.",
+      "**Don't** convertir la pausa manual de video en una reproducción forzada al volver a la pestaña.",
+      "**Don't** inventar cifras, certificaciones, testimonios o ubicaciones operativas.",
+      "**Don't** confundir las muestras manuales del storyboard con la timeline implementada en Home.",
+      "**Don't** presentar la entrega local como publicación ni el envío aceptado como prueba de recepción de correo."
+    ]
+  }
+}

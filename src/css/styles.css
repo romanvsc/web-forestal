@@ -105,6 +105,7 @@ section[id], footer[id] { scroll-margin-top: calc(var(--header-height) + 12px); 
 .service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.25rem 1.5rem; }
 .service-card { min-width: 0; display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
 .service-card-media { position: relative; overflow: hidden; aspect-ratio: 1.45; background: var(--color-surface); }
+.service-card-media > picture, .detail-image > picture { width: 100%; height: 100%; }
 .service-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 450ms cubic-bezier(.2,.65,.3,1); }
 .service-card:hover .service-card-media img { transform: scale(1.025); }
 .service-card-body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; padding: 1.25rem 0 0; }
@@ -122,6 +123,9 @@ section[id], footer[id] { scroll-margin-top: calc(var(--header-height) + 12px); 
 .planning-item .text-link { margin-top: 0.5rem; }
 .planning-image { overflow: hidden; aspect-ratio: 1; background: var(--color-border); }
 .planning-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.planning-image, .biomass-image, .company-image { position: relative; }
+.planning-image > picture, .biomass-image > picture, .company-image > picture { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .story-section { overflow: clip; background: var(--color-dark); color: var(--color-on-dark); }
 .story-intro { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.75rem; }
@@ -285,6 +289,11 @@ section[id], footer[id] { scroll-margin-top: calc(var(--header-height) + 12px); 
 }
 
 @media (max-width: 1023px) {
+  .has-js .header-inner { gap: 0; }
+  .has-js .menu-toggle { margin-left: auto; }
+  body:not(.has-js) .header-inner { flex-wrap: wrap; padding-block: 12px; }
+  body:not(.has-js) .header-inner > nav { width: 100%; }
+  body:not(.has-js) .nav-links { flex-wrap: wrap; gap: 12px 24px; }
   .has-js .menu-toggle { display: inline-flex; }
   .has-js .nav-links { position: absolute; top: 100%; right: 0; left: 0; display: none; gap: 0; padding: 0.5rem var(--site-gutter) 1rem; background: var(--color-dark); box-shadow: 0 12px 18px rgb(0 0 0 / 12%); }
   .has-js .site-header[data-menu-open="true"] .nav-links { display: grid; }

@@ -1,0 +1,33 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="home-capabilities" id="servicios" aria-labelledby="capabilities-heading">
+  <h2 id="capabilities-heading">UNA OPERACIÓN.<br>SEIS CAPACIDADES.</h2>
+  <div class="home-capabilities-bottom"><p>Del trabajo en campo al abastecimiento de la industria.</p><nav aria-label="Ir a una capacidad">{% for chapter in storyboardV2 %}<a href="#{{ chapter.slug }}"><span>{{ chapter.number }}</span> {{ chapter.title }}</a>{% endfor %}</nav></div>
+</section>
+<section class="home-operation" aria-labelledby="capabilities-heading" data-home-operation>
+  <div class="home-operation-stage" data-operation-stage aria-hidden="true">
+    {% for chapter in storyboardV2 %}
+    <figure class="operation-frame operation-frame--{{ chapter.kind }}" data-operation-frame>
+      {{ responsiveImage(chapter.image, '', '', 'lazy', '(max-width: 1023px) 1px, 100vw') }}
+    </figure>
+    {% endfor %}
+    <p class="operation-caption" data-operation-caption>01 — Cosecha</p>
+  </div>
+  <div class="home-operation-track" data-operation-track>
+    {% for chapter in storyboardV2 %}
+    <article class="operation-chapter operation-chapter--{{ chapter.kind }}" id="{{ chapter.slug }}" aria-labelledby="chapter-{{ chapter.slug }}" data-operation-chapter data-operation-title="{{ chapter.title }}" data-operation-kind="{{ chapter.kind }}">
+      <figure class="operation-static-photo">
+        {{ responsiveImage(chapter.image, chapter.alt, '', 'lazy', '(max-width: 767px) 100vw, 75vw') }}
+        <figcaption>{{ chapter.caption }}</figcaption>
+      </figure>
+      <div class="operation-copy">
+        <p class="operation-index"><span>{{ chapter.number }}</span> / {{ chapter.title | upper }}</p>
+        <h3 id="chapter-{{ chapter.slug }}">{% for line in chapter.line.split('\n') %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</h3>
+        <p class="operation-description">{{ chapter.copy }}</p>
+        <div class="operation-links"><a href="{{ chapter.detail }}">Conocer el servicio {{ icon('arrow-up-right') }}</a><a href="/?servicio={{ chapter.slug }}#contacto">Consultar {{ icon('arrow-right') }}</a></div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<div class="home-catalog-close"><a class="home-action" href="/servicios/">Explorar todos los servicios {{ icon('arrow-up-right') }}</a></div>

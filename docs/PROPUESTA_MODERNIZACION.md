@@ -279,9 +279,16 @@ Los criterios y el resultado de sus verificaciones se resumen en `FASE_FINAL.md`
 | Menú móvil | Apertura y cierre breves, interrumpibles, sin demora en la disponibilidad de los enlaces. |
 | Aparición de sección | Opacidad y traslación corta de 6–16 px solo si aporta orientación; contenido visible por defecto. |
 | Escena operativa | Cambios coordinados de fotografía y texto ligados al avance del desplazamiento. Una escena principal en escritorio. |
+| Parallax fotográfico | Fotos de caminos, biomasa y empresa con escala fija `1.12` y recorrido vertical de `-5%` a `5%` dentro de su encuadre, ligado al scroll mediante GSAP + ScrollTrigger. Texto estático. Solo desde 1024 px, puntero fino y movimiento permitido. |
 | Movimiento reducido | Secuencia estática, sin pin, parallax, shaders ni video automático; mismas capacidades y enlaces. |
 
 Preferir transformaciones y opacidad para el movimiento simple; evitar `transition: all`. No usar rebotes, flotación continua, cursor personalizado ni un acceso a WhatsApp que pulse permanentemente. Cada transición debe poder interrumpirse al cambiar de estado o de preferencia de movimiento.
+
+### Segunda pasada: profundidad en las fotografías
+
+El parallax solicitado añade profundidad al recorrido de la portada entre infraestructura, aprovechamiento y empresa. Se limita a tres fotografías de apoyo; la lámina de planificación conserva su encuadre para mantener la lectura de sus datos. El encuadre mantiene sus dimensiones y recorta el exceso de imagen, por lo que el movimiento no desplaza texto ni enlaces. En móvil, tablet, movimiento reducido o sin JavaScript se muestra la fotografía estática completa dentro del encuadre original.
+
+Se evaluó [simple-parallax-js y su entrada vanilla](https://github.com/geosigno/simpleParallax.js/blob/master/README.md). El sitio utiliza GSAP y ScrollTrigger para este efecto: mantiene el ciclo de actualización existente con Lenis y evita añadir otro motor. `gsap.matchMedia()` revierte transformaciones y elimina los triggers al cambiar de breakpoint, puntero o preferencia; al volver al contexto permitido se reconstruye el efecto. No se incorporó una nueva dependencia.
 
 ## Aplicación de las cinco skills solicitadas
 
@@ -460,3 +467,45 @@ Secuencia: **Presentación → seis servicios → planificación y caminos → c
 ## Decisiones confirmadas
 
 Eleventy + Nunjucks; Manrope 600/700 y Work Sans 400/600; paleta por roles; iconos Tabler Outline; GSAP + ScrollTrigger; Lenis restringido a escritorio; guion propio del usuario basado en GTA VI; imágenes especificadas en el storyboard; consultoría canónica en `/consultoria/`; SGC público y ancla `#sgi`; postulaciones derivadas a Vogel; envío comercial al endpoint PHP existente. ForgeUI queda excluido. La modernización se trabaja en local: esta documentación no autoriza publicación, commit o push.
+
+## Home V2 — segunda modernización (2026-10-02)
+
+La propuesta V1 anterior se conserva como registro. Para la Home V2, las decisiones de este apartado sustituyen su hero dividido, catálogo inmediato y relato de tres capítulos.
+
+**Dirección:** Industrial Forestry Documentary. Fotografía operativa dominante, grandes titulares, marcos de escala variable y un recorrido comercial completo.
+
+**Secuencia V2:** hero → Cosecha → Transporte → Acopio → Caminos → Biomasa → Consultoría → empresa desde 1993 → SGC → alcance regional → contacto.
+
+**Decisiones confirmadas por el usuario:** video automático sin sonido en escritorio; fotografía operativa existente para el momento institucional. La instrucción «Implement the proposed plan» autorizó la Home completa y sustituyó la pausa de aprobación del storyboard.
+
+**Paleta V2:** verde institucional `#0F766E`, bosque `#082D25`, crema de pausa `#F1EEE6`, negro verde de apertura/cierre `#061C17`, texto claro `#F7F7F6`. Se mantienen Manrope, Work Sans y Tabler Outline.
+
+**Storyboard:** [guion, recursos y contrato visual](STORYBOARD_V2.md), conservado como referencia en `/storyboard-v2/`, fuera del sitemap y con `noindex`. La Home V2 real está implementada en `/`.
+
+**Movimiento implementado:** `src/js/home.js` usa GSAP + ScrollTrigger, escala máxima 1.08, parallax de ±3% y seguimiento 0.3 s. Una única instancia de Lenis suaviza la rueda; los accesos a capítulos son inmediatos. Seis capítulos de 120svh en escritorio. Móvil, tablet, movimiento reducido y fallos del motor conservan fotos y texto en flujo. `matchMedia` revierte estilos, destruye Lenis y retira su ticker. La cabecera es transparente sobre el hero y sólida después.
+
+**Medios implementados:** poster inmediato; autoplay solo desde 1024 px, con puntero fino, sin movimiento reducido ni ahorro de datos. Pausa visible, pausa fuera de pantalla/con pestaña oculta y conservación de la pausa manual. El WebM produjo un error de decodificación real en IAB: se añadió recuperación con el MP4 existente, comprobado en reproducción y pausa. Si también falla, se conserva el poster. Móvil y movimiento reducido no asignan `src` al video.
+
+**Mapa:** contornos SVG locales de Natural Earth; [proveniencia y licencia](recursos/MAPA_REGIONAL.md). Argentina y Paraguay son los únicos países destacados, sin marcadores ni cobertura territorial inventada.
+
+**Contenido:** los capítulos se resuelven por slug en `src/_data/storyboardV2.js`. Biomasa usa su descripción correcta; también se corrigió la selección Jinja incompatible del componente anterior. Se mantienen rutas, consultas contextuales, datos de contacto y contrato PHP. Se retiraron BOM de plantillas que generaban un nodo de texto antes del contenido y desplazaban el hero.
+
+**Etapas realizadas:** storyboard de referencia → implementación de Home y movimiento → revisión responsive y funcional → capturas comparables y documentación. El parallax de Home se integra en el mismo contexto GSAP, sin instalar un segundo motor.
+
+**Evidencia de Rockstar actualizada:** la página fue accesible y su apertura se inspeccionó el 2026-10-02. No se verificó su secuencia completa de movimiento ni su motor. Los bloqueos descritos en V1 corresponden a aquella revisión histórica.
+
+**Estado de entrega:** Home V2 implementada localmente; interiores conservados. Evidencia en `docs/evidencia/v2-home/`, comparación y límites en [FASE_FINAL.md](FASE_FINAL.md). La V1 publicada permanece en `7b1b5e5`; la V2 no tiene commit, push ni publicación.
+
+
+### Ajuste cinematográfico solicitado después de revisar V2
+
+El usuario pidió eliminar el tambaleo, ralentizar los cambios de plano y evitar la ruptura visual de Acopio. La Home utiliza ahora `hero-cinematic.mp4` (36 segundos, 30fps, planos de 8s y disoluciones de 2s), generado con recursos propios mediante `scripts/create-hero-video.cjs`. Se retiraron el zoom codificado y el zoom adicional del hero al hacer scroll; el encuadre queda fijo. El MP4 reemplaza la combinación de formatos anterior en la Home; los originales se conservan.
+
+Acopio usa `playa_acopio_1.jpeg`, horizontal a sangre y fondo oscuro, con texto al margen izquierdo. Las seis escenas disponen de 140svh, seguimiento .9s y disolución de .65 unidades de capítulo; escala máxima 1.05 y parallax de Caminos ±1.5%. La foto anterior permanece opaca debajo de la entrante durante el fundido. Esta revisión sustituye los valores y el encuadre de Acopio descritos en el registro anterior.
+
+
+### Incorporación de las siete imágenes nuevas
+
+Se sustituyeron los recursos correspondientes en Home, catálogo, detalles, galerías, fondo SGC y montaje del hero. Los archivos se nombran por servicio en `src/images/actualizadas/`; la nueva flota está en `src/images/flota_camiones.png`. El usuario autorizó recortar las marcas alteradas de Cosecha y Biomasa; esas salidas se editaron con imagegen y los originales se conservan. La nueva vertical de Acopio se aplica al catálogo/detalle/galería; el relato conserva la fotografía horizontal aprobada. El ajuste de contenedores picture mantiene las tarjetas y detalles cubiertos pese al cambio de proporciones.
+
+[Relación de archivos, recortes, prompt y recursos](recursos/IMAGENES_ACTUALIZADAS.md). El poster actual a 1280px pesa 98,432 B; el MP4 regenerado mantiene 36s y disoluciones de 2s, con peso 8,817,563 B.

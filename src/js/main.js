@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { setupHomeMotion, setupHomeVideo } from './home';
 
 gsap.registerPlugin(ScrollTrigger);
 document.body.classList.add('has-js');
@@ -56,6 +57,7 @@ function setupContactForm() {
   const fields = [...form.querySelectorAll('[data-contact-field]')];
   const fieldNames = ['nombre', 'email', 'mensaje'];
   const initialParams = new URLSearchParams(window.location.search);
+  let sending = false;
   const serviceLabels = {
     'cosecha-forestal': 'Cosecha forestal',
     'transporte-forestal': 'Transporte forestal',
@@ -111,8 +113,10 @@ function setupContactForm() {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (sending) return;
     fields.forEach(clearFieldError);
     if (!form.reportValidity()) return;
+    sending = true;
 
     status.hidden = true;
     submitButton.disabled = true;
@@ -149,9 +153,10 @@ function setupContactForm() {
       showStatus('No pudimos enviar la consulta. Puede escribir a secretaria@forestalgaruhape.com.ar.', 'error');
       status.focus();
     } catch {
-      showStatus('Se perdió la conexión y la consulta no pudo enviarse. Sus datos siguen en el formulario.', 'error');
+      showStatus('No pudimos confirmar el envío. Sus datos siguen en el formulario; compruebe su conexión antes de volver a intentar.', 'error');
       status.focus();
     } finally {
+      sending = false;
       submitButton.disabled = false;
       submitButton.removeAttribute('aria-busy');
       submitLabel.textContent = defaultLabel;
@@ -264,6 +269,34 @@ function setupStory() {
   });
 }
 
+function setupImageParallax() {
+  const frames = [...document.querySelectorAll('[data-parallax-frame]')];
+  if (frames.length === 0) return;
+
+  const media = gsap.matchMedia();
+  media.add('(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+    frames.forEach((frame) => {
+      const image = frame.querySelector('img');
+      if (!image) return;
+
+      // The 12% overscan covers the 5% travel at both ends of the fixed frame.
+      // matchMedia reverts transforms and ScrollTriggers when this context ends.
+      gsap.fromTo(image, { yPercent: -5, scale: 1.12 }, {
+        yPercent: 5,
+        scale: 1.12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: frame,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+  });
+}
+
 function setupPageIntroduction() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const intro = document.querySelector('.hero-copy, .page-intro .site-container, .career-copy');
@@ -288,6 +321,9 @@ function setCurrentYear() {
 setupNavigation();
 setupContactForm();
 setupHeroVideo();
+setupHomeVideo();
+setupHomeMotion(gsap, ScrollTrigger, Lenis);
 setupStory();
+setupImageParallax();
 setupPageIntroduction();
 setCurrentYear();

@@ -1,0 +1,21 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="home-hero" id="inicio" aria-labelledby="home-heading" data-home-hero>
+  <div class="home-hero-media" data-home-video>
+    {{ responsiveImage('/images/actualizadas/cosecha-forestal.png', 'Maquinaria forestal trabajando entre plantaciones', 'home-hero-poster', 'eager') }}
+    <video class="home-hero-video" data-home-video-element preload="none" muted loop playsinline aria-hidden="true" tabindex="-1" hidden>
+      <source data-src="/images/hero-cinematic.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="home-hero-copy" data-home-hero-copy>
+    <p class="home-meta">FORESTAL GARUHAPÉ · ARGENTINA / PARAGUAY</p>
+    <h1 id="home-heading">DEL BOSQUE<br>A LA INDUSTRIA.</h1>
+  </div>
+  <div class="home-hero-base">
+    <div><span>DESDE {{ site.foundingYear }}</span><p>Más de tres décadas.</p></div>
+    <div><span>OPERACIÓN REGIONAL</span><p>Argentina / Paraguay.</p></div>
+    <button class="home-video-toggle" type="button" data-home-video-toggle aria-label="Pausar video de la operación forestal" aria-pressed="false" hidden>{{ icon('player-pause', 'icon video-pause-icon') }}{{ icon('player-play', 'icon video-play-icon') }}<span data-home-video-label>Pausar video</span></button>
+    <a class="home-scroll-link" href="#servicios">Recorrer la operación {{ icon('chevron-down') }}</a>
+  </div>
+  <p class="visually-hidden" data-home-video-status role="status" aria-live="polite"></p>
+</section>

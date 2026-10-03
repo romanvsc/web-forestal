@@ -1,0 +1,55 @@
+{
+  "nativeInvalid": {
+    "status": 422,
+    "escaped": true
+  },
+  "mailpitMessages": [
+    {
+      "subject": "Consulta desde la web de Forestal Garuhapé SA",
+      "to": [
+        {
+          "Name": "",
+          "Address": "secretaria@forestalgaruhape.com.ar"
+        }
+      ]
+    },
+    {
+      "subject": "Consulta desde la web de Forestal Garuhapé SA",
+      "to": [
+        {
+          "Name": "",
+          "Address": "secretaria@forestalgaruhape.com.ar"
+        }
+      ]
+    },
+    {
+      "subject": "Consulta desde la web de Forestal Garuhapé SA",
+      "to": [
+        {
+          "Name": "",
+          "Address": "secretaria@forestalgaruhape.com.ar"
+        }
+      ]
+    },
+    {
+      "subject": "Consulta desde la web de Forestal Garuhapé SA",
+      "to": [
+        {
+          "Name": "",
+          "Address": "secretaria@forestalgaruhape.com.ar"
+        }
+      ]
+    },
+    {
+      "subject": "QA V2 aislada",
+      "to": [
+        {
+          "Name": "",
+          "Address": "qa-v2@example.invalid"
+        }
+      ]
+    }
+  ],
+  "total": 5,
+  "configuration": "PHP -n -d SMTP=127.0.0.1 -d smtp_port=1025; Mailpit localhost sin relay"
+}

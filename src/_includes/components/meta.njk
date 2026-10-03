@@ -1,4 +1,4 @@
-﻿{% set currentPath = page.url or "/" %}
+{% set currentPath = page.url or "/" %}
 {% set metaTitle = (seo.title if seo and seo.title else (title if title else site.defaultTitle)) %}
 {% set metaDescription = (seo.description if seo and seo.description else (description if description else site.defaultDescription)) %}
 {% set metaRobots = (seo.robots if seo and seo.robots else "index, follow") %}

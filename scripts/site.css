@@ -1,6 +1,7 @@
 @import "../.cache/tailwind.css";
 @import "lenis/dist/lenis.css";
 @import "../src/css/styles.css";
+@import "../src/css/home.css";
 
 @font-face {
   font-family: "Manrope Variable";

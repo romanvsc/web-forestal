@@ -1,0 +1,292 @@
+{
+  "records": [
+    {
+      "supplied": "23_14_10-2.png",
+      "path": "/images/actualizadas/playas-de-acopio.png",
+      "replaces": "servicios/playa_acopio.jpeg",
+      "use": "Catálogo, detalle y galería de Acopio. Home y montaje mantienen la foto horizontal aprobada.",
+      "width": 1086,
+      "height": 1448,
+      "avif": [
+        {
+          "url": "/assets/media/playas-de-acopio-fe9981e156-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/playas-de-acopio-fe9981e156-768.avif",
+          "width": 768
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/playas-de-acopio-fe9981e156-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/playas-de-acopio-fe9981e156-768.webp",
+          "width": 768
+        }
+      ]
+    },
+    {
+      "supplied": "23_14_11-3.png",
+      "path": "/images/actualizadas/consultoria-forestal.png",
+      "replaces": "servicios/consultoria.jpg",
+      "use": "Capítulo Consultoría, fondo SGC, catálogo y referencias de galería.",
+      "width": 1672,
+      "height": 941,
+      "avif": [
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-1280.avif",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-1600.avif",
+          "width": 1600
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-1280.webp",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/consultoria-forestal-1cd9cfa7f2-1600.webp",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "supplied": "23_14_12-4.png",
+      "path": "/images/actualizadas/biomasa-forestal.png",
+      "replaces": "servicios/chipeado_gajos.jpeg",
+      "use": "Capítulo Biomasa, catálogo, detalle, galerías y montaje. Recorte sin marca alterada.",
+      "width": 1821,
+      "height": 864,
+      "avif": [
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-1280.avif",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-1600.avif",
+          "width": 1600
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-1280.webp",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/biomasa-forestal-d394dfd8b0-1600.webp",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "supplied": "23_14_13-5.png",
+      "path": "/images/actualizadas/caminos-forestales.png",
+      "replaces": "servicios/caminos_forestales.jpeg / .png",
+      "use": "Capítulo Caminos, planificación, catálogo, detalle, galería y montaje.",
+      "width": 1672,
+      "height": 941,
+      "avif": [
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-1280.avif",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-1600.avif",
+          "width": 1600
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-1280.webp",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/caminos-forestales-dbd4531b3c-1600.webp",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "supplied": "23_14_14-6.png",
+      "path": "/images/actualizadas/transporte-forestal.png",
+      "replaces": "servicios/transporte_forestal_carga.jpeg",
+      "use": "Capítulo Transporte, catálogo, detalle, galerías y montaje.",
+      "width": 1448,
+      "height": 1086,
+      "avif": [
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-1280.avif",
+          "width": 1280
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/transporte-forestal-52248580a0-1280.webp",
+          "width": 1280
+        }
+      ]
+    },
+    {
+      "supplied": "23_14_16-7.png",
+      "path": "/images/actualizadas/cosecha-forestal.png",
+      "replaces": "servicios/1470_proceso.jpeg / hero-forestal-poster.jpg",
+      "use": "Hero, poster/SEO, capítulo Cosecha, catálogo, detalle, galerías y montaje. Recorte sin marca alterada.",
+      "width": 1821,
+      "height": 864,
+      "avif": [
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-1280.avif",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-1600.avif",
+          "width": 1600
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-1280.webp",
+          "width": 1280
+        },
+        {
+          "url": "/assets/media/cosecha-forestal-dc4736a90b-1600.webp",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "supplied": "flota_camiones.png",
+      "path": "/images/flota_camiones.png",
+      "replaces": "flota_camiones.jpg",
+      "use": "Pausa institucional en Home y storyboard.",
+      "width": 1448,
+      "height": 1086,
+      "avif": [
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-768.avif",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-1280.avif",
+          "width": 1280
+        }
+      ],
+      "webp": [
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-768.webp",
+          "width": 768
+        },
+        {
+          "url": "/assets/media/flota-camiones-43d894b66c-1280.webp",
+          "width": 1280
+        }
+      ]
+    }
+  ],
+  "video": {
+    "path": "/images/hero-cinematic.mp4",
+    "bytes": 8817563,
+    "durationSeconds": 36,
+    "dissolveSeconds": 2
+  },
+  "poster1280": {
+    "path": "/assets/media/cosecha-forestal-dc4736a90b-1280.avif",
+    "bytes": 98432
+  },
+  "cropTool": "imagegen built-in",
+  "originalCropsDirectory": "src/images/actualizadas/originales"
+}

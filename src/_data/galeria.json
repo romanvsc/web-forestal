@@ -2,7 +2,7 @@
     "sectionTitle": "Galería de Imágenes",
     "imagenes": [
       {
-        "src": "/images/galeria/1470_proceso.jpeg",
+        "src": "/images/actualizadas/cosecha-forestal.png",
         "alt": "Maquinaria forestal 1470",
         "title": "Maquinaria Forestal 1470"
       },
@@ -12,7 +12,7 @@
         "title": "Camión entrando a Arauco"
       },
       {
-        "src": "/images/galeria/chipeado_gajos.jpeg",
+        "src": "/images/actualizadas/biomasa-forestal.png",
         "alt": "Chipeado de gajos",
         "title": "Chipeado de Gajos"
       },
@@ -32,7 +32,7 @@
         "title": "Extracción con Maquinaria 895"
       },
       {
-        "src": "/images/galeria/transporte_forestal_carga.jpeg",
+        "src": "/images/actualizadas/transporte-forestal.png",
         "alt": "Transporte forestal",
         "title": "Transporte Forestal"
       },

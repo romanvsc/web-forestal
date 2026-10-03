@@ -1,0 +1,19 @@
+{
+  "profile": "IAB Chromium, escritorio 1440x900, HTTP localhost sin throttling, una navegación por versión; instrumentación temporal solo en servidores de QA. No benchmark de producción.",
+  "v1": {
+    "cls": 0,
+    "lcpMs": 136,
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "v2": {
+    "cls": 0,
+    "lcpMs": 120,
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="home-company" id="nosotros" aria-labelledby="company-heading">
+  <div class="home-company-top"><p class="home-year">{{ site.foundingYear }}</p><h2 id="company-heading">Más de tres décadas<br>conectando personas,<br>maquinaria y planificación.</h2></div>
+  <div class="home-company-bottom"><figure data-home-parallax>{{ responsiveImage('/images/flota_camiones.png', 'Flota de camiones de Forestal Garuhapé', '', 'lazy', '(max-width: 767px) 100vw, 58vw') }}</figure><div><p>Desde 1993, Forestal Garuhapé SA, Forestal Paraguay SA y Foresvia SA integran un grupo dedicado a la consultoría y los servicios forestales mecanizados.</p><p>Operamos en Argentina y Paraguay.</p><a class="home-ink-link" href="/nosotros/">Conocer la empresa {{ icon('arrow-up-right') }}</a></div></div>
+</section>

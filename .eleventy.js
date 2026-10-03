@@ -1,6 +1,35 @@
 const { buildAssets } = require('./scripts/build');
 
 module.exports = function(eleventyConfig) {
+    // Optional loopback PHP for local contact verification; production is static + PHP.
+    const phpPort = Number(process.env.FORESTAL_PHP_PORT);
+    if (process.env.NODE_ENV === 'development' && Number.isInteger(phpPort) && phpPort > 1024 && phpPort <= 65535) {
+      eleventyConfig.setServerOptions({ middleware: [(req, res, next) => {
+        if (req.url.split('?')[0] !== '/enviar_mensaje.php') return next();
+        return new Promise((resolve) => {
+          const upstream = require('node:http').request({ hostname: '127.0.0.1', port: phpPort, path: req.url, method: req.method, headers: req.headers }, (response) => {
+            const chunks = [];
+            response.on('data', (chunk) => chunks.push(chunk));
+            response.on('end', () => {
+              const headers = { ...response.headers };
+              delete headers['content-length'];
+              delete headers['transfer-encoding'];
+              res.writeHead(response.statusCode, headers);
+              // Eleventy transforms HTML strings for live reload; piping Buffers bypasses that wrapper.
+              res.end(Buffer.concat(chunks).toString('utf8'));
+              resolve();
+            });
+          });
+          upstream.setTimeout(10000, () => upstream.destroy(new Error('PHP local timeout')));
+          upstream.on('error', () => {
+            res.writeHead(503, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false }));
+            resolve();
+          });
+          req.pipe(upstream);
+        });
+      }] });
+    }
     eleventyConfig.on('eleventy.beforeWatch', async () => {
       if (process.env.NODE_ENV === 'development') await buildAssets();
     });
@@ -17,7 +46,9 @@ module.exports = function(eleventyConfig) {
     for (const source of [
       "src/css/tailwind.css",
       "src/css/styles.css",
+      "src/css/home.css",
       "src/js/main.js",
+      "src/js/home.js",
       "src/images",
       "scripts/site.css",
       "tailwind.config.js",

@@ -1,6 +1,86 @@
-# Estado final de la modernización
+# Estado final de la modernización — Home V2
 
-Fecha: 2026-10-02. Estado: implementación local terminada. La comparación visual en navegador sigue pendiente porque una política administrada bloqueó el acceso al sitio local. Esta fase no publica, commitea ni sube cambios.
+Fecha de trabajo: 2026-10-02 (Argentina). Estado actual: **Home V2 implementada y verificada localmente**, con revisión independiente del código y las capturas. La V1 fue publicada por instrucción del usuario en `7b1b5e5be069ce675b0f4983aab37635fba0c944`; la V2 no tiene commit, push ni publicación.
+
+## Comparación de la segunda modernización
+
+| V1 | V2 implementada | Por qué |
+| --- | --- | --- |
+| Hero dividido, fondo blanco y video manual. | Apertura de 100svh con fotografía/video a sangre, título gigante y cabecera transparente. | Introducir la operación como experiencia documental desde el primer viewport. |
+| Catálogo de tarjetas inmediato y relato de tres servicios dentro de la portada. | Relato principal de seis capítulos: Cosecha → Transporte → Acopio → Caminos → Biomasa → Consultoría; catálogo como salida posterior. | Presentar las capacidades mediante su relación con la operación y conservar acceso directo a cada servicio. |
+| Encuadres uniformes y escala 1.04. | Cosecha con máscara expansiva, transporte lateral, acopio horizontal a sangre sobre fondo oscuro, caminos panorámicos, biomasa a gran escala y consultoría aérea. Escala hasta 1.05 y parallax de Caminos ±1.5%; flota conserva ±3%. | Variar ritmo y composición con material real del proyecto. |
+| Empresa y SGC como bloques convencionales. | Pausa crema con 1993 y flota; bosque oscuro con Seguridad, Calidad, Sostenibilidad y Mejora continua en momentos consecutivos. | Dar espacio de lectura a la trayectoria y compromisos. |
+| Alcance regional incluido en texto. | Mapa SVG local con Argentina y Paraguay destacados. | Explicar el alcance institucional sin inventar emplazamientos o cobertura territorial. |
+| Contacto compartido de tamaño convencional. | Cierre negro verde con titular grande y formulario real, conservando el contrato PHP y envío nativo. | Mantener la conversión comercial como destino del recorrido. |
+
+### Archivos y comportamiento
+
+- Home: `src/index.njk` y `src/_includes/home/`; estilos específicos en `src/css/home.css`. Los interiores conservan sus composiciones y rutas.
+- Movimiento: `src/js/home.js`, un contexto `gsap.matchMedia`, una timeline principal con `scrub: .9`, seis capítulos de 140svh y un solo Lenis/ticker en escritorio compatible. Los accesos a capítulos saltan directamente; la rueda se suaviza. Al cambiar tamaño o movimiento reducido se revierte el contexto y se destruye Lenis.
+- Sin JavaScript, tablet y móvil: fotos, textos y enlaces en flujo. La escena animada es una mejora progresiva. La cabecera sin JavaScript muestra los enlaces y permanece en flujo.
+- Video: poster inmediato, fuentes asignadas únicamente en escritorio ≥1024 px, puntero fino, sin reducción de movimiento ni ahorro de datos. Pausa manual, pausa fuera de pantalla/con documento oculto y entrada por opacidad de 1400ms. `hero-cinematic.mp4` reemplaza los formatos anteriores en Home: montaje de fotos de 36s a 30fps, planos fijos de 8s y disoluciones de 2s. Fallo conserva el poster. La primera revisión encontró un fallo WebM y usaba recuperación MP4; esa combinación queda en el registro previo, no en Home actual.
+- Contacto: guardia de petición en curso, estado ocupado, errores asociados al campo, conservación de valores ante fallo y limpieza únicamente después de HTTP 200 confirmado. La pérdida de conexión informa que no se pudo confirmar el envío, sin afirmar que el servidor no lo recibió.
+- Correcciones: selección de biomasa por slug y eliminación de BOM que generaban texto fuera de la estructura HTML. Menú móvil alineado al margen y navegación nativa visible sin scripts.
+
+### Verificaciones actuales
+
+| Caso | Evidencia |
+| --- | --- |
+| Build y WhatsApp oficial | `npm run test` pasó; `git diff --check` sin errores. |
+| Rutas | HTTP 200 en las 13 rutas: portada, catálogo, seis detalles, consultoría, nosotros, empleo y dos legales. |
+| Responsive | Capturas reales 1440 × 900, 768 × 1024 y 390 × 844; sin desbordamiento horizontal en la inspección DOM. |
+| Menú | Enter/click abre, Escape cierra y devuelve el foco al botón; foco visible en la captura móvil. |
+| Recorrido reversible | La rueda avanzó de Cosecha a Transporte y regresó a Cosecha; título de escena y opacidad de las imágenes volvieron al estado correspondiente. El video estaba pausado fuera de pantalla. |
+| Movimiento reducido y sin JS | Seis fotos/capítulos conservados; video sin fuentes en movimiento reducido y móvil. Envío nativo operado en navegador con scripts desactivados. |
+| Validación | Vacíos y correo inválido ejercidos en navegador; HTTP 422 y errores de servidor comprobados. HTML nativo conserva y escapa `<script>`/`<b>` sintéticos. |
+| Envío | JSON 200; envío nativo 303 hacia confirmación 200; doble pulsación produjo un solo correo de ese caso. |
+| Error y red | SMTP inaccesible produjo 503 real; cliente offline conserva datos y recupera el botón. |
+| Contexto comercial | `/?servicio=transporte-forestal#contacto` propone un mensaje editable comprobado en navegador. Los seis slugs siguen definidos. |
+
+**Correo de prueba:** PHP ejecutado con `php -n -d SMTP=127.0.0.1 -d smtp_port=1025 -S 127.0.0.1:8090 -t _site`. Mailpit ligado a `127.0.0.1:1025` y `127.0.0.1:8025`, sin relay externo. Se capturaron cuatro consultas válidas del endpoint y una prueba diagnóstica aislada. El honeypot no añadió mensajes. No se cambió `php.ini` ni configuración de producción.
+
+**Vista de desarrollo:** Eleventy en `http://127.0.0.1:8080/`. Con `FORESTAL_PHP_PORT=8090`, un proxy de desarrollo reenvía únicamente `/enviar_mensaje.php` al PHP de loopback. Es una opción del proceso local, no una dependencia del hosting. Sin PHP local, la verificación debe hacerse sirviendo `_site` con PHP.
+
+### Recursos y medición
+
+| Medida | V1 | V2 | Presupuesto |
+| --- | ---: | ---: | ---: |
+| CSS + JS gzip | 59,514 B | 63,390 B | ≤180 KB |
+| Poster AVIF 1280 px | 122,005 B | 98,432 B | ≤250 KB |
+| LCP local de la primera revisión V2, una navegación | 136 ms | 120 ms | Sin objetivo extrapolado a producción |
+| CLS local de la primera revisión V2 | 0 | 0 | Sin desplazamientos registrados en esas navegaciones |
+
+Perfil: mismo IAB Chromium, 1440 × 900, HTTP localhost, sin throttling. Dos servidores estáticos equivalentes inyectaron temporalmente `PerformanceObserver` para observar LCP/CLS; esa instrumentación no forma parte de las plantillas entregadas. La medición es una muestra local, no demuestra mejora de rendimiento en el hosting. [Datos registrados](evidencia/v2-home/mediciones-navegador.json).
+
+### Evidencia visual y revisión
+
+- [Sitio inicial d520025](evidencia/inicial-home/): hero y contacto en los tres tamaños.
+- [V1 publicada 7b1b5e5](evidencia/v1-home/): hero y contacto comparables.
+- [Home V2](evidencia/v2-home/): hero, seis capítulos de escritorio, variantes de empresa/SGC/mapa/contacto, menú, movimiento reducido, sin JS y estados del formulario.
+- Storyboard conservado en `/storyboard-v2/`, con `noindex` y fuera del sitemap. Las referencias y skills siguen documentadas en [PROPUESTA_MODERNIZACION.md](PROPUESTA_MODERNIZACION.md) y [STORYBOARD_V2.md](STORYBOARD_V2.md).
+- Revisión independiente Impeccable: **`ship` para código y capturas**; sin bloqueo material identificado en el alcance revisado. El revisor no operó el navegador y no certifica fluidez a partir de imágenes. Detector estático: cero hallazgos primarios; avisos de tokens se contrastan con el DESIGN actualizado.
+
+### Ajuste de ritmo posterior a la revisión del usuario
+
+El usuario pidió corregir tambaleo, cortes rápidos y ruptura visual de Acopio. Se retiró el zoom del montage y del medio del hero al hacer scroll, se alargó el montaje y se amplió la disolución de las escenas de .2 a .65 unidades de capítulo. Acopio usa `playa_acopio_1.jpeg` horizontal y mantiene el fondo oscuro y margen de lectura.
+
+Build de producción completado después del ajuste. En IAB: video reproduciendo con duración 36s y transform del medio `none`; avance/regreso entre Transporte y Acopio; variante móvil horizontal sin fuente de video ni desbordamiento. [Preparación y alcance](recursos/HERO_CINEMATICO.md). Nuevas capturas: [Acopio escritorio](evidencia/v2-home/acopio-suave-1440.jpg) y [móvil](evidencia/v2-home/acopio-suave-390.jpg). La revisión independiente y métricas LCP/CLS anteriores no se atribuyen a este ajuste posterior; no se repitieron los envíos de correo.
+
+### Sustitución de imágenes aportadas
+
+Se incorporaron siete imágenes nuevas: Cosecha, Transporte, Caminos, Biomasa, Consultoría, Acopio y flota. Cosecha/Biomasa excluyen las marcas incorrectas por recortes autorizados con imagegen; originales preservados. Se actualizaron poster/SEO, catálogo, detalles, galerías, Home y SGC, y se regeneró el montaje manteniendo su ritmo. Acopio mantiene la imagen horizontal en el relato y usa la nueva vertical en catálogo/galería. Las tarjetas y detalles ahora llenan sus encuadres con picture de altura completa.
+
+[Registro de archivos y edición](recursos/IMAGENES_ACTUALIZADAS.md). Build completado; visualización en IAB de poster/video, Biomasa, catálogo y detalle de Acopio. Los recursos se registran en `evidencia/v2-home/imagenes-nuevas.json`. No se repitió la medición LCP/CLS ni los envíos de correo; la revisión independiente anterior no se atribuye a estas sustituciones posteriores.
+
+### Límites vigentes
+
+El hosting, correo de producción, móviles físicos, rendimiento con red real y el comportamiento completo de Rockstar no se verificaron. El modo de ahorro de datos y pestaña oculta cuentan con lógica explícita; no se simularon todas sus variantes en dispositivos reales. La aprobación editorial del usuario y publicación de V2 no se infieren de la revisión técnica.
+
+---
+
+## Registro histórico de la primera modernización (V1)
+
+El texto siguiente conserva la evidencia y limitaciones de la primera entrega. Sus bloqueos de navegador fueron resueltos para la revisión V2 y no describen el estado actual. La V1 se publicó posteriormente como `7b1b5e5` por instrucción del usuario.
 
 La línea de base permanece en el commit `d5200253457acf8b248ae92dffa8904972f22cd2`, documentado en [FASE_INICIAL.md](FASE_INICIAL.md). Las decisiones, el contrato de diseño, las referencias y las skills aplicadas están en [PROPUESTA_MODERNIZACION.md](PROPUESTA_MODERNIZACION.md).
 
