@@ -1,6 +1,6 @@
 ---
 name: Forestal Garuhapé — Home editorial
-description: Sistema visual de la Home V2 implementada localmente en /; interiores conservan su autoridad CSS.
+description: Sistema documental industrial de Home e interiores editoriales; lectura y contacto adaptados por superficie.
 colors:
   forest: "#082d25"
   night: "#061c17"
@@ -133,7 +133,7 @@ components:
 
 Fotografía operativa propia, titulares gigantes, rótulos pequeños y numeración de servicios construyen el lenguaje documental industrial elegido por el usuario. El bosque y el negro verde sostienen la operación; el crema marca las pausas institucionales. Manrope da escala a los mensajes, Work Sans organiza la lectura y Tabler Outline acompaña las acciones. La diferencia marcada entre título y metadata es una decisión explícita del brief.
 
-**Estado: Home editorial implementada localmente en `/`, 2026-10-05.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: la estética documental de Home no redefine sus superficies de lectura.
+**Estado: Home editorial publicada en `98e7d72`; tercera modernización local, 2026-10-06.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: las aperturas fotográficas comparten identidad con Home y continúan con superficies claras de lectura.
 
 Fuentes: plantillas `src/_includes/home/*`, cabecera y contacto compartidos, `src/js/home.js` y `src/js/main.js`; contrato y estado en `docs/PROPUESTA_MODERNIZACION.md`, `docs/STORYBOARD_EDITORIAL.md` y `docs/FASE_FINAL.md`. La revisión histórica de V2 se conserva en `docs/evidencia/v2-home/` y `.impeccable/review/`. La revisión actual con Apple Design y capturas 1440/768/390/360 se registra en `docs/STORYBOARD_EDITORIAL.md` y `docs/evidencia/home-editorial-2026-10-05/`. La entrega sigue siendo local, sin commit, push ni publicación.
 
@@ -258,7 +258,7 @@ Empresa, mapa y SGC siguen el flujo normal, con entradas breves de 20px/350ms. C
 
 ### Don't:
 
-- **Don't** propagar automáticamente la estética documental de Home a las páginas interiores.
+- **Don't** fijar escenas narrativas en interiores: conservar su lectura en flujo.
 - **Don't** asignar fuentes de video a móvil, movimiento reducido o ahorro de datos.
 - **Don't** convertir la pausa manual de video en una reproducción forzada al volver a la pestaña.
 - **Don't** inventar cifras, certificaciones, testimonios o ubicaciones operativas.
@@ -276,3 +276,14 @@ Los siete recursos aportados por el usuario se vinculan por servicio y usan AVIF
 Se aplicaron las ocho recomendaciones de `docs/AUDITORIA_APPLE_DESIGN_2026-10-05.md`: hover claro en Acopio, SVG negativo con todas sus letras blancas en las rutas, poster móvil con foco en la cabina (62% horizontal, altura 120% anclada abajo), acción Consultar visible junto al recorrido móvil, rótulos de 11–12px, entradillas completas y alcance estructurado, navegación con página/sección activa y enlace SGC en Nosotros. El texto técnico original permanece disponible en disclosures HTML nativos. El formulario orienta el mensaje y cancela la espera local a los 20 segundos, conservando datos y explicando que no se pudo confirmar el envío; no reintenta automáticamente. SGC móvil usa altura por contenido y separación de 32px; la revisión editorial posterior compacta también escritorio.
 
 La variante del logo usa directamente `fg-negative.svg`; ya no necesita filtro específico de Home. Esta entrega sigue siendo local. Capturas posteriores bajo `docs/evidencia/apple-design-2026-10-05/despues/`. No se ejecutaron pruebas automatizadas ni envíos reales de correo.
+
+
+## Interiores editoriales y consulta — 2026-10-06
+
+Aperturas fotográficas de 480 px mínimos en escritorio, H1 40–72 px y degradado de lectura; en móvil, foto horizontal de 260 px y contenido crema con H1 32–40 px. Índice local en flujo, foco visible y enlaces de 48 px. Componentes compartidos service-opening, service-gallery y service-related con selección por slug en serviceEditorial.js. Galerías con hasta tres fotos documentales; Consultoría conserva una fotografía real amplia y sus ilustraciones como complemento desplegable.
+
+Home conserva su relato de tres escenas, con resúmenes exclusivos de 18–28 palabras y encuadres de tarjetas propios. Empresa alinea fotografía y copy desde arriba; región y consulta usan titulares en frase. CSS comparte tokens por función y elimina overrides históricos sin nuevo motor de movimiento.
+
+El selector opcional admite los seis servicios en HTML/JS/PHP. Las sugerencias nunca reemplazan un texto editado; éxito confirmado limpia los campos y errores conservan servicio y mensaje. El video actual usa H.264 slow CRF 26, 1280×720 a 30 fps, 36 segundos y fundidos de 2 segundos; pesa 6.667.385 B.
+
+Revisión y límites actuales: docs/TERCERA_MODERNIZACION_2026-10-06.md. Base anterior publicada: 98e7d72. Tercera modernización local, sin commit ni push.

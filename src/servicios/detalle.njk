@@ -20,20 +20,11 @@ layout: layouts/base.njk
 {% if servicio.slug == "consultoria-forestal" %}
 {% include "sections/consultoria.njk" %}
 {% else %}
-<section class="page-intro">
-  <div class="site-container">
-    <p class="eyebrow"><a href="/servicios/">Servicios</a> / {{ servicio.titulo }}</p>
-    <h1>{{ servicio.titulo }}.</h1>
-    <p>{{ servicio.resumen }}</p>
-    <div class="page-actions">
-      <a class="button" href="/?servicio={{ servicio.slug }}#contacto">Consultar {{ icon("arrow-up-right") }}</a>
-      <a class="button button--outline" href="/servicios/">Todos los servicios {{ icon("arrow-right") }}</a>
-    </div>
-  </div>
-</section>
+{% set editorialService = servicio %}
+{% include "components/service-opening.njk" %}
 <section class="service-detail">
   <div class="site-container">
-    <div class="detail-grid">
+    <div class="detail-grid" id="alcance-servicio">
       <div class="detail-copy">
         <h2>Alcance del servicio</h2>
         <ul class="service-scope">{% for punto in servicio.alcance %}<li>{{ punto }}</li>{% endfor %}</ul>
@@ -46,24 +37,12 @@ layout: layouts/base.njk
         <a class="button" href="/?servicio={{ servicio.slug }}#contacto">Consultar por {{ servicio.titulo | lower }} {{ icon("arrow-up-right") }}</a>
       </div>
       <figure class="detail-image">
-        {{ responsiveImage(servicio.imagen, servicio.titulo, "", "eager", "(max-width: 767px) 100vw, 50vw") }}
+        {{ responsiveImage(servicio.imagen, servicio.titulo, "", "lazy", "(max-width: 767px) 100vw, 50vw") }}
       </figure>
     </div>
 
-    {% set gallery = galerias[servicio.slug] if galerias is defined else null %}
-    {% if gallery %}
-    <section class="gallery-section" aria-labelledby="gallery-heading">
-      <h2 id="gallery-heading">Imágenes del servicio</h2>
-      <div class="gallery-grid">
-        {% for img in gallery %}
-        <figure>
-          {{ responsiveImage(img.src, img.alt, "", "lazy", "(max-width: 767px) 50vw, 30vw") }}
-          {% if img.title %}<figcaption>{{ img.title }}</figcaption>{% endif %}
-        </figure>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
+    {% include "components/service-gallery.njk" %}
+    {% include "components/service-related.njk" %}
   </div>
 </section>
 {% endif %}

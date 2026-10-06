@@ -55,7 +55,7 @@ function setupContactForm() {
   const submitLabel = form.querySelector('[data-submit-label]');
   const defaultLabel = submitLabel.textContent;
   const fields = [...form.querySelectorAll('[data-contact-field]')];
-  const fieldNames = ['nombre', 'email', 'mensaje'];
+  const fieldNames = ['nombre', 'email', 'mensaje', 'servicio'];
   const initialParams = new URLSearchParams(window.location.search);
   let sending = false;
   const serviceLabels = {
@@ -67,11 +67,19 @@ function setupContactForm() {
     'consultoria-forestal': 'Consultoría forestal',
   };
 
-  const contextualService = serviceLabels[initialParams.get('servicio')];
   const messageField = form.elements.namedItem('mensaje');
-  if (contextualService && messageField && !messageField.value) {
-    messageField.value = `Hola, quisiera recibir información sobre ${contextualService}.`;
-  }
+  const serviceField = form.elements.namedItem('servicio');
+  let lastSuggestion = '';
+  const suggestMessage = () => {
+    const service = serviceLabels[serviceField.value];
+    const suggestion = service ? `Hola, quisiera recibir información sobre ${service}.` : '';
+    if (!messageField.value || messageField.value === lastSuggestion) messageField.value = suggestion;
+    lastSuggestion = suggestion;
+  };
+  const contextualSlug = initialParams.get('servicio');
+  if (serviceLabels[contextualSlug]) serviceField.value = contextualSlug;
+  suggestMessage();
+  serviceField.addEventListener('change', suggestMessage);
 
   const showStatus = (message, state = 'success') => {
     status.textContent = message;
@@ -138,6 +146,7 @@ function setupContactForm() {
 
       if (response.status === 200 && result.ok === true) {
         form.reset();
+        lastSuggestion = '';
         fields.forEach(clearFieldError);
         showStatus('El envío fue aceptado. Gracias por comunicarse con Forestal Garuhapé SA.');
         status.focus();

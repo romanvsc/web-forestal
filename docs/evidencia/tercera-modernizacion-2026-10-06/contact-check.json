@@ -1,0 +1,125 @@
+[
+  {
+    "name": "empty",
+    "status": 422,
+    "body": {
+      "ok": false,
+      "fieldErrors": {
+        "nombre": "Escriba su nombre.",
+        "email": "Escriba su correo electrónico.",
+        "mensaje": "Escriba su mensaje."
+      }
+    },
+    "location": null
+  },
+  {
+    "name": "invalid-email",
+    "status": 422,
+    "body": {
+      "ok": false,
+      "fieldErrors": {
+        "email": "Escriba una dirección de correo válida."
+      }
+    },
+    "location": null
+  },
+  {
+    "name": "unknown-service",
+    "status": 422,
+    "body": {
+      "ok": false,
+      "fieldErrors": {
+        "servicio": "Seleccione uno de los servicios disponibles."
+      }
+    },
+    "location": null
+  },
+  {
+    "name": "method",
+    "status": 405,
+    "body": {
+      "ok": false
+    },
+    "location": null
+  },
+  {
+    "name": "cosecha-forestal",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "transporte-forestal",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "aprovechamiento-biomasa-forestal",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "playas-de-acopio",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "caminos-forestales",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "consultoria-forestal",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "optional-empty",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "location": null
+  },
+  {
+    "name": "native-error",
+    "status": 422,
+    "body": true,
+    "location": null
+  },
+  {
+    "name": "native-success",
+    "status": 303,
+    "body": false,
+    "location": "/enviar_mensaje.php?contacto=enviado"
+  },
+  {
+    "name": "smtp-failure",
+    "status": 503,
+    "body": {
+      "ok": false
+    },
+    "location": null
+  },
+  {
+    "mailpitTotal": 9,
+    "sampleBody": "Nueva consulta recibida desde el formulario web.\n\nNombre: QA local\nEmail: qa@example.test\nServicio: Sin seleccionar\n\nMensaje:\nEnvío nativo\n\nIP: 127.0.0.1\r\n"
+  }
+]

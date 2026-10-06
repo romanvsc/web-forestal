@@ -1,0 +1,146 @@
+[
+  {
+    "route": "/",
+    "requested": {
+      "width": 1440,
+      "height": 900
+    },
+    "broken": [],
+    "h1": "Del bosquea la industria.",
+    "height": 900,
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "/servicios/cosecha-forestal/",
+    "requested": {
+      "width": 1440,
+      "height": 900
+    },
+    "broken": [],
+    "h1": "Cosecha Forestal.",
+    "height": 900,
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "/consultoria/",
+    "requested": {
+      "width": 1440,
+      "height": 900
+    },
+    "broken": [],
+    "h1": "Consultoría.",
+    "height": 900,
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "/",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "broken": [],
+    "h1": "Del bosquea la industria.",
+    "height": 1024,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "/servicios/cosecha-forestal/",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "broken": [],
+    "h1": "Cosecha Forestal.",
+    "height": 1024,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "/consultoria/",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "broken": [],
+    "h1": "Consultoría.",
+    "height": 1024,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "/",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "broken": [],
+    "h1": "Del bosquea la industria.",
+    "height": 844,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "/servicios/cosecha-forestal/",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "broken": [],
+    "h1": "Cosecha Forestal.",
+    "height": 844,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "/consultoria/",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "broken": [],
+    "h1": "Consultoría.",
+    "height": 844,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "/",
+    "requested": {
+      "width": 360,
+      "height": 800
+    },
+    "broken": [],
+    "h1": "Del bosquea la industria.",
+    "height": 800,
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "/servicios/cosecha-forestal/",
+    "requested": {
+      "width": 360,
+      "height": 800
+    },
+    "broken": [],
+    "h1": "Cosecha Forestal.",
+    "height": 800,
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "/consultoria/",
+    "requested": {
+      "width": 360,
+      "height": 800
+    },
+    "broken": [],
+    "h1": "Consultoría.",
+    "height": 800,
+    "overflow": false,
+    "width": 360
+  }
+]

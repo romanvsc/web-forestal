@@ -1,0 +1,5 @@
+{% from "components/icon.njk" import icon with context %}
+<section class="service-related" aria-labelledby="related-heading">
+  <h2 id="related-heading">Capacidades que conectan.</h2>
+  <div>{% for related in serviceEditorial[editorialService.slug].related %}<a href="{{ related.detail }}">{{ related.titulo }} {{ icon('arrow-right') }}</a>{% endfor %}<a href="/servicios/">Todos los servicios {{ icon('arrow-up-right') }}</a></div>
+</section>

@@ -10,7 +10,8 @@
       "Corte final y raleos comerciales completamente mecanizados.",
       "Sistemas Full Tree, Cut-to-Length y alternativas mixtas según la operación.",
       "Extracción y carga del material, con cuidado de la masa forestal remanente."
-    ]
+    ],
+    "resumen_home": "Corte, extracción y carga mecanizada de madera, con sistemas adaptados a cada operación y atención a la seguridad en campo."
   },
   {
     "titulo": "Transporte",
@@ -23,7 +24,8 @@
       "Transporte de troncos con bitrenes forestales.",
       "Transporte de chips con autodescarga mediante piso móvil.",
       "Carretones para equipos propios y de terceros, asistencia técnica y transporte de combustible."
-    ]
+    ],
+    "resumen_home": "Transporte de troncos y chips entre el bosque y la industria, acompañado por logística de equipos, asistencia técnica y combustible."
   },
   {
     "titulo": "Aprovechamiento de Biomasa Forestal",
@@ -36,7 +38,8 @@
       "Triturado de secciones de troncos, ramas y copas de la cosecha.",
       "Chipeado de árboles enteros en bosques destinados a energía.",
       "Preparación de materia prima para generación de electricidad."
-    ]
+    ],
+    "resumen_home": "Aprovechamiento de restos de cosecha y material forestoindustrial mediante triturado y chipeo, para su transformación en energía renovable y uso del recurso."
   },
   {
     "titulo": "Playas de Acopio en Industria",
@@ -49,7 +52,8 @@
       "Descarga, movimientos internos, acondicionamiento y chipeado de madera.",
       "Planificación y control de antigüedad del material.",
       "Diseño del flujo de movimientos según el contexto y las necesidades de abastecimiento."
-    ]
+    ],
+    "resumen_home": "Descarga, organización y movimientos internos de madera en industria, con equipos para acompañar la continuidad del abastecimiento y la preparación del recurso."
   },
   {
     "titulo": "Caminos Forestales",
@@ -62,7 +66,8 @@
       "Apertura, mantenimiento y consolidación de caminos forestales.",
       "Preparación de accesos para vehículos de alta capacidad.",
       "Equipo vial con compactadores, excavadoras, motoniveladoras y camiones volcadores."
-    ]
+    ],
+    "resumen_home": "Apertura, mantenimiento y consolidación de caminos forestales para facilitar el acceso de los equipos y acompañar el transporte y abastecimiento industrial."
   },
   {
     "titulo": "Consultoría",
@@ -75,6 +80,7 @@
       "Planificación de producción, abastecimiento y crecimiento.",
       "Análisis de la cadena de suministro forestal y estudios de mercado.",
       "Optimización de procesos y servicios de playa."
-    ]
+    ],
+    "resumen_home": "Planificación del abastecimiento, análisis de la cadena forestal y estudios de productividad, con equipos profesionales y herramientas para acompañar las decisiones del cliente."
   }
 ]

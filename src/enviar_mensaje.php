@@ -3,6 +3,14 @@ declare(strict_types=1);
 
 $recipient = 'secretaria@forestalgaruhape.com.ar';
 $siteName = 'Forestal Garuhapé SA';
+$serviceLabels = [
+    'cosecha-forestal' => 'Cosecha forestal',
+    'transporte-forestal' => 'Transporte forestal',
+    'playas-de-acopio' => 'Playas de acopio en industria',
+    'caminos-forestales' => 'Caminos forestales',
+    'aprovechamiento-biomasa-forestal' => 'Aprovechamiento de biomasa forestal',
+    'consultoria-forestal' => 'Consultoría forestal',
+];
 $isJson = str_contains(strtolower((string)($_SERVER['HTTP_ACCEPT'] ?? '')), 'application/json');
 
 function escapeHtml(string $value): string
@@ -22,6 +30,8 @@ function respondJson(int $status, array $payload): never
 
 function renderContactResponse(string $title, string $message, bool $isError, array $values = [], array $fieldErrors = []): never
 {
+    global $serviceLabels;
+    $selectedService = (string)($values['servicio'] ?? '');
     $cssFiles = glob(__DIR__ . '/assets/site-*.css') ?: [];
     $cssHref = $cssFiles === [] ? '' : '/assets/' . basename($cssFiles[0]);
     $name = escapeHtml((string)($values['nombre'] ?? ''));
@@ -71,6 +81,17 @@ function renderContactResponse(string $title, string $message, bool $isError, ar
                   <input id="response-email" name="email" type="email" autocomplete="email" required value="<?= $email ?>"<?= isset($fieldErrors['email']) ? ' aria-invalid="true" aria-describedby="response-email-error"' : '' ?>>
                   <?php if (isset($fieldErrors['email'])): ?><span class="field-error" id="response-email-error"><?= escapeHtml($fieldErrors['email']) ?></span><?php endif; ?>
                 </div>
+                <p>Nombre, correo y mensaje son obligatorios.</p>
+                <div class="form-field">
+                  <label for="response-servicio">Servicio (opcional)</label>
+                  <select id="response-servicio" name="servicio"<?= isset($fieldErrors['servicio']) ? ' aria-invalid="true" aria-describedby="response-servicio-error"' : '' ?>>
+                    <option value="">Sin seleccionar</option>
+                    <?php foreach ($serviceLabels as $slug => $label): ?>
+                    <option value="<?= escapeHtml($slug) ?>"<?= $selectedService === $slug ? ' selected' : '' ?>><?= escapeHtml($label) ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                  <?php if (isset($fieldErrors['servicio'])): ?><span class="field-error" id="response-servicio-error"><?= escapeHtml($fieldErrors['servicio']) ?></span><?php endif; ?>
+                </div>
                 <div class="form-field">
                   <label for="response-mensaje">¿En qué podemos ayudarle?</label>
                   <textarea id="response-mensaje" name="mensaje" rows="5" required<?= isset($fieldErrors['mensaje']) ? ' aria-invalid="true" aria-describedby="response-mensaje-error"' : '' ?>><?= $body ?></textarea>
@@ -116,6 +137,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $name = trim((string)($_POST['nombre'] ?? ''));
 $email = trim((string)($_POST['email'] ?? ''));
 $message = trim((string)($_POST['mensaje'] ?? ''));
+$serviceInput = $_POST['servicio'] ?? '';
+$service = is_string($serviceInput) ? trim($serviceInput) : '';
+$invalidService = !is_string($serviceInput) || ($service !== '' && !isset($serviceLabels[$service]));
 
 if (!empty($_POST['website'] ?? '')) {
     if ($isJson) respondJson(200, ['ok' => true]);
@@ -124,6 +148,7 @@ if (!empty($_POST['website'] ?? '')) {
 }
 
 $fieldErrors = [];
+if ($invalidService) $fieldErrors['servicio'] = 'Seleccione uno de los servicios disponibles.';
 if ($name === '') $fieldErrors['nombre'] = 'Escriba su nombre.';
 if ($email === '') {
     $fieldErrors['email'] = 'Escriba su correo electrónico.';
@@ -139,6 +164,7 @@ if ($fieldErrors !== []) {
         'nombre' => $name,
         'email' => $email,
         'mensaje' => $message,
+    'servicio' => $service,
     ], $fieldErrors);
 }
 
@@ -149,6 +175,7 @@ $body = implode("\n", [
     '',
     'Nombre: ' . $cleanName,
     'Email: ' . $email,
+    'Servicio: ' . ($serviceLabels[$service] ?? 'Sin seleccionar'),
     '',
     'Mensaje:',
     $message,
@@ -179,4 +206,5 @@ renderContactResponse('No se pudo enviar la consulta', 'El formulario no pudo pr
     'nombre' => $name,
     'email' => $email,
     'mensaje' => $message,
+    'servicio' => $service,
 ]);

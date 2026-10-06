@@ -1,0 +1,322 @@
+[
+  {
+    "route": "/servicios/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/transporte-forestal/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/transporte-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Transporte | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/playas-de-acopio/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/playas-de-acopio/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Playas de Acopio en Industria | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/caminos-forestales/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/caminos-forestales/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Caminos Forestales | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/aprovechamiento-biomasa-forestal/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/aprovechamiento-biomasa-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Aprovechamiento de Biomasa Forestal | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/consultoria-forestal/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/consultoria/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Consultoría | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/nosotros/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/nosotros/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Forestal Garuhapé SA | Nosotros"
+  },
+  {
+    "route": "/trabaja/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/trabaja/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Empleo | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/privacidad/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/privacidad/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Política de Privacidad | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/terminos/",
+    "width": 1440,
+    "canonical": "https://forestalgaruhape.com.ar/terminos/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Términos y Condiciones | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/transporte-forestal/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/transporte-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Transporte | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/playas-de-acopio/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/playas-de-acopio/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Playas de Acopio en Industria | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/caminos-forestales/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/caminos-forestales/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Caminos Forestales | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/aprovechamiento-biomasa-forestal/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/aprovechamiento-biomasa-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Aprovechamiento de Biomasa Forestal | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/consultoria-forestal/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/consultoria/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Consultoría | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/nosotros/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/nosotros/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Forestal Garuhapé SA | Nosotros"
+  },
+  {
+    "route": "/trabaja/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/trabaja/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Empleo | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/privacidad/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/privacidad/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Política de Privacidad | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/terminos/",
+    "width": 768,
+    "canonical": "https://forestalgaruhape.com.ar/terminos/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Términos y Condiciones | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/transporte-forestal/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/transporte-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Transporte | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/playas-de-acopio/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/playas-de-acopio/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Playas de Acopio en Industria | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/caminos-forestales/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/caminos-forestales/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Caminos Forestales | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/aprovechamiento-biomasa-forestal/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/aprovechamiento-biomasa-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Aprovechamiento de Biomasa Forestal | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/consultoria-forestal/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/consultoria/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Consultoría | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/nosotros/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/nosotros/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Forestal Garuhapé SA | Nosotros"
+  },
+  {
+    "route": "/trabaja/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/trabaja/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Empleo | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/privacidad/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/privacidad/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Política de Privacidad | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/terminos/",
+    "width": 390,
+    "canonical": "https://forestalgaruhape.com.ar/terminos/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Términos y Condiciones | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/transporte-forestal/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/transporte-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Transporte | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/playas-de-acopio/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/playas-de-acopio/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Playas de Acopio en Industria | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/caminos-forestales/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/caminos-forestales/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Caminos Forestales | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/aprovechamiento-biomasa-forestal/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/servicios/aprovechamiento-biomasa-forestal/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Aprovechamiento de Biomasa Forestal | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/servicios/consultoria-forestal/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/consultoria/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Consultoría | Servicios Forestales | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/nosotros/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/nosotros/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Forestal Garuhapé SA | Nosotros"
+  },
+  {
+    "route": "/trabaja/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/trabaja/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Empleo | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/privacidad/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/privacidad/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Política de Privacidad | Forestal Garuhapé SA"
+  },
+  {
+    "route": "/terminos/",
+    "width": 360,
+    "canonical": "https://forestalgaruhape.com.ar/terminos/",
+    "h1": 1,
+    "overflow": false,
+    "title": "Términos y Condiciones | Forestal Garuhapé SA"
+  }
+]

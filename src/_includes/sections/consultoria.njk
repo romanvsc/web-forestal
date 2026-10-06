@@ -1,19 +1,10 @@
 {% from "components/image.njk" import responsiveImage with context %}
 {% from "components/icon.njk" import icon with context %}
-<section class="page-intro">
-  <div class="site-container">
-    <p class="eyebrow">Servicios / Consultoría</p>
-    <h1>Consultoría forestal.</h1>
-    <p>{{ consultingService.resumen }}</p>
-    <div class="page-actions">
-      <a class="button" href="/?servicio=consultoria-forestal#contacto">Consultar {{ icon("arrow-up-right") }}</a>
-      <a class="button button--outline" href="/servicios/">Todos los servicios {{ icon("arrow-right") }}</a>
-    </div>
-  </div>
-</section>
+{% set editorialService = consultingService %}
+{% include "components/service-opening.njk" %}
 <section class="page-content" aria-labelledby="consulting-heading">
   <div class="site-container">
-    <div class="section-heading">
+    <div class="section-heading" id="alcance-servicio">
       <div>
         <p class="eyebrow">Planificación y análisis</p>
         <h2 id="consulting-heading">Áreas de consultoría.</h2>
@@ -29,11 +20,13 @@
       <article class="consulting-card">
         {{ responsiveImage(servicio.imagen, servicio.titulo, "", "lazy", "(max-width: 767px) 38vw, (max-width: 1023px) 30vw, 18vw") }}
         <div>
-          <h2>{{ servicio.titulo }}</h2>
+          <h3>{{ servicio.titulo }}</h3>
           <p>{{ servicio.descripcion }}</p>
         </div>
       </article>
       {% endfor %}
     </div>
+    {% include "components/service-gallery.njk" %}
+    {% include "components/service-related.njk" %}
   </div>
 </section>

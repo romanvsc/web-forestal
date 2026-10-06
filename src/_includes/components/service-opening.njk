@@ -1,0 +1,16 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="service-opening" aria-labelledby="service-title">
+  <div class="service-opening-media">{{ responsiveImage(serviceEditorial[editorialService.slug].image, editorialService.titulo, '', 'eager') }}</div>
+  <div class="site-container service-opening-copy">
+    <p class="eyebrow"><a href="/servicios/">Servicios</a> / {{ editorialService.titulo }}</p>
+    <h1 id="service-title">{{ editorialService.titulo }}.</h1>
+    <p>{{ editorialService.resumen }}</p>
+    <a class="button button--light" href="/?servicio={{ editorialService.slug }}#contacto">Consultar {{ icon('arrow-up-right') }}</a>
+  </div>
+</section>
+<nav class="site-container service-index" aria-label="En esta página">
+  <a href="#alcance-servicio">Alcance</a>
+  {% if serviceEditorial[editorialService.slug].primary.length %}<a href="#imagenes-servicio">Imágenes</a>{% endif %}
+  <a href="/?servicio={{ editorialService.slug }}#contacto">Consultar</a>
+</nav>

@@ -1,0 +1,41 @@
+{
+  "profile": "1440x900, localhost, no throttling, reduced motion, same instrumented static server, three successive samples; diagnostic only",
+  "samples": [
+    {
+      "variant": "before",
+      "sample": 1,
+      "cls": 0.06175438596491229,
+      "lcp": 124
+    },
+    {
+      "variant": "before",
+      "sample": 2,
+      "cls": 0,
+      "lcp": 120
+    },
+    {
+      "variant": "before",
+      "sample": 3,
+      "cls": 0,
+      "lcp": 120
+    },
+    {
+      "variant": "after",
+      "sample": 1,
+      "cls": 0,
+      "lcp": 128
+    },
+    {
+      "variant": "after",
+      "sample": 2,
+      "cls": 0,
+      "lcp": 136
+    },
+    {
+      "variant": "after",
+      "sample": 3,
+      "cls": 0,
+      "lcp": 140
+    }
+  ]
+}

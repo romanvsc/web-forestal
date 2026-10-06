@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-03T02:06:17.369Z",
-  "title": "Design System: Forestal Garuhapé — Home V2",
+  "generatedAt": "2026-10-06T03:24:34.637Z",
+  "title": "Design System: Forestal Garuhapé — Home e interiores editoriales",
   "extensions": {
     "colorMeta": {
       "forest": {
@@ -344,7 +344,36 @@
         "name": "desktop-motion-min",
         "value": "1024px"
       }
-    ]
+    ],
+    "editorial": {
+      "serviceOpening": {
+        "desktopMinHeight": 480,
+        "h1": "40–72px",
+        "mobilePhotoHeight": 260,
+        "mobileH1": "32–40px",
+        "index": "in-flow"
+      },
+      "gallery": {
+        "primaryMaximum": 3,
+        "consultingDocumentaryPhotos": 1,
+        "remaining": "native details"
+      },
+      "contact": {
+        "optionalField": "servicio",
+        "allowedSlugs": 6,
+        "preserveEditedMessage": true
+      },
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "duration": 36,
+        "dissolve": 2,
+        "crf": 26,
+        "bytes": 6667385
+      },
+      "status": "local-uncommitted"
+    }
   },
   "components": [
     {
@@ -430,7 +459,7 @@
   ],
   "narrative": {
     "northStar": "Industrial Forestry Documentary",
-    "overview": "Fotografía operativa propia, titulares gigantes, rótulos pequeños y numeración de servicios construyen el lenguaje documental industrial elegido por el usuario. El bosque y el negro verde sostienen la operación; el crema marca las pausas institucionales. Manrope da escala a los mensajes, Work Sans organiza la lectura y Tabler Outline acompaña las acciones. La diferencia marcada entre título y metadata es una decisión explícita del brief.\n\n**Estado: Home V2 implementada localmente en `/`.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: la estética documental de Home no redefine sus superficies de lectura.\n\nFuentes: plantillas `src/_includes/home/*`, cabecera y contacto compartidos, `src/js/home.js` y `src/js/main.js`; contrato y estado en `docs/PROPUESTA_MODERNIZACION.md`, `docs/STORYBOARD_V2.md` y `docs/FASE_FINAL.md`. La revisión independiente de Home registró `SHIP` sobre código y capturas (1440/768/390), sin hallazgos materiales; su evidencia está en `docs/evidencia/v2-home/` y `.impeccable/review/`. Esta extracción documental no añade pruebas ni una nueva revisión de navegador. La entrega sigue siendo local, sin commit, push ni publicación.",
+    "overview": "Identidad documental industrial: fotografías propias, Manrope/Work Sans, paleta bosque/crema y Tabler Outline. Home mantiene tres escenas con GSAP/ScrollTrigger y Lenis; los interiores usan apertura fotográfica y lectura clara en flujo. Contacto usa controles nativos y feedback accesible. Base publicada 98e7d72; tercera modernización local de 2026-10-06, sin publicación. Ver DESIGN.md y docs/TERCERA_MODERNIZACION_2026-10-06.md para comportamiento, evidencia y limitaciones.",
     "keyCharacteristics": [
       "Fotografías operativas reales, logo institucional y mapa con países verificados.",
       "Titulares gigantes, rótulos pequeños y numeración visible por capacidad.",
@@ -460,7 +489,7 @@
       "**Do** usar el mapa exclusivamente como alcance institucional de Argentina y Paraguay."
     ],
     "donts": [
-      "**Don't** propagar automáticamente la estética documental de Home a las páginas interiores.",
+      "**Don't** fijar escenas narrativas en interiores; mantener lectura en flujo.",
       "**Don't** asignar fuentes de video a móvil, movimiento reducido o ahorro de datos.",
       "**Don't** convertir la pausa manual de video en una reproducción forzada al volver a la pestaña.",
       "**Don't** inventar cifras, certificaciones, testimonios o ubicaciones operativas.",

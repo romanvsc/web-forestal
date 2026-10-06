@@ -1,9 +1,11 @@
 // Offline media preparation only; FFmpeg is not a build or browser dependency.
-// Run: node scripts/create-hero-video.cjs <path-to-ffmpeg>
+// Run: node scripts/create-hero-video.cjs <path-to-ffmpeg> [crf] [output-path]
 const { spawnSync } = require('node:child_process');
 const { mkdirSync, copyFileSync } = require('node:fs');
 const path = require('node:path');
 const ffmpeg = process.argv[2];
+const crf = process.argv[3] || '26';
+const output = path.resolve(process.argv[4] || 'src/images/hero-cinematic.mp4');
 if (!ffmpeg) throw new Error('Indique la ruta a FFmpeg.');
 const shots = [
   'actualizadas/cosecha-forestal.png',
@@ -30,10 +32,10 @@ const duration = shots.length * (shotDuration - dissolve);
 filters.push(`[mix${frames.length - 1}]trim=start=${dissolve}:duration=${duration},setpts=PTS-STARTPTS,format=yuv420p[out]`);
 const result = spawnSync(ffmpeg, ['-hide_banner', '-loglevel', 'warning', '-y', ...input,
   '-filter_complex_threads', '2', '-filter_complex', filters.join(';'), '-map', '[out]', '-an',
-  '-c:v', 'libx264', '-preset', 'medium', '-crf', '23', '-pix_fmt', 'yuv420p', '-r', '30',
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', crf, '-pix_fmt', 'yuv420p', '-r', '30',
   '-movflags', '+faststart', path.join(cache, 'hero-cinematic.mp4')], { stdio: 'inherit' });
 if (result.error) throw result.error;
 if (result.status !== 0) throw new Error(`FFmpeg terminó con código ${result.status}`);
 // Publish only the finished export so the dev watcher never copies a partial video.
-copyFileSync(path.join(cache, 'hero-cinematic.mp4'), path.resolve('src/images/hero-cinematic.mp4'));
+copyFileSync(path.join(cache, 'hero-cinematic.mp4'), output);
 console.log(`Hero: ${duration}s, 30fps, disoluciones ${dissolve}s, encuadre fijo y loop continuo.`);

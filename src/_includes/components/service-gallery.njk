@@ -1,0 +1,10 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% set curated = serviceEditorial[editorialService.slug] %}
+{% macro photos(items) %}<div class="gallery-grid{% if items.length == 1 %} gallery-grid--single{% endif %}">{% for img in items %}<figure>{{ responsiveImage(img.src, img.alt, '', 'lazy', '100vw' if items.length == 1 else '(max-width: 767px) 100vw, 33vw') }}<figcaption>{{ img.title }}</figcaption></figure>{% endfor %}</div>{% endmacro %}
+{% if curated.primary.length %}
+<section class="gallery-section" id="imagenes-servicio" aria-labelledby="gallery-heading">
+  <h2 id="gallery-heading">La operación en imágenes.</h2>
+  {{ photos(curated.primary) }}
+  {% if curated.remaining.length %}<details class="service-technical gallery-more"><summary>Ver más imágenes</summary>{{ photos(curated.remaining) }}</details>{% endif %}
+</section>
+{% endif %}

@@ -1,7 +1,7 @@
 {% from "components/icon.njk" import icon with context %}
 <footer class="site-footer">
   <section class="contact-section" id="contacto" aria-labelledby="contact-heading">
-    {% if homeV2 %}<div class="home-contact-shell"><h2 class="home-contact-title" id="contact-heading">HABLEMOS DE<br>SU PRÓXIMA<br>OPERACIÓN.</h2>{% endif %}
+    {% if homeV2 %}<div class="home-contact-shell"><h2 class="home-contact-title" id="contact-heading">Hablemos de<br>su próxima<br>operación.</h2>{% endif %}
     <div class="{% if homeV2 %}home-contact-layout{% else %}site-container contact-layout{% endif %}">
       <div class="contact-copy">
         {% if not homeV2 %}
@@ -21,6 +21,15 @@
         <div class="field-trap" aria-hidden="true">
           <label for="website">Dejar vacío</label>
           <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="form-required">Nombre, correo y mensaje son obligatorios.</p>
+        <div class="form-field">
+          <label for="servicio">Servicio (opcional)</label>
+          <select id="servicio" name="servicio" aria-describedby="servicio-error" data-contact-field>
+            <option value="">Sin seleccionar</option>
+            {% for service in todos_los_servicios %}<option value="{{ service.slug }}">{{ service.titulo }}</option>{% endfor %}
+          </select>
+          <span class="field-error" id="servicio-error" data-field-error="servicio" hidden></span>
         </div>
         <div class="form-row">
           <div class="form-field">

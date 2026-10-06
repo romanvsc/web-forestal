@@ -527,3 +527,10 @@ Esta revisión sustituye el recorrido Home V2 de seis capítulos por una cuadrí
 Las referencias y skills de la propuesta original siguen como antecedentes: GTA VI orienta continuidad; GSAP implementa el relato y Lenis suaviza el escritorio; los catálogos aportan patrones adaptados. Apple Design guía esta revisión de jerarquía, lectura, navegación y movimiento opcional. No se añadieron dependencias.
 
 Los bloqueos y pendientes de navegador registrados en fases anteriores son históricos; la revisión actual sí tiene capturas e interacción local. No se midió mejora de conversión, rendimiento de animación ni Core Web Vitals. No se enviaron correos ni se verificó el hosting en esta revisión. Entrega local, sin commit, push ni publicación.
+
+
+## Tercera modernización — 2026-10-06
+
+Se implementaron localmente las ocho prioridades de la segunda auditoría: aperturas editoriales de servicios/Consultoría, índice en flujo, relaciones, galería documental, flota real en Nosotros, resúmenes específicos de Home, controles de 48 px, selector opcional validado y video un 24,4 % más ligero. Se preservan relato, rutas, tipografía y paleta. La base publicada anterior es `98e7d72`; esta nueva entrega no se ha publicado.
+
+[Comparación, verificación, evidencia y límites](TERCERA_MODERNIZACION_2026-10-06.md). PHP y Mailpit se verificaron solo en localhost; no se enviaron correos externos. Zoom real al 200 %, Safari y métricas de producción siguen pendientes.

@@ -1,0 +1,34 @@
+{
+  "before": {
+    "bundles": [
+      {
+        "name": "main-SBDMRXZO.js",
+        "bytes": 145385,
+        "gzip": 54002
+      },
+      {
+        "name": "site-XQ24XJJR.css",
+        "bytes": 44315,
+        "gzip": 9756
+      }
+    ],
+    "videoBytes": 8817563,
+    "gzipTotal": 63758
+  },
+  "after": {
+    "bundles": [
+      {
+        "name": "main-JGZGOYZD.js",
+        "bytes": 145542,
+        "gzip": 54060
+      },
+      {
+        "name": "site-GRYORZ5T.css",
+        "bytes": 46361,
+        "gzip": 10026
+      }
+    ],
+    "videoBytes": 6667385,
+    "gzipTotal": 64086
+  }
+}
