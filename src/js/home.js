@@ -106,14 +106,14 @@ export function setupHomeVideo() {
 export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
   const operation = document.querySelector('[data-home-operation]');
   if (!operation) return;
-  const stage = operation.querySelector('[data-operation-stage]');
   const track = operation.querySelector('[data-operation-track]');
   const frames = [...operation.querySelectorAll('[data-operation-frame]')];
   const chapters = [...operation.querySelectorAll('[data-operation-chapter]')];
   const caption = operation.querySelector('[data-operation-caption]');
-  if (frames.length !== 6 || chapters.length !== frames.length) return;
+  if (frames.length < 2 || chapters.length !== frames.length) return;
   gsap.matchMedia().add(desktopMotion, () => {
     let lenis;
+    const context = gsap.context(() => {});
     const tick = (time) => lenis.raf(time * 1000);
     try {
       lenis = new Lenis({ smoothWheel: true, syncTouch: false, anchors: { immediate: true }, respectReducedMotion: true });
@@ -121,52 +121,42 @@ export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
       gsap.ticker.add(tick);
       gsap.ticker.lagSmoothing(0);
       document.body.classList.add('has-home-motion');
-      const sequence = gsap.timeline({ scrollTrigger: {
-        trigger: track,
-        start: 'top 55%',
-        end: 'bottom 55%',
-        scrub: .9,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const index = Math.min(5, Math.floor(self.progress * 6));
-          caption.textContent = `${String(index + 1).padStart(2, '0')} — ${chapters[index].dataset.operationTitle}`;
-        },
-      }});
-      gsap.set(frames, { autoAlpha: 0 });
-      gsap.set(frames[0], { autoAlpha: 1 });
-      frames.forEach((frame, index) => {
-        const image = frame.querySelector('img');
-        if (index > 0) {
-          // Keep the outgoing photograph opaque under the incoming frame: no dark flash.
-          sequence.to(frame, { autoAlpha: 1, duration: .65, ease: 'sine.inOut' }, index - .25);
-          sequence.set(frames[index - 1], { autoAlpha: 0 }, index + .4);
-        }
-        sequence.fromTo(image, { scale: 1.02 }, { scale: 1.05, duration: 1.25, ease: 'none' }, Math.max(0, index - .25));
-        if (index === 0) sequence.fromTo(frame, { clipPath: 'inset(8% 6% 8% 6%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .65, ease: 'none' }, 0);
-        if (index === 1) sequence.fromTo(frame, { clipPath: 'inset(0% 0% 0% 10%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .3, ease: 'none' }, index);
-        if (index === 3) sequence.fromTo(image, { yPercent: -1.5 }, { yPercent: 1.5, duration: 1.25, ease: 'none' }, index - .25);
+      context.add(() => {
+        gsap.set(frames, { autoAlpha: 0 });
+        gsap.set(frames[0], { autoAlpha: 1 });
+        const sequence = gsap.timeline({
+          onUpdate() {
+            const index = Math.min(chapters.length - 1, Math.floor(this.time()));
+            caption.textContent = `${String(index + 1).padStart(2, '0')} — ${chapters[index].dataset.operationTitle}`;
+          },
+          scrollTrigger: { trigger: track, start: 'top center', end: 'bottom center', scrub: .6, invalidateOnRefresh: true },
+        });
+        // A full unit per scene keeps transitions aligned with semantic text blocks.
+        sequence.to({}, { duration: chapters.length }, 0);
+        frames.forEach((frame, index) => {
+          if (index === 0) return;
+          const start = index - 1 / 6;
+          sequence.fromTo(frame, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 / 3, ease: 'sine.inOut' }, start);
+          sequence.fromTo(frame.querySelector('img'), { yPercent: 12 }, { yPercent: 0, duration: 1 / 3, ease: 'sine.inOut' }, start);
+          sequence.to(frames[index - 1], { autoAlpha: 0, duration: 1 / 3, ease: 'sine.inOut' }, start);
+          sequence.to(frames[index - 1].querySelector('img'), { yPercent: -8, duration: 1 / 3, ease: 'sine.inOut' }, start);
+        });
+        document.querySelectorAll('[data-home-reveal]').forEach((section) => {
+          gsap.from(section.children, { y: 20, opacity: .7, duration: .35, ease: 'power2.out', clearProps: 'all', scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none reverse' } });
+        });
+        document.fonts?.ready.then(() => { if (document.body.classList.contains('has-home-motion')) ScrollTrigger.refresh(); });
       });
-      const hero = document.querySelector('[data-home-hero]');
-      // The montage already provides motion. Keep its canvas fixed to avoid competing zooms.
-      gsap.to(hero.querySelector('[data-home-hero-copy]'), { y: -24, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .9 } });
-      document.querySelectorAll('[data-home-parallax]').forEach((frame) => {
-        gsap.fromTo(frame.querySelector('img'), { yPercent: -3, scale: 1.08 }, { yPercent: 3, scale: 1.08, ease: 'none', scrollTrigger: { trigger: frame, start: 'top bottom', end: 'bottom top', scrub: .3 } });
-      });
-      document.querySelectorAll('[data-sgc-moment]').forEach((moment) => {
-        gsap.fromTo(moment.children, { y: 20, opacity: .6 }, { y: 0, opacity: 1, duration: .4, stagger: .06, scrollTrigger: { trigger: moment, start: 'top 80%', toggleActions: 'play none none reverse' } });
-      });
-      const map = document.querySelector('[data-home-map]');
-      gsap.fromTo(map, { y: 20, opacity: .8 }, { y: 0, opacity: 1, duration: .45, scrollTrigger: { trigger: map, start: 'top 85%', toggleActions: 'play none none reverse' } });
-      document.fonts?.ready.then(() => ScrollTrigger.refresh());
     } catch (error) {
+      context.revert();
       document.body.classList.remove('has-home-motion');
       gsap.ticker.remove(tick);
+      gsap.ticker.lagSmoothing(500, 33);
       lenis?.destroy();
       console.warn('La operación se presenta en su versión estática.', error);
     }
     return () => {
+      context.revert();
       document.body.classList.remove('has-home-motion');
-      delete stage.dataset.kind;
       gsap.ticker.remove(tick);
       gsap.ticker.lagSmoothing(500, 33);
       lenis?.destroy();

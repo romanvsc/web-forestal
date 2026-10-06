@@ -2,6 +2,8 @@
 
 Fecha: 2026-10-02. Estado: **referencia visual de la Home V2 implementada localmente en `/`**. `/storyboard-v2/` conserva el estudio de composiciones y muestras manuales.
 
+> Registro histórico: la Home actual sigue [STORYBOARD_EDITORIAL.md](STORYBOARD_EDITORIAL.md), aprobado e implementado el 2026-10-05. Esta ruta conserva la exploración anterior de seis capítulos.
+
 ## Objetivo y entrega
 
 Generar consultas comerciales mediante un recorrido documental con recursos propios. El usuario confirmó video automático sin sonido en escritorio, storyboard visual antes del código de la Home y fotografía operativa para la pausa institucional.
@@ -24,7 +26,7 @@ Vista local: `http://127.0.0.1:8080/storyboard-v2/`. Es una ruta de revisión, f
 
 ## Escenas del estudio previo
 
-**Ajuste posterior del usuario:** la Home actual conserva encuadres oscuros continuos; Acopio usa `playa_acopio_1.jpeg` horizontal. El hero usa `hero-cinematic.mp4` de 36s, planos fijos y disoluciones de 2s. La tabla conserva el estudio previo; los valores vigentes están en DESIGN.md y PROPUESTA_MODERNIZACION.md.
+**Ajustes posteriores del usuario:** la Home actual conserva encuadres oscuros continuos; Acopio usa `playa_acopio_1.jpeg` horizontal. El hero usa `hero-cinematic.mp4` de 36s, planos fijos y disoluciones de 2s. La escena de capacidades mantiene una única caja a sangre, degradado y eje de texto para los seis servicios; las imágenes cambian con una disolución de .9 unidades y un zoom de 1.025 a 1.055. La tabla conserva el estudio previo; los valores vigentes están en DESIGN.md y PROPUESTA_MODERNIZACION.md.
 
 | Escena | Recurso real | Composición | Movimiento para la Home |
 | --- | --- | --- | --- |

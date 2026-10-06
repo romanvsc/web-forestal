@@ -509,3 +509,21 @@ Acopio usa `playa_acopio_1.jpeg`, horizontal a sangre y fondo oscuro, con texto 
 Se sustituyeron los recursos correspondientes en Home, catálogo, detalles, galerías, fondo SGC y montaje del hero. Los archivos se nombran por servicio en `src/images/actualizadas/`; la nueva flota está en `src/images/flota_camiones.png`. El usuario autorizó recortar las marcas alteradas de Cosecha y Biomasa; esas salidas se editaron con imagegen y los originales se conservan. La nueva vertical de Acopio se aplica al catálogo/detalle/galería; el relato conserva la fotografía horizontal aprobada. El ajuste de contenedores picture mantiene las tarjetas y detalles cubiertos pese al cambio de proporciones.
 
 [Relación de archivos, recortes, prompt y recursos](recursos/IMAGENES_ACTUALIZADAS.md). El poster actual a 1280px pesa 98,432 B; el MP4 regenerado mantiene 36s y disoluciones de 2s, con peso 8,817,563 B.
+
+
+## Home editorial con relato operativo — 2026-10-05
+
+Esta revisión sustituye el recorrido Home V2 de seis capítulos por una cuadrícula de seis servicios y tres escenas operativas: Planificar → Operar en campo → Abastecer la industria. El orden completo es presentación, capacidades, operación, Empresa, alcance regional, SGC y consulta. Se conservan fuentes, paleta, fotografías propias, anclas históricas, enlaces, canonical de Consultoría y contratos de contacto.
+
+| Antes | Después | Por qué |
+| --- | --- | --- |
+| Seis capítulos de servicios prolongados | Seis capacidades en cuadrícula 3/2/1 y tres escenas narrativas | Separar la búsqueda de una prestación del relato de cómo opera la empresa. |
+| Zoom y parallax en el recorrido | Desplazamiento vertical y fundido de un tercio de capítulo, scrub 0.6 | Dar continuidad al avanzar y retroceder, con encuadres compartidos. |
+| SGC con cuatro momentos extensos | Cuatro compromisos compactos en flujo normal | Mantener ritmo editorial después de la pausa institucional y el mapa. |
+| Selección de servicio mediante filtro Nunjucks | Datos seleccionados explícitamente por slug | Corregir resúmenes repetidos y la introducción de Consultoría. |
+
+[Storyboard, implementación, revisión Apple Design y límites](STORYBOARD_EDITORIAL.md). Capturas actuales: `evidencia/home-editorial-2026-10-05/`; evidencia histórica conservada. Se revisaron 1440 × 900, 768 × 1024, 390 × 844 y 360 × 800, avance/retroceso, cambios de tamaño, menú por teclado, movimiento reducido, ausencia de JavaScript y poster con video bloqueado. Build de producción y comprobación existente del contacto pasan.
+
+Las referencias y skills de la propuesta original siguen como antecedentes: GTA VI orienta continuidad; GSAP implementa el relato y Lenis suaviza el escritorio; los catálogos aportan patrones adaptados. Apple Design guía esta revisión de jerarquía, lectura, navegación y movimiento opcional. No se añadieron dependencias.
+
+Los bloqueos y pendientes de navegador registrados en fases anteriores son históricos; la revisión actual sí tiene capturas e interacción local. No se midió mejora de conversión, rendimiento de animación ni Core Web Vitals. No se enviaron correos ni se verificó el hosting en esta revisión. Entrega local, sin commit, push ni publicación.

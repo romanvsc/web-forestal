@@ -123,12 +123,16 @@ function setupContactForm() {
     submitButton.setAttribute('aria-busy', 'true');
     submitLabel.textContent = 'Enviando…';
 
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+
     try {
       const response = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
         credentials: 'same-origin',
+        signal: controller.signal,
       });
       const result = await response.json();
 
@@ -152,10 +156,13 @@ function setupContactForm() {
 
       showStatus('No pudimos enviar la consulta. Puede escribir a secretaria@forestalgaruhape.com.ar.', 'error');
       status.focus();
-    } catch {
-      showStatus('No pudimos confirmar el envío. Sus datos siguen en el formulario; compruebe su conexión antes de volver a intentar.', 'error');
+    } catch (error) {
+      showStatus(error.name === 'AbortError'
+        ? 'La solicitud tardó más de lo esperado. No pudimos confirmar el envío. Sus datos siguen aquí; puede contactarnos por correo o WhatsApp antes de volver a intentar.'
+        : 'No pudimos confirmar el envío. Sus datos siguen en el formulario; compruebe su conexión antes de volver a intentar.', 'error');
       status.focus();
     } finally {
+      window.clearTimeout(timeout);
       sending = false;
       submitButton.disabled = false;
       submitButton.removeAttribute('aria-busy');

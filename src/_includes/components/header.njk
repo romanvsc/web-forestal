@@ -10,8 +10,8 @@
     </button>
     <nav aria-label="Navegación principal">
       <ul class="nav-links" id="site-menu" data-site-menu>
-        <li><a href="/servicios/">Servicios</a></li>
-        <li><a href="/nosotros/">Nosotros</a></li>
+        <li><a href="/servicios/"{% if page.url == '/servicios/' %} aria-current="page"{% elif '/servicios/' in page.url or page.url == '/consultoria/' %} class="nav-section-active"{% endif %}>Servicios</a></li>
+        <li><a href="/nosotros/"{% if page.url == '/nosotros/' %} aria-current="page"{% endif %}>Nosotros</a></li>
         <li><a href="/#sgi">SGC</a></li>
         <li><a class="button button--nav" href="/#contacto">Consultar {{ icon("arrow-up-right", "icon") }}</a></li>
       </ul>

@@ -1,11 +1,10 @@
 {% from "components/image.njk" import responsiveImage with context %}
 {% from "components/icon.njk" import icon with context %}
-{% set consultingService = todos_los_servicios | selectattr("slug", "equalto", "consultoria-forestal") | first %}
 <section class="page-intro">
   <div class="site-container">
     <p class="eyebrow">Servicios / Consultoría</p>
     <h1>Consultoría forestal.</h1>
-    <p>{{ consultingService.descripcion }}</p>
+    <p>{{ consultingService.resumen }}</p>
     <div class="page-actions">
       <a class="button" href="/?servicio=consultoria-forestal#contacto">Consultar {{ icon("arrow-up-right") }}</a>
       <a class="button button--outline" href="/servicios/">Todos los servicios {{ icon("arrow-right") }}</a>
@@ -21,6 +20,10 @@
       </div>
       <p>Herramientas y equipos profesionales para colaborar con los procesos forestales y foresto-industriales.</p>
     </div>
+    <details class="service-technical">
+      <summary>Enfoque de la consultoría</summary>
+      <div class="detail-body"><p>{{ consultingService.descripcion }}</p><p>{{ consultingService.descripcion_ampliada }}</p></div>
+    </details>
     <div class="consulting-grid">
       {% for servicio in consultoria %}
       <article class="consulting-card">

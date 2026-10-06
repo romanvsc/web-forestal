@@ -28,7 +28,7 @@ layout: layouts/base.njk
       </figure>
       <div class="service-card-body">
         <h2>{{ item.titulo }}</h2>
-        <p>{{ item.descripcion | striptags | trim | truncate(190, true, "…") }}</p>
+        <p>{{ item.resumen }}</p>
         <a class="text-link" href="{{ detailUrl }}">Conocer el servicio {{ icon("arrow-right") }}</a>
       </div>
     </article>

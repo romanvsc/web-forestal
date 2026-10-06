@@ -24,7 +24,7 @@ layout: layouts/base.njk
   <div class="site-container">
     <p class="eyebrow"><a href="/servicios/">Servicios</a> / {{ servicio.titulo }}</p>
     <h1>{{ servicio.titulo }}.</h1>
-    <p>{{ servicio.descripcion }}</p>
+    <p>{{ servicio.resumen }}</p>
     <div class="page-actions">
       <a class="button" href="/?servicio={{ servicio.slug }}#contacto">Consultar {{ icon("arrow-up-right") }}</a>
       <a class="button button--outline" href="/servicios/">Todos los servicios {{ icon("arrow-right") }}</a>
@@ -36,8 +36,12 @@ layout: layouts/base.njk
     <div class="detail-grid">
       <div class="detail-copy">
         <h2>Alcance del servicio</h2>
+        <ul class="service-scope">{% for punto in servicio.alcance %}<li>{{ punto }}</li>{% endfor %}</ul>
         {% if servicio.descripcion_ampliada %}
-        <div class="detail-body">{{ servicio.descripcion_ampliada | safe }}</div>
+        <details class="service-technical">
+          <summary>Información técnica del servicio</summary>
+          <div class="detail-body"><p>{{ servicio.descripcion }}</p>{{ servicio.descripcion_ampliada | safe }}</div>
+        </details>
         {% endif %}
         <a class="button" href="/?servicio={{ servicio.slug }}#contacto">Consultar por {{ servicio.titulo | lower }} {{ icon("arrow-up-right") }}</a>
       </div>

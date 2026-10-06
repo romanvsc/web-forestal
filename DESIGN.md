@@ -1,5 +1,5 @@
 ---
-name: Forestal Garuhapé — Home V2
+name: Forestal Garuhapé — Home editorial
 description: Sistema visual de la Home V2 implementada localmente en /; interiores conservan su autoridad CSS.
 colors:
   forest: "#082d25"
@@ -22,10 +22,10 @@ colors:
 typography:
   display:
     fontFamily: "Manrope Variable, Manrope, system-ui, sans-serif"
-    fontSize: "clamp(48px, 9.3vw, 148px)"
+    fontSize: "clamp(48px, 7.4vw, 112px)"
     fontWeight: 700
-    lineHeight: 0.98
-    letterSpacing: "-0.055em"
+    lineHeight: 1.04
+    letterSpacing: "-0.045em"
   headline:
     fontFamily: "Manrope Variable, Manrope, system-ui, sans-serif"
     fontSize: "clamp(40px, 4.8vw, 74px)"
@@ -34,13 +34,13 @@ typography:
     letterSpacing: "-0.045em"
   contact:
     fontFamily: "Manrope Variable, Manrope, system-ui, sans-serif"
-    fontSize: "clamp(44px, 7.4vw, 112px)"
+    fontSize: "clamp(44px, 5.6vw, 84px)"
     fontWeight: 700
     lineHeight: 1.02
     letterSpacing: "-0.05em"
   year:
     fontFamily: "Manrope Variable, Manrope, system-ui, sans-serif"
-    fontSize: "clamp(100px, 18vw, 270px)"
+    fontSize: "clamp(96px, 13vw, 180px)"
     fontWeight: 700
     lineHeight: 0.85
     letterSpacing: "-0.07em"
@@ -125,7 +125,7 @@ components:
     padding: "0.85rem 1rem"
 ---
 
-# Design System: Forestal Garuhapé — Home V2
+# Design System: Forestal Garuhapé — Home editorial
 
 ## Overview
 
@@ -133,9 +133,9 @@ components:
 
 Fotografía operativa propia, titulares gigantes, rótulos pequeños y numeración de servicios construyen el lenguaje documental industrial elegido por el usuario. El bosque y el negro verde sostienen la operación; el crema marca las pausas institucionales. Manrope da escala a los mensajes, Work Sans organiza la lectura y Tabler Outline acompaña las acciones. La diferencia marcada entre título y metadata es una decisión explícita del brief.
 
-**Estado: Home V2 implementada localmente en `/`.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: la estética documental de Home no redefine sus superficies de lectura.
+**Estado: Home editorial implementada localmente en `/`, 2026-10-05.** La instrucción de implementar autorizó la composición y su integración; no existe una aprobación del storyboard pendiente. Este documento extrae el sistema real de `src/css/home.css` y los estilos compartidos que Home hereda de `src/css/styles.css`. Para páginas interiores, `src/css/styles.css` continúa como autoridad: la estética documental de Home no redefine sus superficies de lectura.
 
-Fuentes: plantillas `src/_includes/home/*`, cabecera y contacto compartidos, `src/js/home.js` y `src/js/main.js`; contrato y estado en `docs/PROPUESTA_MODERNIZACION.md`, `docs/STORYBOARD_V2.md` y `docs/FASE_FINAL.md`. La revisión independiente de Home registró `SHIP` sobre código y capturas (1440/768/390), sin hallazgos materiales; su evidencia está en `docs/evidencia/v2-home/` y `.impeccable/review/`. Esta extracción documental no añade pruebas ni una nueva revisión de navegador. La entrega sigue siendo local, sin commit, push ni publicación.
+Fuentes: plantillas `src/_includes/home/*`, cabecera y contacto compartidos, `src/js/home.js` y `src/js/main.js`; contrato y estado en `docs/PROPUESTA_MODERNIZACION.md`, `docs/STORYBOARD_EDITORIAL.md` y `docs/FASE_FINAL.md`. La revisión histórica de V2 se conserva en `docs/evidencia/v2-home/` y `.impeccable/review/`. La revisión actual con Apple Design y capturas 1440/768/390/360 se registra en `docs/STORYBOARD_EDITORIAL.md` y `docs/evidencia/home-editorial-2026-10-05/`. La entrega sigue siendo local, sin commit, push ni publicación.
 
 **Key Characteristics:**
 
@@ -181,12 +181,12 @@ Fuentes locales precargadas, con `font-display: swap`. Manrope (600/700) estable
 
 ### Hierarchy
 
-- **Display:** token `display` en el hero; móvil usa `clamp(42px, 10.7vw, 78px)`.
+- **Display:** token `display` en el hero; móvil usa `clamp(42px, 10.7vw, 64px)`.
 - **Headline:** token `headline` en capacidades operativas; tablet fija (40px), móvil usa `clamp(36px, 9vw, 52px)`.
 - **Contact:** token `contact` en el cierre comercial; móvil usa (10.8vw).
 - **Year:** token `year` en la pausa de 1993; móvil usa (29vw).
 - **Body:** token `body` compartido; móvil reduce a (16px). Descripciones operativas: `clamp(16px, 1.35vw, 20px)`, ancho máximo (32ch).
-- **Label:** token `label` para metadata del hero; móvil (10px). Índice de servicio (12px) con tracking (0.1em); rótulos de la base del hero (11px; 9px móvil). Se conserva su escala pequeña elegida.
+- **Label:** token `label` para metadata del hero; móvil (12px). Índice de servicio (12px) con tracking (0.1em); rótulos de la base del hero (11px; 11px móvil). Se conserva su escala pequeña elegida.
 - **Action:** token `action` en botones compartidos. Enlaces de servicio (15px); enlace final al catálogo en Manrope, `clamp(20px, 2.5vw, 36px)`.
 
 Introducción, SGC y región conservan sus escalas propias de `home.css`. No se sustituyen todas por el token base de capítulo.
@@ -197,11 +197,11 @@ Introducción, SGC y región conservan sus escalas propias de `home.css`. No se 
 
 Home abre con hero a sangre (100svh), poster inmediato y contenido superpuesto. La cabecera queda fija con JavaScript; es transparente sobre el hero cuando el menú está cerrado y sólida al salir. Sin JavaScript es relativa. Gutter compartido: (48px) escritorio, (32px) tablet y (20px) móvil; altura de cabecera (88/80/72px). El contenedor de la cabecera conserva el máximo compartido (1280px), mientras las escenas usan padding lateral.
 
-Escritorio elegible: seis capítulos de (140svh), escenario fotográfico sticky debajo de la cabecera y texto que avanza en el documento. Cosecha expande máscara; transporte ocupa el lado derecho (desde 40%); acopio mantiene fotografía horizontal a sangre y texto a la izquierda sobre fondo oscuro; caminos abre panorama; biomasa empieza al (18%); consultoría usa marco con inset (4% 8% 15%). Caption identifica el capítulo; el fondo oscuro es continuo, sin cambio abrupto a crema.
+La portada editorial sigue Presentación → seis capacidades → Cómo operamos → Empresa → alcance regional → SGC → consulta. Las capacidades usan fotografías y texto exterior en cuadrícula de tres columnas en escritorio, dos en tablet y una en móvil. Cada tarjeta conserva su ancla histórica y enlace al detalle.
 
-La alternativa estática conserva fotos con texto: base en dos columnas, caminos panorámico (2.15) y consultoría (2.2). Hasta (767px), los capítulos se apilan; caminos/consultoría usan ratio (1.5). Móvil reduce padding de secciones a (64px), capítulos a (48px 64px). Empresa, región y contacto pasan a una columna.
+Escritorio elegible: tres escenas de al menos 100svh, escenario fotográfico sticky debajo de la cabecera y texto que avanza en el documento. Planificar, Operar en campo y Abastecer la industria comparten fotografía a sangre, degradado de lectura y eje de texto. Acopio conserva su imagen horizontal.
 
-La pausa crema combina 1993 y fotografía real de la flota. SGC mantiene cuatro momentos sobre imagen oscura, con altura mínima (50svh; 42svh móvil). El mapa destaca únicamente Argentina y Paraguay. No implica emplazamientos ni cobertura completa del territorio.
+La alternativa estática conserva fotos con texto en dos columnas; hasta 767px se apilan. Empresa, región y contacto pasan a una columna. La pausa crema combina 1993 y la flota real. SGC usa cuatro compromisos compactos en cuatro/dos/una columnas y fondo absoluto, sin fijación. El mapa destaca únicamente Argentina y Paraguay; no implica emplazamientos ni cobertura completa del territorio.
 
 ## Elevation & Depth
 
@@ -217,7 +217,7 @@ Marcos fotográficos rectos y máscaras `inset`. Los campos de Home tienen radio
 
 Botón de envío: token `button-submit`, mínimo (48px), foco (3px) con offset (3px), hover `button-submit-hover` y desplazamiento de activación (1px). Enviando deshabilita el control, anuncia `aria-busy` y cambia el texto a «Enviando…». Consultar en cabecera usa variante clara, mínimo (44px). El acceso final al catálogo usa token `catalog-link`, mínimo (56px) y tipografía de mayor escala.
 
-Cada capítulo conserva «Conocer el servicio» y «Consultar»: enlaces semánticos, mínimo (48px), icono y borde inferior. La consulta mantiene `/?servicio=<slug>#contacto`. Las seis capacidades se resuelven por slug, con biomasa correcta y consultoría canónica en `/consultoria/`.
+Cada escena operativa conserva «Conocer el servicio» y «Consultar»: enlaces semánticos, mínimo (48px), icono y borde inferior. La consulta mantiene `/?servicio=<slug>#contacto`. Las seis capacidades se resuelven por slug, con biomasa correcta y consultoría canónica en `/consultoria/`.
 
 ### Inputs / Fields
 
@@ -237,9 +237,9 @@ La Home usa hero-cinematic.mp4: montaje local de fotografías, 36s a 30fps, plan
 
 ### Operational sequence
 
-Un contexto GSAP + ScrollTrigger coordina las seis imágenes, máscara y hero; una instancia de Lenis se integra con el ticker. Escala de capítulos (1.02 → 1.05); caminos usa parallax (−1.5% → +1.5%); seguimiento de la secuencia (.9s). Disolución entre fotos de .65 unidades de capítulo con sine.inOut, sobre la foto anterior opaca para evitar flashes oscuros. La flota conserva parallax (−3% → +3%) y scrub .3s. Hero mantiene su medio fijo y desvanece el texto con recorrido vertical de 24px. Los momentos SGC y el mapa usan apariciones breves reversibles.
+Un contexto GSAP + ScrollTrigger coordina tres imágenes; una instancia de Lenis se integra con el ticker. Cada escena usa el mismo lienzo y degradado. La imagen entrante sube de 12% a 0%; la saliente sube de 0% a −8%, con disolución `sine.inOut` de un tercio de capítulo centrada en el cambio y `scrub: 0.6`. La cobertura de 132% y el inicio en −16% evitan bordes. No se aplica zoom ni parallax adicional.
 
-El contexto se limita a escritorio con puntero fino y movimiento permitido. Cambiar viewport o preferencia revierte estilos, retira ticker y destruye Lenis. Móvil, tablet, movimiento reducido, ausencia de JavaScript o fallo del motor muestran fotos y texto sin el escenario animado. El parallax integrado de Home comparte su contexto; las funciones heredadas para otros selectores no constituyen un segundo motor activo de Home.
+Empresa, mapa y SGC siguen el flujo normal, con entradas breves de 20px/350ms. Contacto permanece en flujo. El contexto exige escritorio ≥1024px, puntero fino y movimiento permitido. Cambiar viewport o preferencia revierte estilos, retira ticker y destruye Lenis. Móvil, tablet, movimiento reducido, ausencia de JavaScript o fallo del motor muestran fotos y textos estáticos. No hay snap ni avances forzados.
 
 ### Contact feedback
 
@@ -269,3 +269,10 @@ El contexto se limita a escritorio con puntero fino y movimiento permitido. Camb
 ## Recursos de imagen actualizados
 
 Los siete recursos aportados por el usuario se vinculan por servicio y usan AVIF/WebP con hash. Cosecha y Biomasa tienen recortes autorizados para excluir nombres de marca alterados, editados con imagegen; sus originales permanecen en `src/images/actualizadas/originales/`. La nueva Acopio vertical corresponde a catálogo y galería: el capítulo mantiene la fotografía horizontal y el fondo oscuro aprobados. Poster y montaje usan la nueva Cosecha. El detalle de fuentes, dimensiones y prompt figura en `docs/recursos/IMAGENES_ACTUALIZADAS.md`. Los wrappers picture de tarjetas y detalles ocupan el 100% del encuadre existente; las imágenes siguen usando object-fit cover.
+
+
+## Mejoras de la auditoría Apple Design — 2026-10-05
+
+Se aplicaron las ocho recomendaciones de `docs/AUDITORIA_APPLE_DESIGN_2026-10-05.md`: hover claro en Acopio, SVG negativo con todas sus letras blancas en las rutas, poster móvil con foco en la cabina (62% horizontal, altura 120% anclada abajo), acción Consultar visible junto al recorrido móvil, rótulos de 11–12px, entradillas completas y alcance estructurado, navegación con página/sección activa y enlace SGC en Nosotros. El texto técnico original permanece disponible en disclosures HTML nativos. El formulario orienta el mensaje y cancela la espera local a los 20 segundos, conservando datos y explicando que no se pudo confirmar el envío; no reintenta automáticamente. SGC móvil usa altura por contenido y separación de 32px; la revisión editorial posterior compacta también escritorio.
+
+La variante del logo usa directamente `fg-negative.svg`; ya no necesita filtro específico de Home. Esta entrega sigue siendo local. Capturas posteriores bajo `docs/evidencia/apple-design-2026-10-05/despues/`. No se ejecutaron pruebas automatizadas ni envíos reales de correo.

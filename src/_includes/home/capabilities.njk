@@ -1,0 +1,16 @@
+{% from "components/image.njk" import responsiveImage with context %}
+{% from "components/icon.njk" import icon with context %}
+<section class="home-capabilities" id="servicios" aria-labelledby="capabilities-heading" data-home-reveal>
+  <div class="home-section-heading">
+    <div><p class="home-meta">Nuestros servicios</p><h2 id="capabilities-heading">Una operación.<br>Seis capacidades.</h2></div>
+    <div><p>Servicios forestales en cada etapa, con maquinaria, personas y planificación.</p><a class="home-ink-link" href="/servicios/">Todos los servicios {{ icon('arrow-up-right') }}</a></div>
+  </div>
+  <div class="home-service-grid">
+    {% for chapter in homeCapabilities %}
+    <article class="home-service" id="{{ chapter.slug }}" aria-labelledby="service-{{ chapter.slug }}">
+      <a class="home-service-image" href="{{ chapter.detail }}" tabindex="-1" aria-hidden="true">{{ responsiveImage(chapter.image, '', '', 'lazy', '(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw') }}</a>
+      <div class="home-service-copy"><p class="operation-index"><span>{{ chapter.number }}</span> / SERVICIO</p><h3 id="service-{{ chapter.slug }}">{{ chapter.title }}</h3><p>{{ chapter.resumen }}</p><a class="home-ink-link" href="{{ chapter.detail }}">Conocer {{ chapter.title | lower }} {{ icon('arrow-up-right') }}</a></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
