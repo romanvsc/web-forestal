@@ -6,7 +6,6 @@ html:has(.home-v2) { scroll-behavior: auto; }
 /* Header and footer share the sections' 48px gutter so logo, nav and content align on one edge. */
 .home-v2 :is(.header-inner, .footer-grid, .footer-meta).site-container { width: calc(100% - 2 * var(--site-gutter)); }
 .home-v2 .site-header { position: fixed; inset: 0 0 auto; transition: background 220ms ease, border-color 220ms ease; }
-.home-v2:not(.has-js) .site-header { position: relative; }
 .home-v2.has-js .site-header[data-over-hero="true"]:not([data-menu-open="true"]) { background: transparent; border-color: transparent; box-shadow: none; }
 .home-v2 :is(.home-hero,.home-operation,.home-sgc) :focus-visible { outline-color: var(--color-focus); }
 .home-v2 a:hover { color: var(--color-focus); }

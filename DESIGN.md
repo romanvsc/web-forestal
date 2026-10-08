@@ -284,6 +284,6 @@ Aperturas fotográficas de 480 px mínimos en escritorio, H1 40–72 px y degrad
 
 Home conserva su relato de tres escenas, con resúmenes exclusivos de 18–28 palabras y encuadres de tarjetas propios. Empresa alinea fotografía y copy desde arriba; región y consulta usan titulares en frase. CSS comparte tokens por función y elimina overrides históricos sin nuevo motor de movimiento.
 
-El selector opcional admite los seis servicios en HTML/JS/PHP. Las sugerencias nunca reemplazan un texto editado; éxito confirmado limpia los campos y errores conservan servicio y mensaje. El video actual usa H.264 slow CRF 26, 1280×720 a 30 fps, 36 segundos y fundidos de 2 segundos; pesa 6.667.385 B.
+El selector opcional admite los seis servicios en HTML/JS/PHP. Las sugerencias nunca reemplazan un texto editado; éxito confirmado limpia los campos y errores conservan servicio y mensaje. El video actual usa H.264 veryslow CRF 34 (`aq-mode=3`, `tune stillimage`, GOP de 300), 1280×720 a 30 fps, 36 segundos y fundidos de 2 segundos, con los fotogramas pasando por la misma gradación de color del sitio; pesa 2.811.617 B.
 
 Revisión y límites actuales: docs/TERCERA_MODERNIZACION_2026-10-06.md. Base anterior publicada: 98e7d72. Tercera modernización local, sin commit ni push.

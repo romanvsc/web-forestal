@@ -260,4 +260,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { buildAssets, buildSite, cleanSiteOutput };
+module.exports = { buildAssets, buildSite, cleanSiteOutput, gradeFor };

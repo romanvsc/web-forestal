@@ -8,6 +8,7 @@
     <link rel="preload" href="{{ assets.fonts.workSans }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ assets.css }}">
     <script type="module" src="{{ assets.js }}"></script>
+    {% if homeV2 %}<noscript><style>.home-v2 .site-header{position:relative}</style></noscript>{% endif %}
   </head>
   <body{% if homeV2 %} class="home-v2"{% endif %}>
     <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
