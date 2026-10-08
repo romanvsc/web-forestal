@@ -80,3 +80,12 @@ No se ejecutó Lighthouse ni se midió LCP/INP en campo. No se revisaron en pant
 - Servicios en `home.css`: tarjeta destacada de Cosecha (7 columnas, 2 filas), Transporte y Acopio en horizontal, tres tarjetas de 4 columnas debajo. En tablet, 2 columnas; en móvil, riel horizontal con `scroll-snap` (82 % de ancho, la siguiente tarjeta asoma). Hover: zoom lento de la imagen y flecha que se desplaza (solo con puntero real; sin movimiento con `prefers-reduced-motion`).
 - Hero: el botón de pausa pasa a un control circular de 48 px (el texto queda para lectores de pantalla) junto a «Ver nuestra operación».
 - Verificado: `npm test` correcto; sin desbordamiento horizontal a 1440, 768 y 390 px.
+
+## Fase 2 — ejecutada (sin commit)
+
+- Identidad de movimiento en `src/js/home.js`: curvas `fgOut` (.05,.7,.1,1, entradas) y `fg` (.4,0,.2,1, desplazamientos) registradas con `CustomEase`, equivalentes a `--ease-fg` en CSS; escalonado de líneas de 90 ms.
+- Escritorio (≥1024 px, puntero fino, sin movimiento reducido): entrada del hero por líneas con máscara; titulares de cada sección que suben por línea (se divide por `<br>`, el titular sigue siendo un solo encabezado); imágenes con máscara `clip-path` y asentamiento de escala; tarjetas de servicio escalonadas; el año 1993 cuenta hasta su valor final; la foto de la flota se descubre y se desplaza lento; contenido de cada capítulo entra al asentarse su escena. Cada revelado ocurre una sola vez.
+- Secuencia «Cómo operamos»: cada escena sube sobre la anterior con máscara (antes, fundido); contador grande `01 / 03`, barra de progreso y nombre de la escena (antes, una línea de 12 px).
+- Móvil/táctil: solo un fundido ascendente con `IntersectionObserver`, sin motor de scroll. Con movimiento reducido o sin JavaScript no se oculta ni se mueve nada.
+- Verificado: sin errores de consola; al recorrer toda la página ningún elemento queda oculto; sin desbordamiento horizontal. CLS 0 y LCP local 164 ms en escritorio / 132 ms en móvil (lecturas locales, sin throttling; línea base anterior 120–140 ms). Bundle JS gzip 58,6 KB y CSS 10,7 KB.
+- Pendiente de revisión humana: percepción real de ritmo y duración; no se probó en Safari ni en dispositivos físicos.

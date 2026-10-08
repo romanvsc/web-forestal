@@ -5,7 +5,7 @@
   <div class="home-operation" data-home-operation>
     <div class="home-operation-stage" data-operation-stage aria-hidden="true">
       {% for scene in homeNarrative %}<figure class="operation-frame" data-operation-frame>{{ responsiveImage(scene.image, '', '', 'lazy', '(max-width: 1023px) 1px, 100vw') }}</figure>{% endfor %}
-      <p class="operation-caption" data-operation-caption>01 — Planificar</p>
+      <div class="operation-meter"><p class="operation-meter-count"><span data-operation-num>01</span><span class="operation-meter-total">/ {{ "0" + homeNarrative.length }}</span></p><span class="operation-meter-track"><span class="operation-meter-fill" data-operation-fill></span></span><p class="operation-caption" data-operation-caption>Planificar</p></div>
     </div>
     <div class="home-operation-track" data-operation-track>
       {% for scene in homeNarrative %}

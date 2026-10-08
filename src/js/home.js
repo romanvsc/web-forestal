@@ -1,4 +1,34 @@
+import { CustomEase } from 'gsap/CustomEase';
+
 const desktopMotion = '(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
+const lightMotion = '(prefers-reduced-motion: no-preference) and (max-width: 1023px), (prefers-reduced-motion: no-preference) and (pointer: coarse)';
+// Motion identity (Premium): entrances decelerate, on-screen moves ease both ends. Mirrors --ease-fg in CSS.
+const EASE_IN = 'fgOut';
+const EASE_MOVE = 'fg';
+const LINE_STAGGER = 0.09;
+
+// Wraps each <br>-separated line of a heading in a mask so it can rise into place; text stays one heading.
+function splitLines(heading) {
+  if (heading.dataset.split) return [...heading.querySelectorAll('.reveal-line-inner')];
+  const groups = [[]];
+  [...heading.childNodes].forEach((node) => {
+    if (node.nodeName === 'BR') groups.push([]);
+    else groups[groups.length - 1].push(node);
+  });
+  heading.textContent = '';
+  const inners = groups.filter((group) => group.length).map((group) => {
+    const line = document.createElement('span');
+    const inner = document.createElement('span');
+    line.className = 'reveal-line';
+    inner.className = 'reveal-line-inner';
+    group.forEach((node) => inner.append(node));
+    line.append(inner);
+    heading.append(line);
+    return inner;
+  });
+  heading.dataset.split = 'true';
+  return inners;
+}
 
 export function setupHomeVideo() {
   const hero = document.querySelector('[data-home-hero]');
@@ -104,12 +134,18 @@ export function setupHomeVideo() {
 }
 
 export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create('fgOut', '.05,.7,.1,1');
+  CustomEase.create('fg', '.4,0,.2,1');
+  setupLightReveal(gsap);
   const operation = document.querySelector('[data-home-operation]');
   if (!operation) return;
   const track = operation.querySelector('[data-operation-track]');
   const frames = [...operation.querySelectorAll('[data-operation-frame]')];
   const chapters = [...operation.querySelectorAll('[data-operation-chapter]')];
   const caption = operation.querySelector('[data-operation-caption]');
+  const counter = operation.querySelector('[data-operation-num]');
+  const fill = operation.querySelector('[data-operation-fill]');
   if (frames.length < 2 || chapters.length !== frames.length) return;
   gsap.matchMedia().add(desktopMotion, () => {
     let lenis;
@@ -122,12 +158,15 @@ export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
       gsap.ticker.lagSmoothing(0);
       document.body.classList.add('has-home-motion');
       context.add(() => {
-        gsap.set(frames, { autoAlpha: 0 });
-        gsap.set(frames[0], { autoAlpha: 1 });
+        // Each frame rises over the previous one behind a mask; the previous image keeps drifting underneath.
+        gsap.set(frames, { autoAlpha: 1 });
+        gsap.set(frames.slice(1), { clipPath: 'inset(100% 0% 0% 0%)' });
         const sequence = gsap.timeline({
           onUpdate() {
             const index = Math.min(chapters.length - 1, Math.floor(this.time()));
-            caption.textContent = `${String(index + 1).padStart(2, '0')} — ${chapters[index].dataset.operationTitle}`;
+            counter.textContent = String(index + 1).padStart(2, '0');
+            caption.textContent = chapters[index].dataset.operationTitle;
+            gsap.set(fill, { scaleX: this.progress() });
           },
           scrollTrigger: { trigger: track, start: 'top center', end: 'bottom center', scrub: .6, invalidateOnRefresh: true },
         });
@@ -136,14 +175,12 @@ export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
         frames.forEach((frame, index) => {
           if (index === 0) return;
           const start = index - 1 / 6;
-          sequence.fromTo(frame, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 / 3, ease: 'sine.inOut' }, start);
-          sequence.fromTo(frame.querySelector('img'), { yPercent: 12 }, { yPercent: 0, duration: 1 / 3, ease: 'sine.inOut' }, start);
-          sequence.to(frames[index - 1], { autoAlpha: 0, duration: 1 / 3, ease: 'sine.inOut' }, start);
-          sequence.to(frames[index - 1].querySelector('img'), { yPercent: -8, duration: 1 / 3, ease: 'sine.inOut' }, start);
+          sequence.to(frame, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1 / 3, ease: EASE_MOVE }, start);
+          sequence.fromTo(frame.querySelector('img'), { yPercent: 12 }, { yPercent: 0, duration: 1 / 3, ease: EASE_MOVE }, start);
+          sequence.to(frames[index - 1].querySelector('img'), { yPercent: -8, duration: 1 / 3, ease: EASE_MOVE }, start);
         });
-        document.querySelectorAll('[data-home-reveal]').forEach((section) => {
-          gsap.from(section.children, { y: 20, opacity: .7, duration: .35, ease: 'power2.out', clearProps: 'all', scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none reverse' } });
-        });
+        setupHeroEntrance(gsap);
+        setupDesktopReveal(gsap, ScrollTrigger, chapters);
         document.fonts?.ready.then(() => { if (document.body.classList.contains('has-home-motion')) ScrollTrigger.refresh(); });
       });
     } catch (error) {
@@ -160,6 +197,109 @@ export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
       gsap.ticker.remove(tick);
       gsap.ticker.lagSmoothing(500, 33);
       lenis?.destroy();
+    };
+  });
+}
+
+function setupHeroEntrance(gsap) {
+  const copy = document.querySelector('[data-home-hero-copy]');
+  if (!copy) return;
+  const lines = splitLines(copy.querySelector('h1'));
+  const meta = copy.querySelector('.home-meta');
+  const rest = copy.querySelectorAll('.home-hero-description, .home-hero-actions');
+  const base = document.querySelectorAll('.home-hero-base > *');
+  gsap.timeline({ defaults: { ease: EASE_IN } })
+    .from(meta, { y: 14, autoAlpha: 0, duration: .6, clearProps: 'all' }, 0)
+    .from(lines, { yPercent: 110, duration: .9, stagger: LINE_STAGGER }, .1)
+    .from(rest, { y: 18, autoAlpha: 0, duration: .6, stagger: .1, clearProps: 'all' }, .5)
+    .from(base, { y: 12, autoAlpha: 0, duration: .6, stagger: .06, clearProps: 'all' }, .8);
+}
+
+function setupDesktopReveal(gsap, ScrollTrigger, chapters) {
+  const $ = (selector) => document.querySelector(selector);
+  const once = (trigger, start = 'top 82%') => ({ trigger, start, once: true });
+  const rise = (targets, trigger, { start, ...vars } = {}) => gsap.from(targets, { y: 22, autoAlpha: 0, duration: .6, ease: EASE_IN, clearProps: 'all', scrollTrigger: once(trigger, start), ...vars });
+  const lines = (heading, trigger = heading, start) => gsap.from(splitLines(heading), { yPercent: 110, duration: .9, ease: EASE_IN, stagger: LINE_STAGGER, scrollTrigger: once(trigger, start) });
+  const mask = (figure, trigger = figure) => {
+    const image = figure.querySelector('img');
+    gsap.fromTo(figure, { clipPath: 'inset(14% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .9, ease: EASE_MOVE, clearProps: 'clipPath', scrollTrigger: once(trigger) });
+    if (image) gsap.fromTo(image, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: EASE_IN, clearProps: 'transform', scrollTrigger: once(trigger) });
+  };
+
+  // Services
+  lines($('#capabilities-heading'));
+  rise($('.home-capabilities .home-section-heading > div:last-child'), '#capabilities-heading');
+  const cards = gsap.utils.toArray('.home-service');
+  cards.forEach((card) => {
+    gsap.set(card.querySelector('.home-service-copy'), { y: 18, autoAlpha: 0 });
+    gsap.set(card.querySelector('.home-service-image'), { clipPath: 'inset(14% 0% 0% 0%)' });
+    gsap.set(card.querySelector('.home-service-image img'), { scale: 1.12 });
+  });
+  ScrollTrigger.batch(cards, {
+    start: 'top 88%',
+    once: true,
+    onEnter: (batch) => batch.forEach((card, index) => {
+      const delay = index * .09;
+      gsap.to(card.querySelector('.home-service-image'), { clipPath: 'inset(0% 0% 0% 0%)', duration: .9, delay, ease: EASE_MOVE, clearProps: 'clipPath' });
+      gsap.to(card.querySelector('.home-service-image img'), { scale: 1, duration: 1.2, delay, ease: EASE_IN, clearProps: 'transform' });
+      gsap.to(card.querySelector('.home-service-copy'), { y: 0, autoAlpha: 1, duration: .6, delay: delay + .25, ease: EASE_IN, clearProps: 'all' });
+    }),
+  });
+
+  // Operation: intro, then each chapter's copy arrives as its scene settles
+  lines($('#process-heading'));
+  rise($('.home-process-intro > p'), '#process-heading');
+  chapters.forEach((chapter) => {
+    const trigger = { trigger: chapter, start: 'top 62%', once: true };
+    gsap.from(splitLines(chapter.querySelector('h3')), { yPercent: 110, duration: .9, ease: EASE_IN, stagger: LINE_STAGGER, scrollTrigger: trigger });
+    gsap.from(chapter.querySelectorAll('.operation-index, .operation-description, .operation-links'), { y: 18, autoAlpha: 0, duration: .6, delay: .2, stagger: .1, ease: EASE_IN, clearProps: 'all', scrollTrigger: trigger });
+  });
+
+  // Company: the year counts up; the fleet photo is unveiled and then drifts slowly
+  const year = $('.home-year');
+  const finalYear = Number(year.textContent);
+  if (finalYear) {
+    const counter = { value: finalYear - 63 };
+    gsap.to(counter, { value: finalYear, duration: 1.4, ease: EASE_IN, onUpdate: () => { year.textContent = String(Math.round(counter.value)); }, onComplete: () => { year.textContent = String(finalYear); }, scrollTrigger: once(year, 'top 85%') });
+  }
+  lines($('#company-heading'), '.home-company-top');
+  const fleet = $('.home-company figure');
+  mask(fleet);
+  gsap.fromTo(fleet.querySelector('img'), { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: fleet, start: 'top bottom', end: 'bottom top', scrub: true } });
+  rise($('.home-company-bottom > div'), fleet, { delay: .2 });
+
+  // Region
+  lines($('#regional-heading'));
+  rise(document.querySelectorAll('.home-regional > div > :not(h2)'), '#regional-heading', { stagger: .1, delay: .2 });
+  mask($('.home-regional figure'));
+
+  // Quality system
+  lines($('#sgc-heading'));
+  rise($('.home-sgc-subtitle'), '#sgc-heading', { delay: .2 });
+  rise(gsap.utils.toArray('[data-sgc-moment]'), '.home-sgc-moments', { stagger: .12, start: 'top 85%' });
+
+  // Contact
+  lines($('#contact-heading'), '#contact-heading', 'top 88%');
+  rise($('.home-contact-layout'), '#contact-heading', { delay: .25 });
+}
+
+// Phones, tablets and coarse pointers: one quiet fade-up, no scroll engine.
+function setupLightReveal(gsap) {
+  gsap.matchMedia().add(lightMotion, () => {
+    const targets = document.querySelectorAll('.home-section-heading, .home-company-top, .home-company-bottom, .home-regional > *, .home-sgc-moments li, .operation-chapter, .home-contact-title, .home-contact-layout');
+    if (!targets.length || !('IntersectionObserver' in window)) return undefined;
+    document.body.classList.add('has-light-reveal');
+    targets.forEach((node) => node.setAttribute('data-reveal', ''));
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach((node) => observer.observe(node));
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove('has-light-reveal');
+      targets.forEach((node) => { node.removeAttribute('data-reveal'); node.classList.remove('is-in'); });
     };
   });
 }

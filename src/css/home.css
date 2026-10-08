@@ -203,3 +203,19 @@ html:has(.home-v2) { scroll-behavior: auto; }
   .home-service { flex: 0 0 82%; scroll-snap-align: start; }
   .home-service-image { aspect-ratio: 1.3; }
 }
+
+/* Phase 2: motion system. Line masks, operation meter and the light (touch / small screens) reveal. */
+.reveal-line { display: block; overflow: hidden; padding-block: .1em .14em; margin-block: -.1em -.14em; }
+.reveal-line-inner { display: block; will-change: transform; }
+.operation-meter { display: none; }
+@media (min-width: 1024px) {
+  .has-home-motion .operation-meter { position: absolute; right: var(--site-gutter); bottom: 32px; z-index: 8; display: grid; justify-items: end; gap: 12px; }
+  .operation-meter-count { display: flex; align-items: baseline; gap: 10px; font-family: var(--font-display); font-weight: 700; line-height: 1; letter-spacing: -.04em; }
+  .operation-meter-count [data-operation-num] { font-size: clamp(56px, 6vw, 88px); }
+  .operation-meter-total { font-size: 16px; font-weight: 400; letter-spacing: .04em; color: var(--color-on-dark-muted); }
+  .operation-meter-track { display: block; width: 168px; height: 2px; background: rgb(255 255 255 / 25%); overflow: hidden; }
+  .operation-meter-fill { display: block; width: 100%; height: 100%; background: var(--color-on-dark); transform: scaleX(0); transform-origin: left; }
+  .operation-caption { position: static; font-size: 14px; letter-spacing: .06em; color: var(--color-on-dark); }
+}
+.has-light-reveal [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity var(--dur-std) var(--ease-fg), transform var(--dur-std) var(--ease-fg); }
+.has-light-reveal [data-reveal].is-in { opacity: 1; transform: none; }
