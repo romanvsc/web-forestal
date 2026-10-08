@@ -430,3 +430,91 @@ html:has(.home-v2) { scrollbar-color: var(--color-field-dark-border) var(--color
 .form-field select { appearance: none; padding-right: 44px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f1724' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; cursor: pointer; }
 .contact-direct a[href*="whatsapp"] { margin-top: 0.75rem; padding: 0 1.15rem; min-height: 52px; border: 1px solid rgb(255 255 255 / 40%); border-radius: 3px; font-weight: 600; transition: background-color var(--dur-quick) var(--ease-fg), border-color var(--dur-quick) var(--ease-fg); }
 .contact-direct a[href*="whatsapp"]:hover { border-color: #fff; background: rgb(255 255 255 / 8%); color: #fff; }
+
+/* Phase 4: interior pages share the Home's world (night / forest surfaces, cream for the company story). */
+body:not(.home-v2) { background: var(--color-night); color: var(--color-on-dark); }
+body:not(.home-v2) :is(.page-intro, .page-content, .service-detail, .section-block, .service-opening) :focus-visible { outline-color: var(--color-focus); }
+body:not(.home-v2) :is(.page-intro, .page-content, .service-detail, .section-block) a:not(.button):hover { color: var(--color-focus); }
+body:not(.home-v2) .company-section a:not(.button):hover { color: var(--color-brand); }
+body:not(.home-v2) .company-section :focus-visible { outline-color: var(--color-brand); }
+body:not(.home-v2) .reading-section { background: var(--color-cream); color: var(--color-text); }
+body:not(.home-v2) .reading-section :focus-visible { outline-color: var(--color-brand); }
+
+/* Openings and headings */
+.page-intro { padding-block: clamp(4rem, 9vw, 7rem) clamp(2.5rem, 5vw, 4rem); background: var(--color-night); border-bottom: 1px solid rgb(255 255 255 / 14%); }
+.page-intro .eyebrow, .section-block .eyebrow, .page-content .eyebrow { color: var(--color-on-dark-muted); }
+.page-intro h1 { max-width: 14ch; font-size: clamp(2.75rem, 7vw, 5.5rem); letter-spacing: -0.045em; line-height: 1.04; }
+.page-intro p:not(.eyebrow), .section-heading p, .service-card p, .consulting-card p, .sgc-card p, .capability-lists ul { color: var(--color-on-dark-muted); }
+.section-heading h2, .gallery-section h2, .service-related h2, .detail-copy h2 { font-size: clamp(2rem, 4.4vw, 3.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; }
+
+/* Catalog */
+.service-card { border-top-color: rgb(255 255 255 / 18%); }
+.service-card-media { background: var(--color-dark); }
+.service-card-media img { transition: transform var(--dur-slow) var(--ease-fg); }
+.service-card:hover .service-card-media img { transform: scale(1.045); }
+.service-card h2, .service-card h3 { color: var(--color-on-dark); }
+.text-link { color: var(--color-on-dark); }
+.company-section .text-link { color: var(--color-brand-hover); }
+
+/* Service detail: sticky index with a persistent enquiry, spec-sheet scope, dark reading surface */
+.service-detail { background: var(--color-night); overflow-x: clip; }
+.service-index { position: sticky; top: var(--header-height); z-index: 20; align-items: center; background: var(--color-night); border-bottom: 1px solid rgb(255 255 255 / 14%); box-shadow: 0 0 0 100vmax var(--color-night); clip-path: inset(0 -100vmax); }
+.service-index a:not(.button) { color: var(--color-on-dark-muted); }
+.service-index a:not(.button):hover { color: #fff; }
+.service-index-cta { margin-left: auto; min-height: 44px; padding-block: .5rem; }
+.service-index-cta:hover { color: var(--color-dark); }
+.service-scope { margin: 1.75rem 0 2rem; padding: 0; list-style: none; border-top: 1px solid rgb(255 255 255 / 20%); }
+.service-scope li { margin: 0; padding: 1.1rem 0; border-bottom: 1px solid rgb(255 255 255 / 20%); color: var(--color-on-dark); font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.45; }
+.detail-image { background: var(--color-dark); }
+.detail-body { color: var(--color-on-dark-muted); }
+.service-technical { border-block-color: rgb(255 255 255 / 25%); }
+.service-technical summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; list-style: none; }
+.service-technical summary::-webkit-details-marker { display: none; }
+.service-technical summary::after { content: ""; flex: none; width: 14px; height: 14px; background: linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) center / 2px 100% no-repeat; }
+.service-technical[open] summary::after { background: linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat; }
+.service-technical summary:hover { color: var(--color-focus); }
+.detail-copy .button { background: #fff; color: var(--color-dark); }
+.detail-copy .button:hover { background: var(--color-on-dark-muted); color: var(--color-dark); }
+
+/* Gallery: edge to edge, captions over the photo */
+.gallery-section { margin-top: clamp(4rem, 8vw, 6.5rem); margin-inline: calc(50% - 50vw); padding-inline: var(--site-gutter); }
+.gallery-grid { gap: 12px; }
+.gallery-grid figure { position: relative; overflow: hidden; background: var(--color-dark); }
+.gallery-grid img { transition: transform var(--dur-slow) var(--ease-fg); }
+.gallery-grid figure:hover img { transform: scale(1.04); }
+.gallery-grid figcaption { position: absolute; inset: auto 0 0; padding: 3rem 1rem 0.9rem; background: linear-gradient(0deg, rgb(6 28 23 / 85%), transparent); color: var(--color-on-dark); font-size: 0.9rem; }
+
+/* Related capabilities as large rows */
+.service-related { margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-block: 0; border-top: 0; }
+.service-related > div { display: grid; gap: 0; margin-top: 1.75rem; border-top: 1px solid rgb(255 255 255 / 20%); }
+.service-related a { justify-content: space-between; min-height: 72px; padding-block: .75rem; border-bottom: 1px solid rgb(255 255 255 / 20%); color: var(--color-on-dark); font-family: var(--font-display); font-size: clamp(1.4rem, 2.8vw, 2.25rem); font-weight: 600; letter-spacing: -.03em; text-decoration: none; transition: padding-left var(--dur-std) var(--ease-fg), color var(--dur-quick) var(--ease-fg); }
+.service-related a:hover { padding-left: 12px; color: var(--color-focus); }
+.service-related .icon { width: 1.5rem; height: 1.5rem; }
+
+/* Consulting, company and quality */
+.consulting-card { border-top-color: rgb(255 255 255 / 18%); }
+.consulting-card img { background: var(--color-dark); }
+.consulting-card h3, .sgc-card h3, .capability-lists h3 { color: var(--color-on-dark); }
+.company-section { background: var(--color-cream); color: var(--color-dark); }
+.company-section .eyebrow { color: var(--color-brand-hover); }
+.company-image { background: var(--color-dark); }
+.company-capabilities { background: var(--color-dark); }
+.sgc-section { background: var(--color-night); }
+.sgc-card { border-top-color: var(--color-focus); }
+.capability-lists > div { border-top-color: var(--color-focus); }
+.career-panel { background: var(--color-dark); border: 1px solid rgb(255 255 255 / 18%); color: var(--color-on-dark); }
+.career-copy p, .career-panel p { color: var(--color-on-dark-muted); }
+.career-copy .button { background: #fff; color: var(--color-dark); }
+.career-copy .button:hover { background: var(--color-on-dark-muted); color: var(--color-dark); }
+
+@media (max-width: 767px) {
+  .service-opening { background: var(--color-night); color: var(--color-on-dark); }
+  .service-opening-copy > p:not(.eyebrow) { color: var(--color-on-dark-muted); }
+  .service-opening .eyebrow, .service-opening a:not(.button) { color: var(--color-on-dark-muted); }
+  .service-opening .button, .service-opening .button:hover { background: #fff; color: var(--color-dark); }
+  .service-opening :focus-visible { outline-color: var(--color-focus); }
+  .service-index { flex-wrap: nowrap; overflow-x: auto; gap: 8px 20px; scrollbar-width: none; }
+  .service-index a { flex: none; }
+  .service-related a { min-height: 64px; }
+  .service-opening .button { display: none; }
+}

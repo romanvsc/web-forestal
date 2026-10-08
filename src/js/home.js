@@ -1,34 +1,4 @@
-import { CustomEase } from 'gsap/CustomEase';
-
-const desktopMotion = '(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
-const lightMotion = '(prefers-reduced-motion: no-preference) and (max-width: 1023px), (prefers-reduced-motion: no-preference) and (pointer: coarse)';
-// Motion identity (Premium): entrances decelerate, on-screen moves ease both ends. Mirrors --ease-fg in CSS.
-const EASE_IN = 'fgOut';
-const EASE_MOVE = 'fg';
-const LINE_STAGGER = 0.09;
-
-// Wraps each <br>-separated line of a heading in a mask so it can rise into place; text stays one heading.
-function splitLines(heading) {
-  if (heading.dataset.split) return [...heading.querySelectorAll('.reveal-line-inner')];
-  const groups = [[]];
-  [...heading.childNodes].forEach((node) => {
-    if (node.nodeName === 'BR') groups.push([]);
-    else groups[groups.length - 1].push(node);
-  });
-  heading.textContent = '';
-  const inners = groups.filter((group) => group.length).map((group) => {
-    const line = document.createElement('span');
-    const inner = document.createElement('span');
-    line.className = 'reveal-line';
-    inner.className = 'reveal-line-inner';
-    group.forEach((node) => inner.append(node));
-    line.append(inner);
-    heading.append(line);
-    return inner;
-  });
-  heading.dataset.split = 'true';
-  return inners;
-}
+import { desktopMotion, EASE_IN, EASE_MOVE, LINE_STAGGER, splitLines, registerEases, createReveal, setupLightReveal } from './motion-kit';
 
 export function setupHomeVideo() {
   const hero = document.querySelector('[data-home-hero]');
@@ -133,11 +103,11 @@ export function setupHomeVideo() {
   configure();
 }
 
+const HOME_LIGHT_TARGETS = '.home-section-heading, .home-company-top, .home-company-bottom, .home-regional > *, .home-sgc-moments li, .operation-chapter, .home-contact-title, .home-contact-layout';
+
 export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
-  gsap.registerPlugin(CustomEase);
-  CustomEase.create('fgOut', '.05,.7,.1,1');
-  CustomEase.create('fg', '.4,0,.2,1');
-  setupLightReveal(gsap);
+  registerEases(gsap);
+  setupLightReveal(gsap, HOME_LIGHT_TARGETS);
   const operation = document.querySelector('[data-home-operation]');
   if (!operation) return;
   const track = operation.querySelector('[data-operation-track]');
@@ -217,15 +187,7 @@ function setupHeroEntrance(gsap) {
 
 function setupDesktopReveal(gsap, ScrollTrigger, chapters) {
   const $ = (selector) => document.querySelector(selector);
-  const once = (trigger, start = 'top 82%') => ({ trigger, start, once: true });
-  const rise = (targets, trigger, { start, ...vars } = {}) => gsap.from(targets, { y: 22, autoAlpha: 0, duration: .6, ease: EASE_IN, clearProps: 'all', scrollTrigger: once(trigger, start), ...vars });
-  const lines = (heading, trigger = heading, start) => gsap.from(splitLines(heading), { yPercent: 110, duration: .9, ease: EASE_IN, stagger: LINE_STAGGER, scrollTrigger: once(trigger, start) });
-  const mask = (figure, trigger = figure) => {
-    const image = figure.querySelector('img');
-    gsap.fromTo(figure, { clipPath: 'inset(14% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .9, ease: EASE_MOVE, clearProps: 'clipPath', scrollTrigger: once(trigger) });
-    if (image) gsap.fromTo(image, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: EASE_IN, clearProps: 'transform', scrollTrigger: once(trigger) });
-  };
-
+  const { once, rise, lines, mask } = createReveal(gsap);
   // Services
   lines($('#capabilities-heading'));
   rise($('.home-capabilities .home-section-heading > div:last-child'), '#capabilities-heading');
@@ -281,25 +243,4 @@ function setupDesktopReveal(gsap, ScrollTrigger, chapters) {
   // Contact
   lines($('#contact-heading'), '#contact-heading', 'top 88%');
   rise($('.home-contact-layout'), '#contact-heading', { delay: .25 });
-}
-
-// Phones, tablets and coarse pointers: one quiet fade-up, no scroll engine.
-function setupLightReveal(gsap) {
-  gsap.matchMedia().add(lightMotion, () => {
-    const targets = document.querySelectorAll('.home-section-heading, .home-company-top, .home-company-bottom, .home-regional > *, .home-sgc-moments li, .operation-chapter, .home-contact-title, .home-contact-layout');
-    if (!targets.length || !('IntersectionObserver' in window)) return undefined;
-    document.body.classList.add('has-light-reveal');
-    targets.forEach((node) => node.setAttribute('data-reveal', ''));
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-in');
-      observer.unobserve(entry.target);
-    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    targets.forEach((node) => observer.observe(node));
-    return () => {
-      observer.disconnect();
-      document.body.classList.remove('has-light-reveal');
-      targets.forEach((node) => { node.removeAttribute('data-reveal'); node.classList.remove('is-in'); });
-    };
-  });
 }

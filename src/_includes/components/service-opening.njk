@@ -12,5 +12,5 @@
 <nav class="site-container service-index" aria-label="En esta página">
   <a href="#alcance-servicio">Alcance</a>
   {% if serviceEditorial[editorialService.slug].primary.length %}<a href="#imagenes-servicio">Imágenes</a>{% endif %}
-  <a href="/?servicio={{ editorialService.slug }}#contacto">Consultar</a>
+  <a class="button button--light service-index-cta" href="/?servicio={{ editorialService.slug }}#contacto">Consultar {{ icon("arrow-up-right") }}</a>
 </nav>

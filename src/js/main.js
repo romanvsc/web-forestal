@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { setupHomeMotion, setupHomeVideo } from './home';
 import { setupLottie, playLottie } from './lottie';
+import { setupInteriorMotion, setupPageIntroduction } from './interior-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 document.body.classList.add('has-js');
@@ -322,22 +323,6 @@ function setupImageParallax() {
   });
 }
 
-function setupPageIntroduction() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const intro = document.querySelector('.hero-copy, .page-intro .site-container, .career-copy');
-  if (!intro) return;
-  const parts = [...intro.children];
-  if (parts.length === 0) return;
-  gsap.from(parts, {
-    autoAlpha: 0,
-    y: 8,
-    duration: 0.42,
-    stagger: 0.055,
-    ease: 'power2.out',
-    clearProps: 'all',
-  });
-}
-
 function setCurrentYear() {
   const year = String(new Date().getFullYear());
   document.querySelectorAll('[data-current-year]').forEach((node) => { node.textContent = year; });
@@ -350,6 +335,7 @@ setupHomeVideo();
 setupHomeMotion(gsap, ScrollTrigger, Lenis);
 setupStory();
 setupImageParallax();
-setupPageIntroduction();
+setupPageIntroduction(gsap);
+setupInteriorMotion(gsap, ScrollTrigger);
 setCurrentYear();
 setupLottie();
