@@ -41,6 +41,7 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addPassthroughCopy("src/.htaccess");
     eleventyConfig.addPassthroughCopy("src/images");
+    eleventyConfig.addPassthroughCopy("src/animations");
     eleventyConfig.addPassthroughCopy("src/**/*.php");
     eleventyConfig.addPassthroughCopy({ ".cache/site-assets/dist": "assets" });
     for (const source of [

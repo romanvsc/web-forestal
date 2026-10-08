@@ -89,3 +89,18 @@ No se ejecutó Lighthouse ni se midió LCP/INP en campo. No se revisaron en pant
 - Móvil/táctil: solo un fundido ascendente con `IntersectionObserver`, sin motor de scroll. Con movimiento reducido o sin JavaScript no se oculta ni se mueve nada.
 - Verificado: sin errores de consola; al recorrer toda la página ningún elemento queda oculto; sin desbordamiento horizontal. CLS 0 y LCP local 164 ms en escritorio / 132 ms en móvil (lecturas locales, sin throttling; línea base anterior 120–140 ms). Bundle JS gzip 58,6 KB y CSS 10,7 KB.
 - Pendiente de revisión humana: percepción real de ritmo y duración; no se probó en Safari ni en dispositivos físicos.
+
+## Fase 3 — ejecutada (sin commit)
+
+- **Lottie con `lottie-web` (build light), no `dotlottie-web`.** El runtime oficial de dotLottie suma un WASM de 1,2 MB (≈496 KB gzip) más 165 KB de JS; para seis animaciones de trazo es desproporcionado. `lottie_light` pesa ≈46 KB gzip y se carga como chunk aparte solo cuando la página tiene `[data-lottie]` y el elemento entra en pantalla (`src/js/lottie.js`). Los archivos son `.json` (1,6–3,7 KB cada uno); el formato `.lottie` no aporta en piezas tan pequeñas.
+- **Animaciones generadas por script** (`scripts/build-lottie.cjs`, salida en `src/animations/`): convierte los trazos de los íconos Tabler del proyecto y los contornos del mapa en Lottie con trim path, con la misma curva `fg` y la paleta del sitio. Se regeneran con `node scripts/build-lottie.cjs`.
+- **Usos:** cuatro íconos del SGC que se dibujan en cascada (140 ms entre cada uno); línea y puntos entre Argentina y Paraguay sobre el mapa; check de confirmación del formulario (se dibuja una vez, el mensaje sigue siendo el contenido de la región `role="status"`).
+- **Accesibilidad y respaldo:** todos son decorativos (`aria-hidden`). Con movimiento reducido se muestra el dibujo terminado sin reproducir. Sin JavaScript no aparecen y no dejan hueco. Los espacios tienen tamaño reservado, así que no hay desplazamiento de layout.
+- **Mapa:** los dos puntos son el centroide de la masa principal de cada país en el propio SVG; indican el vínculo entre ambos países, no sedes ni ubicaciones operativas. La nota «Presencia institucional en Argentina y Paraguay» se mantiene.
+- **Contacto:** el selector de servicio deja la apariencia nativa (chevron propio, oscuro en la Home y claro en los interiores); WhatsApp pasa a botón con borde bajo los datos de contacto.
+- **Bundle:** el build pasa a ESM con división de código (`<script type="module">`). GSAP y Lenis siguen en el paquete principal: separarlos haría que el texto del hero apareciera y luego se ocultara para animarse mientras baja el chunk, así que no compensa el ahorro (≈30 KB gzip).
+- Verificado: sin errores de consola en Home y dos interiores; el runtime de Lottie no se descarga hasta llegar a una sección con animación; `npm test` correcto.
+
+## Ajuste del mapa — ejecutado (sin commit)
+
+- La línea del mapa va ahora de **Misiones a Paraguay** (antes, Argentina a Paraguay). El mapa es una proyección lineal; se calibró con los propios contornos (Argentina: lon −73,58…−53,64 y lat −21,78…−55,05 sobre x 111,6…368,8 / y 207,65…675,5; el cuadro de Paraguay coincide a ~2 px). Misiones se ubica por su centro geográfico (≈ −27,0 / −54,7), Paraguay por el centroide de su masa principal. El arco se curva hacia afuera de la frontera. Sigue siendo una indicación de vínculo entre ambos países, no la ubicación de una operación concreta.

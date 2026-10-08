@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { setupHomeMotion, setupHomeVideo } from './home';
+import { setupLottie, playLottie } from './lottie';
 
 gsap.registerPlugin(ScrollTrigger);
 document.body.classList.add('has-js');
@@ -85,6 +86,14 @@ function setupContactForm() {
     status.textContent = message;
     status.dataset.state = state;
     status.hidden = false;
+    if (state !== 'success') return;
+    // Decorative check, drawn once; the message itself stays the live-region content.
+    const icon = document.createElement('span');
+    icon.className = 'status-check';
+    icon.dataset.lottie = 'form-success';
+    icon.setAttribute('aria-hidden', 'true');
+    status.prepend(icon);
+    playLottie(icon);
   };
 
   const setFieldError = (name, message) => {
@@ -343,3 +352,4 @@ setupStory();
 setupImageParallax();
 setupPageIntroduction();
 setCurrentYear();
+setupLottie();
