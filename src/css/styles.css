@@ -28,6 +28,14 @@
   --header-height: 88px;
   --motion-quick: 150ms;
   --motion-standard: 220ms;
+  /* Motion identity (Premium): one curve, three durations. */
+  --ease-fg: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-quick: 220ms;
+  --dur-std: 480ms;
+  --dur-slow: 900ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-quick: 0.01ms; --dur-std: 0.01ms; --dur-slow: 0.01ms; }
 }
 
 *,

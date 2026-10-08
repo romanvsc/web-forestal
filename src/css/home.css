@@ -3,6 +3,8 @@ html:has(.home-v2) { scroll-behavior: auto; }
 .home-v2 ::selection { color: var(--color-night); background: var(--color-focus); }
 .home-v2 :is(input, textarea) { caret-color: var(--color-focus); }
 .home-v2 main { padding-top: 0; }
+/* Header and footer share the sections' 48px gutter so logo, nav and content align on one edge. */
+.home-v2 :is(.header-inner, .footer-grid, .footer-meta).site-container { width: calc(100% - 2 * var(--site-gutter)); }
 .home-v2 .site-header { position: fixed; inset: 0 0 auto; transition: background 220ms ease, border-color 220ms ease; }
 .home-v2:not(.has-js) .site-header { position: relative; }
 .home-v2.has-js .site-header[data-over-hero="true"]:not([data-menu-open="true"]) { background: transparent; border-color: transparent; box-shadow: none; }
@@ -154,7 +156,7 @@ html:has(.home-v2) { scroll-behavior: auto; }
 .home-service-copy .home-ink-link { margin-top: 16px; }
 .home-process { background: var(--color-night); }
 .home-process-intro { padding: 80px var(--site-gutter) 48px; margin-bottom: 0; }
-.home-process h2 { font-size: clamp(36px, 4.6vw, 68px); font-weight: 600; line-height: 1.1; }
+.home-process h2 { font-size: clamp(36px, 4.6vw, 68px); font-weight: 700; line-height: 1.1; }
 @media (min-width: 768px) and (max-width: 1023px) {
   .home-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
