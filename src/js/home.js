@@ -103,7 +103,7 @@ export function setupHomeVideo() {
   configure();
 }
 
-const HOME_LIGHT_TARGETS = '.home-section-heading, .home-company-top, .home-company-bottom, .home-regional > *, .home-sgc-moments li, .operation-chapter, .home-contact-title, .home-contact-layout';
+const HOME_LIGHT_TARGETS = '.home-section-heading, .home-company-top, .home-company-bottom, .home-regional > *, .home-sgc-moments li, .operation-chapter, .home-contact-title, .home-contact-layout, .home-proof .home-section-heading, .home-facts li, .home-clients';
 
 export function setupHomeMotion(gsap, ScrollTrigger, Lenis) {
   registerEases(gsap);
@@ -229,6 +229,18 @@ function setupDesktopReveal(gsap, ScrollTrigger, chapters) {
   mask(fleet);
   gsap.fromTo(fleet.querySelector('img'), { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: fleet, start: 'top bottom', end: 'bottom top', scrub: true } });
   rise($('.home-company-bottom > div'), fleet, { delay: .2 });
+
+  // Proof band: figures count up, logos arrive as one row
+  lines($('#proof-heading'));
+  rise($('.home-proof .home-section-heading > p'), '#proof-heading');
+  document.querySelectorAll('.home-fact-number').forEach((node) => {
+    const target = Number(node.dataset.count);
+    if (!target) return;
+    const counter = { value: 0 };
+    gsap.to(counter, { value: target, duration: 1.4, ease: EASE_IN, onUpdate: () => { node.textContent = String(Math.round(counter.value)); }, onComplete: () => { node.textContent = String(target); }, scrollTrigger: once(node, 'top 88%') });
+  });
+  rise(gsap.utils.toArray('.home-facts li'), '.home-facts', { stagger: .1, start: 'top 88%' });
+  rise($('.home-clients'), '.home-clients', { start: 'top 92%' });
 
   // Region
   lines($('#regional-heading'));

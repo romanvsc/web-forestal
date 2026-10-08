@@ -1,0 +1,20 @@
+{% from "components/image.njk" import responsiveImage with context %}
+<section class="home-proof" id="confianza" aria-labelledby="proof-heading" data-home-reveal>
+  <div class="home-section-heading">
+    <div><p class="home-meta">Trayectoria</p><h2 id="proof-heading">Con quienes<br>trabajamos.</h2></div>
+    <p>Un grupo de tres empresas, con operación en Argentina y Paraguay y clientes de la cadena foresto-industrial.</p>
+  </div>
+  <ul class="home-facts">
+    {% for fact in facts %}<li><span class="home-fact-number" data-count="{{ fact.value }}">{{ fact.value }}</span><span class="home-fact-label">{{ fact.label }}</span></li>{% endfor %}
+  </ul>
+  <div class="home-clients" role="group" aria-label="Nuestros clientes">
+    <div class="home-clients-track">
+      <ul class="home-clients-list">
+        {% for cliente in clientes.clientes %}<li>{{ responsiveImage(cliente.logo, cliente.alt, '', 'lazy', '200px') }}</li>{% endfor %}
+      </ul>
+      <ul class="home-clients-list" aria-hidden="true" data-clients-copy>
+        {% for cliente in clientes.clientes %}<li>{{ responsiveImage(cliente.logo, '', '', 'lazy', '200px') }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
