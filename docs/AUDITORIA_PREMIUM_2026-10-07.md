@@ -73,3 +73,10 @@ No se ejecutó Lighthouse ni se midió LCP/INP en campo. No se revisaron en pant
 - Home: header y footer comparten el gutter de las secciones. Medido en 1440, 768, 390 y 360 px: logo, contenido y pie quedan en el mismo borde (48/32/20 px), sin desbordamiento horizontal.
 - `.home-process h2` pasa de peso 600 a 700. El titular del SGC pasa de mayúsculas a frase («Operar también es cuidar.»); los cuatro pilares conservan mayúsculas como rótulos. Es una decisión de voz fácil de revertir en `src/_includes/home/sgc.njk`.
 - `npm test` correcto (build + comprobación de contacto).
+
+## Fase 1 — ejecutada (sin commit)
+
+- Gradación de color en `scripts/build.js` (`gradeFor`, `GRADE_VERSION`): las fotos de servicios, flota y galerías pasan por `modulate` (saturación 0,76, brillo 0,94); el poster del hero, algo más (0,70/0,90). Quedan fuera la aérea de consultoría, ilustraciones, logos y mapas. Afecta solo a las variantes AVIF/WebP; el `<img src>` de respaldo sigue siendo el original.
+- Servicios en `home.css`: tarjeta destacada de Cosecha (7 columnas, 2 filas), Transporte y Acopio en horizontal, tres tarjetas de 4 columnas debajo. En tablet, 2 columnas; en móvil, riel horizontal con `scroll-snap` (82 % de ancho, la siguiente tarjeta asoma). Hover: zoom lento de la imagen y flecha que se desplaza (solo con puntero real; sin movimiento con `prefers-reduced-motion`).
+- Hero: el botón de pausa pasa a un control circular de 48 px (el texto queda para lectores de pantalla) junto a «Ver nuestra operación».
+- Verificado: `npm test` correcto; sin desbordamiento horizontal a 1440, 768 y 390 px.

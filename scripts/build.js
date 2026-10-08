@@ -65,6 +65,24 @@ async function mapConcurrent(items, concurrency, task) {
   await Promise.all(workers);
 }
 
+// One color direction for the whole site: catalog-style photos (saturated skies, HDR look) are
+// pulled toward the cinematic tone of the aerial shots. Illustrations, logos and maps are untouched.
+const GRADE_VERSION = 'g3';
+const gradeSkipPrefixes = ['/images/consultoria/', '/images/clientes/', '/images/maps/'];
+const gradeProfiles = {
+  default: { saturation: 0.76, brightness: 0.94 },
+  // Hero poster (also the mobile / reduced-motion hero): the vivid sky is calmed to sit with the cinematic video.
+  '/images/actualizadas/cosecha-forestal.png': { saturation: 0.7, brightness: 0.9 },
+  // The aerial render is already cinematic: leave as authored.
+  '/images/actualizadas/consultoria-forestal.png': null,
+};
+
+function gradeFor(url) {
+  if (url in gradeProfiles) return gradeProfiles[url];
+  if (gradeSkipPrefixes.some((prefix) => url.startsWith(prefix))) return null;
+  return gradeProfiles.default;
+}
+
 async function buildResponsiveImages() {
   const sources = collectReferencedImages();
   const images = {};
@@ -96,12 +114,16 @@ async function buildResponsiveImages() {
     const slug = path.basename(url, path.extname(url)).toLowerCase().replace(/[^a-z0-9-]+/g, '-');
     const variants = { avif: [], webp: [] };
 
+    const grade = gradeFor(url);
+    const gradeTag = grade ? `-${GRADE_VERSION}` : '';
+
     for (const variantWidth of variantWidths.filter((candidate) => candidate <= width)) {
       for (const format of ['avif', 'webp']) {
-        const filename = `${slug}-${contentHash}-${variantWidth}.${format}`;
+        const filename = `${slug}-${contentHash}${gradeTag}-${variantWidth}.${format}`;
         const destination = path.join(outputDirectory, filename);
         if (!existsSync(destination)) {
-          const pipeline = sharp(source).rotate().resize({ width: variantWidth, withoutEnlargement: true });
+          let pipeline = sharp(source).rotate().resize({ width: variantWidth, withoutEnlargement: true });
+          if (grade) pipeline = pipeline.modulate(grade);
           if (format === 'avif') await pipeline.avif({ quality: 52, effort: 4 }).toFile(destination);
           else await pipeline.webp({ quality: 74, effort: 4 }).toFile(destination);
         }
