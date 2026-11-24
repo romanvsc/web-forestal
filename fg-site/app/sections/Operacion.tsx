@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Picture from '../components/Picture'
 import { narrative } from '../content/home'
-import { desktopMotion, EASE_MOVE } from '../lib/motion'
+import { desktopMotion, EASE_MOVE, lightMotion } from '../lib/motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -57,6 +57,13 @@ export default function Operacion() {
       return () => {
         delete el.dataset.motion
       }
+    })
+    // Touch: scenes stay stacked, but each photo drifts and its copy rises in as the scene arrives.
+    mm.add(lightMotion, () => {
+      q('[data-scene]').forEach((scene) => {
+        gsap.fromTo(scene.querySelector('img'), { yPercent: -8, scale: 1.2 }, { yPercent: 8, scale: 1.2, ease: 'none', scrollTrigger: { trigger: scene, start: 'top bottom', end: 'bottom top', scrub: true } })
+        gsap.from(scene.querySelectorAll('[data-copy] > *'), { y: 40, autoAlpha: 0, duration: 1, ease: EASE_MOVE, stagger: 0.08, scrollTrigger: { trigger: scene, start: 'top 55%', once: true } })
+      })
     })
     return () => mm.revert()
   }, [])

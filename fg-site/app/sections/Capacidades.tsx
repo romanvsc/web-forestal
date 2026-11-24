@@ -7,7 +7,7 @@ import { desktopMotion } from '../lib/motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/** Six capabilities on one pinned horizontal rail (desktop); a plain vertical list everywhere else. */
+/** Six capabilities on one pinned horizontal rail (desktop), a swipe rail on phones, a two-column grid in between. */
 export default function Capacidades() {
   const root = useRef<HTMLElement>(null)
 
@@ -51,9 +51,10 @@ export default function Capacidades() {
         </div>
       </div>
 
-      <ol data-track className="grid gap-14 px-5 sm:px-8 md:grid-cols-2 lg:px-12 group-data-[motion=on]/cap:flex group-data-[motion=on]/cap:w-max group-data-[motion=on]/cap:gap-[3vw]">
+      {/* Phones: a swipe rail with the next card peeking, the touch counterpart of the pinned desktop rail. */}
+      <ol data-track className="flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 [scrollbar-width:none] after:w-px after:shrink-0 after:content-[''] sm:scroll-px-8 sm:px-8 md:grid md:snap-none md:grid-cols-2 md:gap-14 md:overflow-visible md:after:hidden lg:px-12 group-data-[motion=on]/cap:flex group-data-[motion=on]/cap:w-max group-data-[motion=on]/cap:gap-[3vw]">
         {capabilities.map((c) => (
-          <li key={c.slug} data-panel className="group/panel group-data-[motion=on]/cap:w-[min(58vw,62rem)]">
+          <li key={c.slug} data-panel className="group/panel w-[84%] shrink-0 snap-start md:w-auto group-data-[motion=on]/cap:w-[min(58vw,62rem)]">
             <a href={c.detail} className="block" aria-labelledby={`cap-${c.slug}`}>
               <div className="relative aspect-[16/10] overflow-hidden bg-night group-data-[motion=on]/cap:aspect-auto group-data-[motion=on]/cap:h-[46svh]">
                 <Picture

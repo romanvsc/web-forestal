@@ -2,19 +2,19 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Picture from './Picture'
-import { desktopMotion, stagger } from '../lib/motion'
+import { anyMotion, stagger } from '../lib/motion'
 import type { Service } from '../content/servicios'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/** Full-bleed opening for a service: the photo settles back as the page scrolls (desktop only). */
+/** Full-bleed opening for a service: the photo settles back as the page scrolls. */
 export default function ServiceOpening({ service }: { service: Service }) {
   const root = useRef<HTMLElement>(null)
 
   useLayoutEffect(() => {
     const el = root.current!
     const mm = gsap.matchMedia()
-    mm.add(desktopMotion, () => {
+    mm.add(anyMotion, () => {
       gsap.to(el.querySelector('img'), { scale: 1.12, yPercent: 8, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } })
     })
     return () => mm.revert()

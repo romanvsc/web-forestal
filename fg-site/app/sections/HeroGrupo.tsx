@@ -38,7 +38,18 @@ export default function HeroGrupo() {
         .from(q('[data-pin]'), { scale: 0, transformOrigin: '50% 50%', duration: 0.7, stagger: 0.2, ease: 'back.out(2)' }, 1.3)
         .from(q('[data-fade-svg]'), { autoAlpha: 0, duration: 0.8 }, 1.7)
 
-      if (!desktop) return
+      if (!desktop) {
+        // Touch version of the dive: no pin, the forest opens in a circle as it scrolls in and the tagline rises.
+        const media = q('[data-media]')[0]
+        gsap
+          .timeline({ scrollTrigger: { trigger: media, start: 'top bottom', end: 'top 10%', scrub: 0.6 } })
+          .fromTo(media, { clipPath: 'circle(8% at 50% 45%)' }, { clipPath: 'circle(100% at 50% 45%)', ease: 'power2.in' })
+          .fromTo(q('[data-media-inner]'), { scale: 1.35 }, { scale: 1, ease: 'power1.out' }, 0)
+        const reveal = { trigger: media, start: 'top 35%', once: true }
+        gsap.fromTo(q('[data-tagline]'), { yPercent: 115 }, { yPercent: 0, duration: 1.1, stagger: 0.08, scrollTrigger: reveal })
+        gsap.fromTo(q('[data-tagline-fade]'), { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, delay: 0.3, stagger: 0.1, scrollTrigger: reveal })
+        return
+      }
       el.dataset.motion = 'on'
       const stage = q('[data-stage]')[0]
       const pin = q('[data-pin-ar]')[0]
@@ -165,7 +176,7 @@ export default function HeroGrupo() {
     >
       <div data-stage className="relative group-data-[motion=on]/hero:sticky group-data-[motion=on]/hero:top-0 group-data-[motion=on]/hero:h-svh group-data-[motion=on]/hero:overflow-hidden">
         {/* Layer A: the group */}
-        <div className="relative grid min-h-svh grid-cols-1 gap-8 px-5 pt-28 pb-10 sm:px-8 lg:grid-cols-12 lg:px-12 lg:pt-32 group-data-[motion=on]/hero:absolute group-data-[motion=on]/hero:inset-0 group-data-[motion=on]/hero:min-h-0 group-data-[motion=on]/hero:pt-28 group-data-[motion=on]/hero:pb-10">
+        <div className="relative grid min-h-svh grid-cols-1 gap-8 max-lg:overflow-hidden px-5 pt-28 pb-10 sm:px-8 lg:grid-cols-12 lg:px-12 lg:pt-32 group-data-[motion=on]/hero:absolute group-data-[motion=on]/hero:inset-0 group-data-[motion=on]/hero:min-h-0 group-data-[motion=on]/hero:pt-28 group-data-[motion=on]/hero:pb-10">
           <div data-copy className="relative z-10 flex flex-col justify-between gap-10 lg:col-span-7">
             <div>
               <p className="intro eyebrow text-caption">
@@ -201,8 +212,9 @@ export default function HeroGrupo() {
             </ol>
           </div>
 
-          <div className="relative lg:col-span-5">
-            <MapaGrupo className="mx-auto h-auto max-h-[70svh] w-full overflow-visible lg:absolute lg:inset-0 lg:h-full lg:max-h-none" />
+          {/* Below lg the map sits behind the copy, so the group fits one screen instead of two. */}
+          <div className="pointer-events-none absolute -right-[18%] bottom-0 h-[64svh] w-[100%] opacity-45 max-lg:[&_[data-fade-svg]]:hidden lg:pointer-events-auto lg:relative lg:right-auto lg:col-span-5 lg:h-auto lg:w-auto lg:opacity-100">
+            <MapaGrupo className="h-full w-full overflow-visible lg:absolute lg:inset-0" />
           </div>
 
           <a
