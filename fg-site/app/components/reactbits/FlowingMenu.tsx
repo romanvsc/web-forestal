@@ -2,7 +2,7 @@ import { useRef, type MouseEvent } from 'react'
 import { gsap } from 'gsap'
 
 // Adapted from reactbits.dev FlowingMenu (GSAP): on hover a marquee band slides in from the edge the pointer
-// entered and leaves through the edge it exits. Keyboard focus shows the band too; links stay plain anchors.
+// entered and leaves through the edge it exits. Keyboard focus shows the band too; touch never does; links stay plain anchors.
 export type FlowingItem = { href: string; label: string; image: string; onSelect?: () => void }
 
 const ease = { duration: 0.6, ease: 'expo.out' }
@@ -38,9 +38,11 @@ function Item({ href, label, image, onSelect }: FlowingItem) {
       <a
         href={href}
         onClick={onSelect}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-        onFocus={() => enter(null)}
+        // Mouse only: a tap fires enter without a matching leave and would leave the band stuck.
+        onPointerEnter={(e) => e.pointerType === 'mouse' && enter(e)}
+        onPointerLeave={(e) => e.pointerType === 'mouse' && leave(e)}
+        // Keyboard focus only: the sheet focuses its first link on open, which must not light it up.
+        onFocus={(e) => e.currentTarget.matches(':focus-visible') && enter(null)}
         onBlur={() => leave(null)}
         className="flex items-center justify-between py-[clamp(0.75rem,2.8vh,2.25rem)] font-display text-[clamp(2rem,4.6vw,4.5rem)] leading-none font-semibold tracking-[-0.04em] outline-none focus-visible:text-focus"
       >

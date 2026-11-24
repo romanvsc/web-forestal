@@ -11,7 +11,7 @@ export default function Clientes() {
   return (
     <section aria-labelledby="clientes-titulo" className="bg-cream py-10 text-ink-dark lg:py-12">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 px-5 sm:px-8 lg:px-12">
-        <h2 id="clientes-titulo" className="eyebrow font-sans tracking-[0.14em] text-ink-dark-muted">
+        <h2 id="clientes-titulo" className="eyebrow font-sans leading-[1.6] tracking-[0.14em] text-ink-dark-muted">
           Trabajamos para la industria forestal de la región
         </h2>
         <div className="flex items-center gap-4">
